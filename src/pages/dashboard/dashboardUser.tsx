@@ -3,7 +3,7 @@ import Lucide from '../../base-components/Lucide'
 import UserProfile from "../../components/dashboard/user";
 import EventData from "../../components/dashboard/event";
 import { getMeAuth } from "../../features/auth/meAuth";
-import { eventData } from "../../features/event/eventShow";
+import { eventData } from "../../features/event/event";
 import { reportAbsenMonth } from "../../features/periodeKerja/absenReport";
 import AbsenReport from "../../components/dashboard/absenReport";
 

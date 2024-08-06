@@ -9,7 +9,8 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 const CalendarUser = (props : any) => {
-  const {dataAbsen, clickEvent, clickDate, dateSetting, dataEventInternal} = props;
+  const {dataAbsen,
+     clickEvent, clickDate, dateSetting, dataEventInternal} = props;
   const [events, setEvents] = useState<any>([]);
   const [date, setDate] = useState<any>(null);
 

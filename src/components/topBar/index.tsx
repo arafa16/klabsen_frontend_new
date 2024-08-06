@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Lucide from "../../base-components/Lucide";
 import Breadcrumb from "../../base-components/Breadcrumb";
 import { Menu, Popover} from "../../base-components/Headless";
@@ -8,6 +7,7 @@ import clsx from "clsx";
 import {resetPassword} from '../../features/user/resetPassword';
 import { getMessageShow } from "../../features/messageShow";
 import { changePhotoProfile } from "../../features/user/setPhotoProfile";
+import userNotFound from "../../assets/images/user/userNotFound.jpg";
 
 function Main(props: { 
     toggleMobileMenu: (event: React.MouseEvent) => void; 
@@ -109,7 +109,7 @@ function Main(props: {
               <img
                 alt="Rocketman - HTML Admin Template"
                 className="border-2 border-white rounded-full shadow-lg border-opacity-10"
-                src={`${import.meta.env.VITE_REACT_APP_API_URL}/${props.data && props.data.url_image}`}
+                src={props.data && props.data.url_image ? `${import.meta.env.VITE_REACT_APP_API_URL+props.data.url_image}` : userNotFound}
               />
             </div>
             <div className="hidden ml-3 md:block">

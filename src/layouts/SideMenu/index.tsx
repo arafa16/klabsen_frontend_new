@@ -136,12 +136,13 @@ function Main() {
   }, [sideMenuStore, location.pathname]);
 
   return (
+    <>
+    <div className={`${loadingMe === false ? 'hidden' : ''} flex justify-center items-center w-full h-screen`}>
+      <LoadingIcon icon="circles" className={`w-10 h-10`} color="white" />
+    </div>
     <div className="flex h-screen xl:pl-5 xl:py-5">
       <DarkModeSwitcher />
       {/* BEGIN: Side Menu */}
-      <div className={`${loadingMe !== true ? 'hidden' : ''} flex justify-center items-center w-full h-full`}>
-        <LoadingIcon icon="circles" className={`w-20 h-20`} color="white" />
-      </div>
       <nav
         className={clsx([
           {"hidden" : loadingMe === true},
@@ -402,6 +403,8 @@ function Main() {
       </div>
       {/* END: Content */}
     </div>
+    </>
+    
   );
 }
 

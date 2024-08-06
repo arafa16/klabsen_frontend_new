@@ -1,4 +1,3 @@
-import React from 'react'
 import userNotFound from "../../assets/images/user/userNotFound.jpg";
 const UserProfile = (props:any) => {
     const {dataUser} = props;

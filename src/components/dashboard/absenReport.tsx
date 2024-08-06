@@ -9,8 +9,6 @@ const AbsenReport = (props:any) => {
     const {dataPeriodeKerja, dataUser} = props;
     const [dataInOut, setDataInOut] = useState<any>([]);
 
-    console.log(dataPeriodeKerja, 'data periode kerja');
-
     const dispatch = useDispatch();
 
     const getData = async() => {

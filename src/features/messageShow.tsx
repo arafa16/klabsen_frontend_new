@@ -7,8 +7,9 @@ export const getMessageShow = (dataMessage : any) =>{
     const notifMessage = useRef<NotificationElement>();
 
     useEffect(()=>{
-        if(dataMessage !== null||undefined){
-        notifMessage.current?.showToast();
+        if(dataMessage !== null){
+            notifMessage.current?.showToast();
+            console.log(dataMessage, 'data message 2');
         }
     },[dataMessage]);
 
