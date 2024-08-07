@@ -31,11 +31,11 @@ export const getMe: any = createAsyncThunk("me/getMe", async(_, thunkAPI) => {
     }
 });
 
-export const ResetPassword: any = createAsyncThunk("auth/ResetPassword", async(data : any, thunkAPI) => {
+export const ResetPassword: any = createAsyncThunk("auth/ResetPassword", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/reset/${data.token}`, {
-            password: data.password,
-            confPassword: data.confPassword
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/reset/${datas.token}`, {
+            password: datas.password,
+            confPassword: datas.confPassword
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });

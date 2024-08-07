@@ -31,9 +31,9 @@ export const getInOuts : any = createAsyncThunk("getInOuts", async(_, thunkAPI) 
     }
 });
 
-export const getInOutsById : any = createAsyncThunk("getInOutsById", async(inOuts : any, thunkAPI) => {
+export const getInOutsByUser : any = createAsyncThunk("getInOutsByUser", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${inOuts.uuid}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/user/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -45,9 +45,9 @@ export const getInOutsById : any = createAsyncThunk("getInOutsById", async(inOut
     }
 });
 
-export const getInOutsByUser : any = createAsyncThunk("getInOutsByUser", async(inOuts : any, thunkAPI) => {
+export const getInOutsByIdAndMonth : any = createAsyncThunk("getInOutsByIdAndMonth", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/user/${inOuts.uuid}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/idAndMonth/${datas.id}&${datas.tanggalMulai}&${datas.tanggalSelesai}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -59,24 +59,9 @@ export const getInOutsByUser : any = createAsyncThunk("getInOutsByUser", async(i
     }
 });
 
-export const getInOutsByIdAndMonth : any = createAsyncThunk("getInOutsByIdAndMonth", async(inOuts : any, thunkAPI) => {
+export const getInOutsTable : any = createAsyncThunk("getInOutsTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/idAndMonth/${inOuts.id}&${inOuts.tanggalMulai}&${inOuts.tanggalSelesai}`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-        console.log(inOuts.id, inOuts.tanggalMulai, inOuts.tanggalSelesai);
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
-export const getInOutsTable : any = createAsyncThunk("getInOutsTable", async(inOuts : any, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${inOuts.limit}&${inOuts.page}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${datas.limit}&${datas.page}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -88,16 +73,16 @@ export const getInOutsTable : any = createAsyncThunk("getInOutsTable", async(inO
     }
 });
 
-export const createInOuts : any = createAsyncThunk("creatInOuts", async(inOuts : any, thunkAPI) => {
+export const createInOuts : any = createAsyncThunk("creatInOuts", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts`,{
-            userId:inOuts.userId,
-            tanggalMulai:inOuts.tanggalMulai,
-            tanggalSelesai:inOuts.tanggalSelesai,
-            tipeAbsenId:inOuts.tipeAbsenId,
-            pelanggaranId:inOuts.pelanggaranId,
-            statusInoutId:inOuts.statusInoutId,
-            isAbsenWeb:inOuts.isAbsenWeb
+            userId:datas.userId,
+            tanggalMulai:datas.tanggalMulai,
+            tanggalSelesai:datas.tanggalSelesai,
+            tipeAbsenId:datas.tipeAbsenId,
+            pelanggaranId:datas.pelanggaranId,
+            statusInoutId:datas.statusInoutId,
+            isAbsenWeb:datas.isAbsenWeb
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -110,13 +95,13 @@ export const createInOuts : any = createAsyncThunk("creatInOuts", async(inOuts :
     }
 });
 
-export const createInOutsByAbsenWeb : any = createAsyncThunk("createInOutsByAbsenWeb", async(inOuts : any, thunkAPI) => {
+export const createInOutsByAbsenWeb : any = createAsyncThunk("createInOutsByAbsenWeb", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/InOutsByAbsenWeb`,{
-            userId:inOuts.userId,
-            tanggalMulai:inOuts.tanggalMulai,
-            tanggalSelesai:inOuts.tanggalSelesai,
-            codeTipeAbsen:inOuts.codeTipeAbsen
+            userId:datas.userId,
+            tanggalMulai:datas.tanggalMulai,
+            tanggalSelesai:datas.tanggalSelesai,
+            codeTipeAbsen:datas.codeTipeAbsen
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -129,16 +114,16 @@ export const createInOutsByAbsenWeb : any = createAsyncThunk("createInOutsByAbse
     }
 });
 
-export const updateInOuts : any = createAsyncThunk("updateInOuts", async(inOuts : any, thunkAPI) => {
+export const updateInOuts : any = createAsyncThunk("updateInOuts", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${inOuts.uuid}`,{
-            userId:inOuts.userId,
-            tanggalMulai:inOuts.tanggalMulai,
-            tanggalSelesai:inOuts.tanggalSelesai,
-            tipeAbsenId:inOuts.tipeAbsenId,
-            pelanggaranId:inOuts.pelanggaranId,
-            statusInoutId:inOuts.statusInoutId,
-            isAbsenWeb:inOuts.isAbsenWeb
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${datas.uuid}`,{
+            userId:datas.userId,
+            tanggalMulai:datas.tanggalMulai,
+            tanggalSelesai:datas.tanggalSelesai,
+            tipeAbsenId:datas.tipeAbsenId,
+            pelanggaranId:datas.pelanggaranId,
+            statusInoutId:datas.statusInoutId,
+            isAbsenWeb:datas.isAbsenWeb
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -151,9 +136,9 @@ export const updateInOuts : any = createAsyncThunk("updateInOuts", async(inOuts 
     }
 });
 
-export const deleteInOuts : any = createAsyncThunk("deleteInOuts", async(inOuts : any, thunkAPI) => {
+export const deleteInOuts : any = createAsyncThunk("deleteInOuts", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${inOuts.uuid}`,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -201,23 +186,6 @@ export const inOutsSlice = createSlice({
             state.isError = true;
             state.message = action.payload;
         })
-
-        // get inOuts by id
-        builder.addCase(getInOutsById.pending, (state) => {
-            state.isLoading = true;
-        });
-
-        builder.addCase(getInOutsById.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.data = action.payload;
-        });
-
-        builder.addCase(getInOutsById.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        });
 
         // get inOuts by id
         builder.addCase(getInOutsByIdAndMonth.pending, (state) => {

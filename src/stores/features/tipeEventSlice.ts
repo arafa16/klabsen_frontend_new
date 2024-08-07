@@ -17,9 +17,9 @@ const initialState : variabel = {
     message: '',
 }
 
-export const getEvents : any = createAsyncThunk("getEvents", async(_, thunkAPI) => {
+export const getTipeEvents : any = createAsyncThunk("getTipeEvents", async(_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/events`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -31,23 +31,9 @@ export const getEvents : any = createAsyncThunk("getEvents", async(_, thunkAPI) 
     }
 });
 
-export const getEventsByMonth : any = createAsyncThunk("getEventsByMonth", async(datas:any, thunkAPI) => {
+export const getTipeEventsById : any = createAsyncThunk("getTipeEventsById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/events/bulanTahun/${datas.bulan}&${datas.tahun}&${datas.limit}&${datas.page}`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
-export const getEventsById : any = createAsyncThunk("getEventsById", async(datas : any, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/events/`+datas.id,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/`+datas.id,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
 
@@ -60,9 +46,9 @@ export const getEventsById : any = createAsyncThunk("getEventsById", async(datas
     }
 });
 
-export const getEventsTable : any = createAsyncThunk("getEventsTable", async(datas : any, thunkAPI) => {
+export const getTipeEventsTable : any = createAsyncThunk("getTipeEventsTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/events/table/${datas.limit}&${datas.page}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/table/${datas.limit}&${datas.page}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -74,15 +60,10 @@ export const getEventsTable : any = createAsyncThunk("getEventsTable", async(dat
     }
 });
 
-export const createEvents : any = createAsyncThunk("createEvents", async(datas : any, thunkAPI) => {
+export const createTipeEvents : any = createAsyncThunk("createTipeEvents", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/events`,{
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents`,{
             name: datas.name,
-            bulan: datas.bulan,
-            tahun: datas.tahun,
-            tanggalMulai: datas.tanggalMulai,
-            tanggalSelesai: datas.tanggalSelesai,
-            tipeEventId: datas.tipeEventId,
             code: datas.code,
             isActive: datas.isActive
         },{
@@ -97,15 +78,10 @@ export const createEvents : any = createAsyncThunk("createEvents", async(datas :
     }
 });
 
-export const updateEvents : any = createAsyncThunk("updateEvents", async(datas : any, thunkAPI) => {
+export const updateTipeEvents : any = createAsyncThunk("updateTipeEvents", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/events/`+datas.id,{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/`+datas.id,{
             name: datas.name,
-            bulan: datas.bulan,
-            tahun: datas.tahun,
-            tanggalMulai: datas.tanggalMulai,
-            tanggalSelesai: datas.tanggalSelesai,
-            tipeEventId: datas.tipeEventId,
             code: datas.code,
             isActive: datas.isActive
         },{
@@ -120,12 +96,11 @@ export const updateEvents : any = createAsyncThunk("updateEvents", async(datas :
     }
 });
 
-export const deleteEvents : any = createAsyncThunk("deleteEvents", async(datas : any, thunkAPI) => {
+export const deleteTipeEvents : any = createAsyncThunk("deleteTipeEvents", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/events/`+datas.id,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/`+datas.id,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
-
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -135,113 +110,98 @@ export const deleteEvents : any = createAsyncThunk("deleteEvents", async(datas :
     }
 });
 
-export const eventsSlice = createSlice({
-    name: "events",
+export const tipeEventsSlice = createSlice({
+    name: "tipeEvents",
     initialState,
     reducers:{
-        resetEvents: (state) => initialState
+        resetTipeEvents: (state) => initialState
     },
     extraReducers:(builder) => {
-        // get events
-        builder.addCase(getEvents.pending, (state) => {
+        // get tipeNotifications
+        builder.addCase(getTipeEvents.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getEvents.fulfilled, (state, action) => {
+        builder.addCase(getTipeEvents.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getEvents.rejected, (state, action) => {
+        builder.addCase(getTipeEvents.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get events
-        builder.addCase(getEventsByMonth.pending, (state) => {
+        // get tipeNotifications
+        builder.addCase(getTipeEventsById.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getEventsByMonth.fulfilled, (state, action) => {
+        builder.addCase(getTipeEventsById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getEventsByMonth.rejected, (state, action) => {
+        builder.addCase(getTipeEventsById.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-         // get events
-         builder.addCase(getEventsById.pending, (state) => {
+        // get tipeNotifications
+        builder.addCase(getTipeEventsTable.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getEventsById.fulfilled, (state, action) => {
+        builder.addCase(getTipeEventsTable.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getEventsById.rejected, (state, action) => {
+        builder.addCase(getTipeEventsTable.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get events table
-        builder.addCase(getEventsTable.pending, (state) => {
+        // get tipeNotifications
+        builder.addCase(createTipeEvents.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getEventsTable.fulfilled, (state, action) => {
+        builder.addCase(createTipeEvents.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.data = action.payload;
+            state.message = action.payload;
         });
-        builder.addCase(getEventsTable.rejected, (state, action) => {
+        builder.addCase(createTipeEvents.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get events table
-        builder.addCase(updateEvents.pending, (state) => {
+        // update tipeNotifications
+        builder.addCase(updateTipeEvents.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(updateEvents.fulfilled, (state, action) => {
+        builder.addCase(updateTipeEvents.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(updateEvents.rejected, (state, action) => {
+        builder.addCase(updateTipeEvents.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get events table
-        builder.addCase(createEvents.pending, (state) => {
+        // update tipeNotifications
+        builder.addCase(deleteTipeEvents.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(createEvents.fulfilled, (state, action) => {
+        builder.addCase(deleteTipeEvents.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(createEvents.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        })
-
-        // deleteEvents
-        builder.addCase(deleteEvents.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(deleteEvents.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.message = action.payload;
-        });
-        builder.addCase(deleteEvents.rejected, (state, action) => {
+        builder.addCase(deleteTipeEvents.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
@@ -250,5 +210,5 @@ export const eventsSlice = createSlice({
     }
 })
 
-export const {resetEvents} = eventsSlice.actions;
-export default eventsSlice.reducer;
+export const {resetTipeEvents} = tipeEventsSlice.actions;
+export default tipeEventsSlice.reducer;

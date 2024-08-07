@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { createInOuts, getInOutsByUser, resetInOuts } from "../../stores/features/inOutSlice";
+import { getInOutsByUser, resetInOuts } from "../../stores/features/inOutSlice";
 import { createKoreksisByDate, resetKoreksis } from "../../stores/features/koreksiSlice";
 
 import dayjs from "dayjs";
@@ -43,9 +43,7 @@ export const SlideOverDateKoreksiUser = () => {
 
     const {message: messageKoreksi, isSuccess} = useSelector(
         (state : any) => state.koreksi
-    )
-
-    console.log(dataJamOperasional, 'data JamOperasional');
+    );
 
     useEffect(()=>{
         const uuid = dataUser.uuid;
@@ -62,7 +60,6 @@ export const SlideOverDateKoreksiUser = () => {
         const dateStart = dataInfo.dateStr+' '+time;
         const tanggalMulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
         
-        // userId, tanggalMulai, tanggalSelesai, codeTipeAbsen, codePelanggaran,  codeStatusKoreksi, isActive, codeStatusInout
         dispatch(createKoreksisByDate({
             userId:dataUser.uuid,
             tanggalMulai:tanggalMulai,
@@ -78,7 +75,7 @@ export const SlideOverDateKoreksiUser = () => {
 
     }
 
-    const formKoreksiUser = (
+    const form = (
         <div id="header-footer-slideover">
             <Slideover
             open={open}
@@ -140,7 +137,6 @@ export const SlideOverDateKoreksiUser = () => {
                             >
                         <option value={''}></option> 
                         {dataJamOperasional && dataJamOperasional.map((data : any, key)=>(
-                            // {if(data.jamOperasionalGroupId && dataUser.jamOperasionalGroupId)}
                             <option 
                                 key={key} 
                                 value={data.uuid}
@@ -185,6 +181,6 @@ export const SlideOverDateKoreksiUser = () => {
         </div>
     )
 
-    return {message, formKoreksiUser, open, setOpen, dataInfo, setDataInfo, dataUser, setDataUser}
+    return {message, form, open, setOpen, dataInfo, setDataInfo, dataUser, setDataUser}
 }
   

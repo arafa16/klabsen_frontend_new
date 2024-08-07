@@ -22,18 +22,45 @@ const CalendarUser = (props : any) => {
 
   const inputAbsen = (datas : any) => {
     datas.map((data : any)=>{
-
         if(data.tipe_absen.code !== '11'){
-          const newData : any = {
-            id:data.uuid,
-            title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
-            start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-            end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
-            color:data.pelanggaran.code == 2 ? '#ff3c00' : '',
-            className:'text-xs w-full px-0',
-            groupId:'absen'
-          } 
-          setEvents((events: any)  => [...events, newData])
+          if(data.pelanggaran.code === '2'){
+            if(data.status_inout.code === '2' || data.status_inout.code === '3'){
+              const newData : any = {
+                id:data.uuid,
+                title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+                start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
+                end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+                color:'orange',
+                className:'text-xs w-full px-0',
+                groupId:'absen'
+              } 
+              setEvents((events: any)  => [...events, newData])
+            }
+            else{
+              const newData : any = {
+                id:data.uuid,
+                title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+                start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
+                end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+                color:'red',
+                className:'text-xs w-full px-0',
+                groupId:'absen'
+              } 
+              setEvents((events: any)  => [...events, newData])
+            }
+          }
+          else{
+            const newData : any = {
+              id:data.uuid,
+              title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+              start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
+              end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+              color:'',
+              className:'text-xs w-full px-0',
+              groupId:'absen'
+            } 
+            setEvents((events: any)  => [...events, newData])
+          }
         }
         else{
           const newData : any = {
@@ -47,8 +74,6 @@ const CalendarUser = (props : any) => {
           }
           setEvents((events: any)  => [...events, newData])
         }
-        
-        // events.push(newData);
     })
   }
 

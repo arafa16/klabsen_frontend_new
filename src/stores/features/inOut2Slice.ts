@@ -17,43 +17,48 @@ const initialState : variabel = {
     message: '',
 }
 
-export const ChangePhotoProfile: any = createAsyncThunk("photo/ChangePhotoProfile", async(datas : any, thunkAPI) => {
+export const getInOutsById : any = createAsyncThunk("inOut2/getInOutsById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/users/${datas.uuid}/photo`, datas.formData,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+        
         return response.data;
-    } catch (error: any) {
+    } catch (error : any) {
         if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
         }
     }
 });
 
-export const photoSlice = createSlice({
-    name: "photo",
+export const inOutsSlice = createSlice({
+    name: "inOut2",
     initialState,
     reducers:{
-        resetPhoto: (state) => initialState
+        resetInOut2: (state) => initialState
     },
     extraReducers:(builder) => {
-
-        //photo profile
-        builder.addCase(ChangePhotoProfile.pending, (state) => {
+       
+        // get inOuts by id
+        builder.addCase(getInOutsById.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(ChangePhotoProfile.fulfilled, (state, action) => {
+
+        builder.addCase(getInOutsById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.message = action.payload;
+            state.data = action.payload;
         });
-        builder.addCase(ChangePhotoProfile.rejected, (state, action) => {
+
+        builder.addCase(getInOutsById.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         });
+
     }
 })
 
-export const {resetPhoto} = photoSlice.actions;
-export default photoSlice.reducer;
+export const {resetInOut2} = inOutsSlice.actions;
+export default inOutsSlice.reducer;

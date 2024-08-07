@@ -7,7 +7,7 @@ import { eventData } from "../../features/event/event";
 import { reportAbsenMonth } from "../../features/periodeKerja/absenReport";
 import AbsenReport from "../../components/dashboard/absenReport";
 
-const DasboardUser = () => {
+const DasboardPage = () => {
 
   //get data auth
   const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
@@ -74,4 +74,4 @@ const DasboardUser = () => {
   );
 }
 
-export default DasboardUser;
+export default DasboardPage;

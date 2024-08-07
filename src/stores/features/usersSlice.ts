@@ -23,10 +23,10 @@ interface varPassword {
     password: string;
 }
 
-export const changePassword: any = createAsyncThunk("user/changePassword", async(data : any, thunkAPI) => {
+export const changePassword: any = createAsyncThunk("user/changePassword", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+'/users/'+data.uuid+'/password', {
-            password: data.password
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+'/users/'+datas.uuid+'/password', {
+            password: datas.password
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });

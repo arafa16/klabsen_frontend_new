@@ -31,9 +31,9 @@ export const getPeriodeKerjas : any = createAsyncThunk("getPeriodeKerjas", async
     }
 });
 
-export const getPeriodeKerjasTable : any = createAsyncThunk("getPeriodeKerjasTable", async(jamOperasionals : any, thunkAPI) => {
+export const getPeriodeKerjasTable : any = createAsyncThunk("getPeriodeKerjasTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${jamOperasionals.limit}&${jamOperasionals.page}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.limit}&${datas.page}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -45,9 +45,9 @@ export const getPeriodeKerjasTable : any = createAsyncThunk("getPeriodeKerjasTab
     }
 });
 
-export const getPeriodeKerjasTableStatus : any = createAsyncThunk("getPeriodeKerjasTableStatus", async(jamOperasionals : any, thunkAPI) => {
+export const getPeriodeKerjasTableStatus : any = createAsyncThunk("getPeriodeKerjasTableStatus", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${jamOperasionals.limit}&${jamOperasionals.page}&${jamOperasionals.isActive}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.limit}&${datas.page}&${datas.isActive}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -59,9 +59,9 @@ export const getPeriodeKerjasTableStatus : any = createAsyncThunk("getPeriodeKer
     }
 });
 
-export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById", async(jamOperasionals : any, thunkAPI) => {
+export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${jamOperasionals.id}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.id}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         console.log(response, 'response');
@@ -74,17 +74,17 @@ export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById
     }
 });
 
-export const createPeriodeKerjas : any = createAsyncThunk("createPeriodeKerjas", async(jamOperasionals : any, thunkAPI) => {
+export const createPeriodeKerjas : any = createAsyncThunk("createPeriodeKerjas", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/periode`,{
-            name:jamOperasionals.name,
-            bulan:jamOperasionals.bulan,
-            tahun:jamOperasionals.tahun,
-            tanggalMulai:jamOperasionals.tanggalMulai,
-            tanggalSelesai:jamOperasionals.tanggalSelesai,
-            jumlahHari:jamOperasionals.jumlahHari,
-            code:jamOperasionals.code,
-            isActive:jamOperasionals.isActive
+            name:datas.name,
+            bulan:datas.bulan,
+            tahun:datas.tahun,
+            tanggalMulai:datas.tanggalMulai,
+            tanggalSelesai:datas.tanggalSelesai,
+            jumlahHari:datas.jumlahHari,
+            code:datas.code,
+            isActive:datas.isActive
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -98,17 +98,17 @@ export const createPeriodeKerjas : any = createAsyncThunk("createPeriodeKerjas",
     }
 });
 
-export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas", async(jamOperasionals : any, thunkAPI) => {
+export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${jamOperasionals.id}`,{
-            name:jamOperasionals.name,
-            bulan:jamOperasionals.bulan,
-            tahun:jamOperasionals.tahun,
-            tanggalMulai:jamOperasionals.tanggalMulai,
-            tanggalSelesai:jamOperasionals.tanggalSelesai,
-            jumlahHari:jamOperasionals.jumlahHari,
-            code:jamOperasionals.code,
-            isActive:jamOperasionals.isActive
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.id}`,{
+            name:datas.name,
+            bulan:datas.bulan,
+            tahun:datas.tahun,
+            tanggalMulai:datas.tanggalMulai,
+            tanggalSelesai:datas.tanggalSelesai,
+            jumlahHari:datas.jumlahHari,
+            code:datas.code,
+            isActive:datas.isActive
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -122,9 +122,9 @@ export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas",
     }
 });
 
-export const deletePeriodeKerjas : any = createAsyncThunk("deletePeriodeKerjas", async(jamOperasionals : any, thunkAPI) => {
+export const deletePeriodeKerjas : any = createAsyncThunk("deletePeriodeKerjas", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${jamOperasionals.id}`,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.id}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
 

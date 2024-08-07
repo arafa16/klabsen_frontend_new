@@ -17,11 +17,11 @@ const initialState : variabel = {
     message: '',
 }
 
-export const LoginUser: any = createAsyncThunk("auth/LoginUser", async(data : any, thunkAPI) => {
+export const LoginUser: any = createAsyncThunk("auth/LoginUser", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+'/login', {
-            email: data.email,
-            password: data.password
+            email: datas.email,
+            password: datas.password
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -33,46 +33,46 @@ export const LoginUser: any = createAsyncThunk("auth/LoginUser", async(data : an
     }
 });
 
-export const RegisterUser: any = createAsyncThunk("auth/RegisterUser", async(data : any, thunkAPI) => {
+export const RegisterUser: any = createAsyncThunk("auth/RegisterUser", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+'/register', {
-            nik:data.nik,
-            absenId:data.absenId,
-            name:data.name, 
-            ganderId:data.ganderId, 
-            email:data.email,
-            password:data.password,
-            extention:data.extention,
-            nomorHp:data.nomorHp,
-            penempatanId:data.penempatanId,
-            jabatanId:data.jabatanId,
-            atasanId:data.atasanId,
-            nomorKtp:data.nomorKtp,
-            alamatKtp:data.alamatKtp,
-            alamatDomisili:data.alamatDomisili,
-            tempatLahir:data.tempatLahir,
-            tanggalLahir:data.tanggalLahir,
-            nomorNpwp:data.nomorNpwp,
-            statusPerkawinanId:data.statusPerkawinanId,
-            jumlahAnak:data.jumlahAnak,
-            namaIbu:data.namaIbu,
-            pendidikanId:data.pendidikanId,
-            namaSekolah:data.namaSekolah,
-            jurusanSekolah:data.jurusanSekolah,
-            tahunLulus:data.tahunLulus,
-            ipk:data.ipk,
-            nomorBpjsKesehatan:data.nomorBpjsKesehatan,
-            nomorBpjsKetenagakerjaan:data.nomorBpjsKetenagakerjaan,
-            contactEmergencyId:data.contactEmergencyId,
-            emergencyNumber:data.emergencyNumber,
-            emergencyAddress:data.emergencyAddress,
-            nomorSim:data.nomorSim,
-            golonganDarahId:data.golonganDarahId,
-            bankId:data.bankId,
-            nomorRekening:data.nomorRekening,
-            jamOperasionalId:data.jamOperasionalId,
-            groupId:data.groupId,
-            quote:data.quote
+            nik:datas.nik,
+            absenId:datas.absenId,
+            name:datas.name, 
+            ganderId:datas.ganderId, 
+            email:datas.email,
+            password:datas.password,
+            extention:datas.extention,
+            nomorHp:datas.nomorHp,
+            penempatanId:datas.penempatanId,
+            jabatanId:datas.jabatanId,
+            atasanId:datas.atasanId,
+            nomorKtp:datas.nomorKtp,
+            alamatKtp:datas.alamatKtp,
+            alamatDomisili:datas.alamatDomisili,
+            tempatLahir:datas.tempatLahir,
+            tanggalLahir:datas.tanggalLahir,
+            nomorNpwp:datas.nomorNpwp,
+            statusPerkawinanId:datas.statusPerkawinanId,
+            jumlahAnak:datas.jumlahAnak,
+            namaIbu:datas.namaIbu,
+            pendidikanId:datas.pendidikanId,
+            namaSekolah:datas.namaSekolah,
+            jurusanSekolah:datas.jurusanSekolah,
+            tahunLulus:datas.tahunLulus,
+            ipk:datas.ipk,
+            nomorBpjsKesehatan:datas.nomorBpjsKesehatan,
+            nomorBpjsKetenagakerjaan:datas.nomorBpjsKetenagakerjaan,
+            contactEmergencyId:datas.contactEmergencyId,
+            emergencyNumber:datas.emergencyNumber,
+            emergencyAddress:datas.emergencyAddress,
+            nomorSim:datas.nomorSim,
+            golonganDarahId:datas.golonganDarahId,
+            bankId:datas.bankId,
+            nomorRekening:datas.nomorRekening,
+            jamOperasionalId:datas.jamOperasionalId,
+            groupId:datas.groupId,
+            quote:datas.quote
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });

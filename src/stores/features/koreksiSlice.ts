@@ -17,7 +17,7 @@ const initialState : variabel = {
     message: '',
 }
 
-export const createKoreksis: any = createAsyncThunk("createKoreksis", async(datas : any, thunkAPI) => {
+export const createKoreksi: any = createAsyncThunk("createKoreksi", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis`,{
             userId : datas.userId, 
@@ -134,20 +134,6 @@ export const getKoreksisTable: any = createAsyncThunk("getKoreksisTable", async(
     }
 });
 
-export const getKoreksisTableByUser: any = createAsyncThunk("getKoreksisTableByUser", async(datas : any, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/${datas.limit}&${datas.page}&${datas.id}&${datas.statusCode}`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
 export const getKoreksisByUser: any = createAsyncThunk("getKoreksisByUser", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/${datas.id}/user`,{
@@ -199,15 +185,15 @@ export const koreksisSlice = createSlice({
     extraReducers:(builder) => {
         
         // create koreksi
-        builder.addCase(createKoreksis.pending, (state) => {
+        builder.addCase(createKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(createKoreksis.fulfilled, (state, action) => {
+        builder.addCase(createKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(createKoreksis.rejected, (state, action) => {
+        builder.addCase(createKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
@@ -253,21 +239,6 @@ export const koreksisSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(getKoreksisById.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        })
-
-        // get koreksi table by user
-        builder.addCase(getKoreksisTableByUser.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getKoreksisTableByUser.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.data = action.payload;
-        });
-        builder.addCase(getKoreksisTableByUser.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

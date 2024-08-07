@@ -25,12 +25,26 @@ const initialState: SideMenuState = {
     {
       icon: "Calendar",
       title: "Absen",
+      // code: 'absen',
       subMenu: [
         {
           icon: "Calendar",
           pathname: '/absen',
           title: "Absen",
+          // code: 'kalendarSub',
         },
+        {
+          icon: "Edit3",
+          pathname: '/koreksi/user',
+          title: "Data Koreksi",
+          // code: 'pengajuanKoreksiSub',
+        },
+        {
+          icon: "Edit",
+          pathname: '/event',
+          title: "Event",
+          // code: 'adminEvent',
+        }     
       ]
     }
   ],
