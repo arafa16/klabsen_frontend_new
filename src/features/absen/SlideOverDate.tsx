@@ -27,8 +27,6 @@ export const SlideOverDate = () => {
         (state : any) => state.inOut2
     )
 
-    console.log(dataResult, 'data result');
-
     useEffect(()=>{
         if(dataInOut && isSuccess){
             if(!isLoading){

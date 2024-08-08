@@ -5,7 +5,8 @@ import sideMenuReducer from "./sideMenuSlice";
 import authReducer from "./features/authSlice";
 import meReducer from "./features/meSlice";
 import photoReducer from "./features/photoSlice";
-import userReducer from "./features/usersSlice";
+import userReducer from "./features/userSlice";
+import user2Reducer from "./features/user2Slice";
 import eventReducer from "./features/eventSlice";
 import periodeKerjaReducer from "./features/periodeKerjaSlice";
 import inOutReducer from "./features/inOutSlice";
@@ -27,6 +28,7 @@ export const store = configureStore({
     me: meReducer,
     photo: photoReducer,
     user: userReducer,
+    user2: user2Reducer,
     event: eventReducer,
     periodeKerja: periodeKerjaReducer,
     inOut: inOutReducer,

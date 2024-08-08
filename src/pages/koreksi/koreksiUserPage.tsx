@@ -1,8 +1,8 @@
-import KoreksiTableUser from '../../components/koreksi/koreksiTableUser';
+import KoreksiTableUser from '../../components/koreksi/koreksiTable';
 import GeneralReportKoreksi from '../../components/koreksi/generalReportKoreksi';
 
 import { getMeAuth } from '../../features/auth/meAuth';
-import { getDataKoreksiTableByUser, getGeneralData } from '../../features/koreksi/koreksi';
+import { getDataKoreksiTableByUser, getGeneralDataUser } from '../../features/koreksi/koreksi';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -22,7 +22,7 @@ const koreksiUserPage = () => {
   const {datas, page, limit, allPage, statusCode, setStatusCode, nextPage, prevPage} = getDataKoreksiTableByUser({dataMe});
 
   //get general data
-  const {datas : dataGeneral} = getGeneralData({dataMe})
+  const {datas : dataGeneral} = getGeneralDataUser({dataMe})
 
   const clickStatus = (code:any) => {
     setStatusCode(code)
@@ -44,7 +44,7 @@ const koreksiUserPage = () => {
                 nextPage={nextPage}
                 prevPage={prevPage}
                 allPage={allPage}
-                linkView={'/koreksi/data'}
+                linkView={'/koreksi/user'}
                 linkCreate={'/'}
                 statusCode={statusCode}
             />

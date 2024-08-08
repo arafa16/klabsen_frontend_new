@@ -91,7 +91,8 @@ export const updateKoreksis: any = createAsyncThunk("updateKoreksis", async(data
 
 export const approverKoreksis: any = createAsyncThunk("approverKoreksis", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/datas/${datas.id}/approve`,{
+        console.log(datas, 'datas');
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/${datas.id}/approve`,{
             statusKoreksiId : datas.codeStatusKoreksi,
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
@@ -137,20 +138,6 @@ export const getKoreksisTable: any = createAsyncThunk("getKoreksisTable", async(
 export const getKoreksisByUser: any = createAsyncThunk("getKoreksisByUser", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/${datas.id}/user`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
-export const getKoreksisTableByApprover: any = createAsyncThunk("getKoreksisTableByApprover", async(datas : any, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/${datas.limit}&${datas.page}&${datas.id}&${datas.statusCode}/approver`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -254,21 +241,6 @@ export const koreksisSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(getKoreksisByUser.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        })
-
-        // get koreksi table by approver
-        builder.addCase(getKoreksisTableByApprover.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getKoreksisTableByApprover.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.data = action.payload;
-        });
-        builder.addCase(getKoreksisTableByApprover.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

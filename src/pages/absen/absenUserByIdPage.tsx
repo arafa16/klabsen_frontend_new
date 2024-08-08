@@ -4,64 +4,73 @@ import dayjs from 'dayjs';
 import { SlideOverDateKoreksiUser } from '../../features/absen/SlideOverDateKoreksiUser';
 import { SlideOverDate } from '../../features/absen/SlideOverDate';
 import { getMeAuth } from "../../features/auth/meAuth";
-import { getAbsenByUser } from "../../features/absen/absenByUser";
+import { getAbsenById } from "../../features/absen/absenByUser";
 import { getMessageShow } from "../../features/messageShow";
 import { eventDataDate } from '../../features/event/event';
+import { useParams } from 'react-router-dom';
 
-const AbsenUserPage = () => {
+import { SlideOverEditDate } from '../../features/absen/SlideOverEditDate';
+import { SlideOverEditEvent } from '../../features/absen/SlideOverEditEvent';
+import CalendarAdmin from '../../components/calendar/calendarAdmin';
+
+const AbsenUserByIdPage = () => {
+    const {uuid} = useParams()
+
     const [message, setMessage] = useState<any>(null)
     const [dateSetting, setDateSetting] = useState(dayjs(Date.now()).format("YYYY-MM-DD"));
-    
+
     //get data event
     const {datas:dataEventInternal} = eventDataDate();
 
-    //get data auth
-    const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
-
-    const {dataResult:dataAbsen} = getAbsenByUser(dataMe);
+    const {dataResult:dataAbsen} = getAbsenById(uuid);
 
     const {
-        message: messageKoreksi, 
-        form : formKoreksiUser, 
+        message: messageCreate, 
+        form : formDate, 
         setOpen, setDataInfo, 
         setDataUser
-    } = SlideOverDateKoreksiUser();
+    } = SlideOverEditDate({uuid});
 
     const {
-        form : formSlideOverDate, 
-        setOpen : setOpenSlide, 
-        setData,
-        message : messageDate, setMessage : setMessageDate
-    } = SlideOverDate();
+        message: messageUpdate, 
+        form : formUpdate, 
+        setOpen : setOpenUpdate, 
+        setDataInfo : setDataInfoUpdate,
+        getDataEvent
+    } = SlideOverEditEvent({uuid});
     
     useEffect(()=>{
-        setMessage(messageKoreksi);
-    },[messageKoreksi]);
+        setMessage(messageCreate);
+    },[messageCreate]);
+
+    useEffect(()=>{
+        setMessage(messageUpdate);
+    },[messageUpdate]);
 
     //message
     const messageShow = getMessageShow(message);
 
     const clickEvent = async(info : any) => {
-        setData(info);
-        setOpenSlide(true)
+        getDataEvent(info.publicId);
+        setOpenUpdate(true)
     }
 
     //click date
     const clickDate = (info : any) => {
         setOpen(true);
         setDataInfo(info);
-        setDataUser(dataMe);
+        setDataUser({uuid});
     }
 
     return (
         <>
             {messageShow}
-            {formKoreksiUser}
-            {formSlideOverDate}
+            {formDate}
+            {formUpdate}
             <div className="grid grid-cols-12 gap-5 mt-5">
                 <div className="col-span-12 xl:col-span-8 2xl:col-span-9">
                     <div className="p-5 box">
-                        <CalendarUser 
+                        <CalendarAdmin
                             dataAbsen = {dataAbsen}
                             dataEventInternal = {dataEventInternal}
                             clickEvent = {clickEvent}
@@ -76,4 +85,4 @@ const AbsenUserPage = () => {
     )
 }
 
-export default AbsenUserPage
+export default AbsenUserByIdPage

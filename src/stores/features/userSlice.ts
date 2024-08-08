@@ -38,6 +38,23 @@ export const changePassword: any = createAsyncThunk("user/changePassword", async
     }
 });
 
+export const getUsers: any = createAsyncThunk("users/getUsers", async(_, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/users`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
+        console.log(response, 'response')
+        // console.log(response, 'users');
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
 export const usersSlice = createSlice({
     name: "users",
     initialState,
@@ -56,6 +73,21 @@ export const usersSlice = createSlice({
             state.message = action.payload;
         });
         builder.addCase(changePassword.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
+
+        //get users
+        builder.addCase(getUsers.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getUsers.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getUsers.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

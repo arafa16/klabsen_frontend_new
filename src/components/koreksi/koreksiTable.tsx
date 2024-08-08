@@ -7,21 +7,59 @@ import { FormCheck, FormInput } from '../../base-components/Form'
 import { useNavigate } from 'react-router-dom'
 
 
-const KoreksiTable = (props : any) => {
-    const {datas, linkView, linkCreate} = props;
+const koreksiTableUser = (props : any) => {
+    const {
+        datas, 
+        linkView, 
+        linkCreate,
+        page,
+        limit,
+        allPage,
+        nextPage,
+        prevPage,
+        statusCode
+    } = props;
     const navigate = useNavigate();
 
     return (
         <>
         <div className="grid grid-cols-12 mt-5 box">
-            {/* BEGIN: Inbox Content */}
+            {/* BEGIN: Koreksi Table */}
             <div className="col-span-12 xl:col-span-12 2xl:col-span-12">
+            <div className="flex flex-col-reverse px-5 py-4 border-b sm:flex-row text-slate-500 border-slate-200/60">
+                    <div className="flex items-center justify-end sm:ml-auto">
+                        <div className="text-xs">{page <= allPage ? page : allPage} of {allPage} page </div>
+                        <div
+                            className="flex items-center justify-center w-5 h-5 ml-5"
+                        >
+                            <Lucide 
+                                icon="ChevronLeft" 
+                                className="w-4 h-4 hover:cursor-pointer" 
+                                onClick={()=>prevPage()}/>
+                        </div>
+                        <div
+                            className="flex items-center justify-center w-5 h-5 ml-5"
+                        >
+                            <Lucide 
+                                icon="ChevronRight" 
+                                className="w-4 h-4 hover:cursor-pointer"
+                                onClick={()=>nextPage()}
+                                />
+                        </div>
+                        <div
+                            className="flex items-center justify-center w-5 h-5 ml-5 cursor-pointer hover:text-blue-500"
+                            onClick={()=>navigate(linkCreate)}
+                        >
+                            <Lucide icon="FilePlus" className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
                 <div className="overflow-x-auto sm:overflow-x-visible">
-                    {datas && datas.map((data : any, index : any) => (
+                    {datas.rows && datas.rows.map((data : any, index : any) => (
                     <div 
                         key={index} 
                         className="intro-y"
-                        onClick={()=>navigate(linkView+`/${data.uuid}`)}
+                        onClick={()=>navigate(linkView+`/${data.uuid}/${statusCode}`)}
                         >
                         <div
                             className={clsx([
@@ -30,13 +68,20 @@ const KoreksiTable = (props : any) => {
                             ])}
                         >
                         <div className="flex px-5 py-3">
-                            <div className="flex items-center flex-none mr-5 w-auto">
-                                <div className='w-auto'>
-                                    {index+1}
+                            <div className="flex items-center flex-none mr-5 w-72">
+                                <div className='w-10'>
+                                    {index+1+((page-1)*limit)}
                                 </div>
                                 <div
                                     className={clsx([
-                                    "ml-3 truncate"
+                                    "ml-3 truncate w-24"
+                                    ])}
+                                >
+                                    {data.user.name}
+                                </div>
+                                <div
+                                    className={clsx([
+                                    "ml-3 truncate w-fit"
                                     ])}
                                 >
                                     {data.keterangan}
@@ -44,7 +89,7 @@ const KoreksiTable = (props : any) => {
                             </div>
                             <div
                                 className={clsx([
-                                    "pl-10 ml-auto whitespace-nowrap"
+                                    "pl-10 ml-auto whitespace-nowrap "
                                 ])}
                             >
                             {data.status_koreksi.name}
@@ -54,11 +99,12 @@ const KoreksiTable = (props : any) => {
                     </div>
                     ))}
                 </div>
+                <div className='p-4 flex justify-end text-xs'>{limit > datas && datas.count ? limit : datas && datas.count} of {datas && datas.count} data</div>
             </div>
-            {/* END: Inbox Content */}
+            {/* END: Koreksi Table Content */}
         </div>
         </>
     )
 }
 
-export default KoreksiTable
+export default koreksiTableUser

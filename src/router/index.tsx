@@ -8,8 +8,13 @@ import CreateEvent from "../pages/event/createEventPage";
 import EditEvent from "../pages/event/editEventPage";
 import KoreksiUserPage from "../pages/koreksi/koreksiUserPage";
 import ViewKoreksiPage from "../pages/koreksi/viewKoreksiPage";
+import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
+import ViewKoreksiApproverPage from "../pages/koreksi/viewKoreksiApproverPage"
+import AbsenCheckByUser from "../pages/absen/absenCheckByUser";
+import AbsenUserByIdPage from "../pages/absen/absenUserByIdPage";
 
 function Router() {
+
   const routes = [
     {
       path: "/",
@@ -22,6 +27,14 @@ function Router() {
         {
           path: "/absen",
           element: <AbsenUserPage />,
+        },
+        {
+          path: "/absen/user",
+          element: <AbsenCheckByUser />
+        },
+        {
+          path: "/absen/user/:uuid",
+          element: <AbsenUserByIdPage />
         },
         {
           path: "/event",
@@ -44,9 +57,21 @@ function Router() {
           element: <KoreksiUserPage />,
         },
         {
-          path: "/koreksi/data/:id/:code",
+          path: "/koreksi/user/:id/:code",
           element: <ViewKoreksiPage />,
-        }
+        },
+        {
+          path: "/koreksi/approver",
+          element: <KoreksiApproverPage />,
+        },
+        {
+          path: "/koreksi/approver/:code",
+          element: <KoreksiApproverPage />,
+        },
+        {
+          path: "/koreksi/approver/:id/:code",
+          element: <ViewKoreksiApproverPage />,
+        },
       ],
     },
     {

@@ -5,7 +5,7 @@ import {
     FormInput,
   } from "../../base-components/Form";
 
-import { changePassword, resetUsers } from "../../stores/features/usersSlice";
+import { changePassword, resetUsers } from "../../stores/features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import Button from '../../base-components/Button';
 
 const viewKoreksiById = (props : any) => {
-    const {datas, clickBack, isOpen, clickApprove} = props;
+    const {datas, clickBack, isOpen, clickAction} = props;
     
     return (
         <div className="p-5 box intro-y mt-5">
@@ -18,22 +18,26 @@ const viewKoreksiById = (props : any) => {
                         >
                         Back
                     </Button>
-                    <Button
-                        size='sm'
-                        variant="primary"
-                        className={`${isOpen ? '' : 'hidden'}`}
-                        onClick={()=>clickApprove(2)}
-                        >
-                        Approve
-                    </Button>
-                    <Button
-                        size='sm'
-                        variant="warning"
-                        className={`${isOpen ? '' : 'hidden'}`}
-                        onClick={()=>clickApprove(3)}
-                        >
-                        Not Approve
-                    </Button>
+                    <div className={`${datas && datas.status_koreksi && datas.status_koreksi.code !== '2' ? '' : 'hidden' }`}>
+                        <Button
+                            size='sm'
+                            variant="primary"
+                            className={`${isOpen ? '' : 'hidden'}`}
+                            onClick={()=>clickAction(2)}
+                            >
+                            Approve
+                        </Button>
+                    </div>
+                    <div className={`${datas && datas.status_koreksi && datas.status_koreksi.code !== '3' ? '' : 'hidden' }`}>
+                        <Button
+                            size='sm'
+                            variant="danger"
+                            className={`${isOpen ? '' : 'hidden'}`}
+                            onClick={()=>clickAction(3)}
+                            >
+                            Not Approve
+                        </Button>
+                    </div>
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-y-10'>

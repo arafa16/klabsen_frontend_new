@@ -9,8 +9,6 @@ import Button from "../../base-components/Button";
 import Lucide from "../../base-components/Lucide";
 import { useEffect, useState } from "react";
 
-
-
 import { useDispatch, useSelector } from "react-redux";
 import { getInOutsByUser, resetInOuts } from "../../stores/features/inOutSlice";
 import { createKoreksisByDate, resetKoreksis } from "../../stores/features/koreksiSlice";
@@ -19,7 +17,6 @@ import dayjs from "dayjs";
 
 import { getPelanggaran } from "../pelanggaran/pelanggaran";
 import { getTipeAbsen } from "../tipeAbsen/tipeAbsen";
-import { getStatusInOut } from "../statusInOut/statusInOut";
 import { getJamOperasional } from "../jamOperasional/jamOperasional";
 
 export const SlideOverDateKoreksiUser = () => {

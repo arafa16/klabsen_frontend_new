@@ -13,6 +13,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTipeEvents, resetTipeEvents } from '../../stores/features/tipeEventSlice';
 
+export const eventDataDate = () => {
+  const [datas, setDatas] = useState<any>([]);
+
+  const dispatch = useDispatch();
+
+  const {data, isSuccess, isLoading} = useSelector(
+    (state : any) => state.event
+  )
+
+  useEffect(()=>{
+    if(isSuccess && data){
+      if(!isLoading){
+        setDatas(data);
+        dispatch(resetEvents());
+      }
+    }
+  },[data, isSuccess, isLoading])
+
+  useEffect(()=>{
+      dispatch(getEvents());
+  },[]);
+
+  return {datas}
+}
+
 export const eventData = () => {
     const [dataEvents, setDataEvents] = useState<any>([]);
     const [bulan, setBulan] = useState(dayjs(Date.now()).format("M"));
@@ -36,8 +61,6 @@ export const eventData = () => {
           page:page,
         }));
     },[bulan, tahun, limit, page]);
-
-    console.log(allPage, bulan, tahun);
 
     useEffect(()=>{
         if(isSuccess && data){
@@ -206,14 +229,6 @@ export const updateDataEvent = (props:any) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    // const {events, isEventsSuccess, messageEvents} = useSelector(
-    //     (state : any) => state.eventsReducer
-    // )
-
-    // const {tipeEvents, isTipeEventsSuccess} = useSelector(
-    //     (state : any) => state.tipeEventsReducer
-    // )
 
     const {data: dataEvent, isSuccess: isEventSuccess, message:messageEvent, isLoading : isEventLoading} = useSelector(
       (state : any) => state.event

@@ -41,10 +41,23 @@ const initialState: SideMenuState = {
         },
         {
           icon: "Edit",
+          pathname: '/koreksi/approver',
+          title: "Approval Koreksi",
+          // code: 'approvalKoreksiSub',
+        },
+        {
+          icon: "Edit",
+          pathname: '/absen/user',
+          title: "Absen Check",
+          // code: 'absenCheck',
+        },
+        {
+          icon: "Edit",
           pathname: '/event',
           title: "Event",
           // code: 'adminEvent',
-        }     
+        },
+             
       ]
     }
   ],
