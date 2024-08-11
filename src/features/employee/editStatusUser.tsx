@@ -21,8 +21,6 @@ export const editStatusUser = (props : any) => {
     const [isActive, setIsActive] = useState<any>('');
     const [statusId, setStatusId] = useState<any>('');
 
-    console.log(user, 'user');
-
     useEffect(()=>{
         setIsActive(user && user.isActive === true ? '1' : '0');
         setStatusId(user && user.statusId);
@@ -91,7 +89,7 @@ export const editStatusUser = (props : any) => {
                         <div className="font-medium whitespace-nowrap">
                             Status
                         </div>
-                        <div className="mt-1 text-sm text-slate-500">
+                        <div className="mt-1  text-slate-500">
                             <FormSelect
                                 formSelectSize="sm"
                                 aria-label=".form-select-sm example"
@@ -110,7 +108,7 @@ export const editStatusUser = (props : any) => {
                         <div className="font-medium whitespace-nowrap">
                             Is Active 
                         </div>
-                        <div className="mt-1 text-sm text-slate-500">
+                        <div className="mt-1  text-slate-500">
                             <FormSelect
                                 formSelectSize="sm"
                                 aria-label=".form-select-sm example"

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersTable, resetUsers } from "../../stores/features/user2Slice";
+import { getUsersTable, deleteUser, resetUsers } from "../../stores/features/user2Slice";
 import { getUserById, getUsers } from "../../stores/features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const getDataUserTable = () => {
     const [datas, setDatas] = useState([]);
@@ -134,4 +135,28 @@ export const getDataUserById = (datas:any) => {
     // console.log(dataResult, 'data result');
 
     return {dataResult, reload}
+}
+
+export const deleteDataById = (datas:any) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const {message, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user2
+    )
+
+    useEffect(()=>{
+        if(isSuccess && message){
+            if(!isLoading){
+                dispatch(resetUsers());
+                navigate('/employee/data');
+            }
+        }
+    },[message, isSuccess, isLoading])
+
+    const deleteData = () => {
+        dispatch(deleteUser({id:datas.id}));
+    }
+
+    return {deleteData}
 }

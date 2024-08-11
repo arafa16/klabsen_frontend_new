@@ -21,7 +21,7 @@ export const statusUser = (props : any) => {
                     <div className="font-medium whitespace-nowrap">
                         Status
                     </div>
-                    <div className="mt-1 text-sm text-slate-500">
+                    <div className="mt-1  text-slate-500">
                         {datas.status && datas.status.name}
                     </div>
                 </div>
@@ -29,7 +29,7 @@ export const statusUser = (props : any) => {
                     <div className="font-medium whitespace-nowrap">
                         Is Active 
                     </div>
-                    <div className="mt-1 text-sm text-slate-500">
+                    <div className="mt-1  text-slate-500">
                         {datas && datas.isActive ? 'Yes' : 'No'}
                     </div>
                 </div>
