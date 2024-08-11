@@ -12,6 +12,9 @@ import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
 import ViewKoreksiApproverPage from "../pages/koreksi/viewKoreksiApproverPage"
 import AbsenCheckByUser from "../pages/absen/absenCheckByUser";
 import AbsenUserByIdPage from "../pages/absen/absenUserByIdPage";
+import PerhitunganAbsenPage from "../pages/absen/perhitunganAbsenPage";
+import DataEmployePage from "../pages/employee/dataEmployePage";
+import ViewEmployePage from "../pages/employee/viewEmployePage";
 
 function Router() {
 
@@ -35,6 +38,10 @@ function Router() {
         {
           path: "/absen/user/:uuid",
           element: <AbsenUserByIdPage />
+        },
+        {
+          path: "/absen/perhitungan",
+          element: <PerhitunganAbsenPage />
         },
         {
           path: "/event",
@@ -71,6 +78,15 @@ function Router() {
         {
           path: "/koreksi/approver/:id/:code",
           element: <ViewKoreksiApproverPage />,
+        },
+        //employe
+        {
+          path: "/employee/data",
+          element: <DataEmployePage />
+        },
+        {
+          path: "/employee/data/:id",
+          element: <ViewEmployePage />
         },
       ],
     },

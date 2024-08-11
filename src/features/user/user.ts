@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersTable, resetUsers } from "../../stores/features/user2Slice";
-import { getUsers } from "../../stores/features/userSlice";
+import { getUserById, getUsers } from "../../stores/features/userSlice";
 
 export const getDataUserTable = () => {
     const [datas, setDatas] = useState([]);
-    const [dataTable, setDataTable] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
@@ -57,6 +56,15 @@ export const getDataUserTable = () => {
         }
     }
 
+    const reload = () => {
+        dispatch(getUsersTable({
+            limit, 
+            page, 
+            statusCode, 
+            search
+        }));
+    }
+
     return {
         datas,
         page, setPage,
@@ -65,7 +73,8 @@ export const getDataUserTable = () => {
         allPage, 
         statusCode, setStatusCode, 
         nextPage, 
-        prevPage
+        prevPage,
+        reload
     }
 }
 
@@ -90,5 +99,39 @@ export const getDataUser = () => {
         dispatch(getUsers());
     },[])
 
-    return {datas}
+    const reload = () => {
+        dispatch(getUsers());
+    }
+
+    return {datas, reload}
+}
+
+export const getDataUserById = (datas:any) => {
+    const [dataResult, setDataResult] = useState([]);
+    const dispatch = useDispatch();
+
+    const {data, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user
+    )
+
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                setDataResult(data);
+                dispatch(resetUsers());
+            }
+        }
+    },[data, isSuccess, isLoading])
+
+    useEffect(()=>{
+        dispatch(getUserById({id:datas.id}));
+    },[])
+
+    const reload = () => {
+        dispatch(getUserById({id:datas.id}));
+    }
+
+    // console.log(dataResult, 'data result');
+
+    return {dataResult, reload}
 }

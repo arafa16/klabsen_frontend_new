@@ -18,6 +18,10 @@ import tipeAbsenReducer from "./features/tipeAbsenSlice";
 import jamOperasionalReducer from "./features/jamOperasionalSlice";
 import pelanggaranReducer from "./features/pelanggaranSlice";
 import TipeEventReducer from "./features/tipeEventSlice";
+import PerhitunganReducer from "./features/perhitunganSlice";
+import GroupReducer from "./features/groupSlice";
+import StatusReducer from "./features/statusSlice";
+import PrivilegeReducer from "./features/privilegeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -40,6 +44,10 @@ export const store = configureStore({
     jamOperasional: jamOperasionalReducer,
     pelanggaran: pelanggaranReducer,
     tipeEvent: TipeEventReducer,
+    perhitungan: PerhitunganReducer,
+    group: GroupReducer,
+    status: StatusReducer,
+    privilege: PrivilegeReducer,
   },
 });
 

@@ -7,6 +7,7 @@ import { getMeAuth } from "../../features/auth/meAuth";
 import { getAbsenByUser } from "../../features/absen/absenByUser";
 import { getMessageShow } from "../../features/messageShow";
 import { eventDataDate } from '../../features/event/event';
+import ButtonAbsen from '../../components/button/buttonAbsen';
 
 const AbsenUserPage = () => {
     const [message, setMessage] = useState<any>(null)
@@ -18,7 +19,11 @@ const AbsenUserPage = () => {
     //get data auth
     const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
-    const {dataResult:dataAbsen} = getAbsenByUser(dataMe);
+    const {dataResult:dataAbsen, clickAbsen, message:messageAbsen} = getAbsenByUser(dataMe);
+
+    useEffect(()=>{
+        setMessage(messageAbsen);
+    },[messageAbsen]);
 
     const {
         message: messageKoreksi, 
@@ -53,6 +58,10 @@ const AbsenUserPage = () => {
         setDataUser(dataMe);
     }
 
+    const clickButton = (code:any) =>{
+        clickAbsen({codeTipeAbsen:code, uuid:dataMe.uuid});
+    }
+
     return (
         <>
             {messageShow}
@@ -67,6 +76,44 @@ const AbsenUserPage = () => {
                             clickEvent = {clickEvent}
                             clickDate = {clickDate}
                             dateSetting={dateSetting}
+                        />
+                    </div>
+                </div>
+                <div className="col-span-12 xl:col-span-4 2xl:col-span-3">
+                    <div className="mb-4">
+                        <ButtonAbsen 
+                            name='Absen'
+                            nameButton1='Masuk'
+                            nameButton2='Pulang'
+                            idButton1={0}
+                            idButton2={1}
+                            actionButton1={clickButton}
+                            actionButton2={clickButton}
+                            isView={dataMe.privilege && dataMe.privilege.absenModal}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <ButtonAbsen 
+                            name='Absen Shift'
+                            nameButton1='Masuk'
+                            nameButton2='Pulang'
+                            idButton1={4}
+                            idButton2={5}
+                            actionButton1={clickButton}
+                            actionButton2={clickButton}
+                            isView={dataMe.privilege && dataMe.privilege.shiftModal}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <ButtonAbsen 
+                            name='Absen WFH'
+                            nameButton1='Masuk'
+                            nameButton2='Pulang'
+                            idButton1={8}
+                            idButton2={9}
+                            actionButton1={clickButton}
+                            actionButton2={clickButton}
+                            isView={dataMe.privilege && dataMe.privilege.wfhModal}
                         />
                     </div>
                 </div>

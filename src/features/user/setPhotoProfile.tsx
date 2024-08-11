@@ -124,6 +124,7 @@ export const changePhotoProfile = (datas:any) => {
         modalChangePhoto, 
         message, urlPhoto,
         showModal, setShowModal,
-        photo, setPhoto
+        photo, setPhoto,
+        isSuccess, isLoading, messagePhoto
     }
 }

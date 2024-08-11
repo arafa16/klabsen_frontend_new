@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getMe, resetMe } from "../../stores/features/meSlice";
 
 export const getMeAuth = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState(null);
 

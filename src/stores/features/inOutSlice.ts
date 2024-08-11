@@ -171,7 +171,7 @@ export const inOutsSlice = createSlice({
         builder.addCase(createInOutsByAbsenWeb.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.data = action.payload;
+            state.message = action.payload;
         });
         builder.addCase(createInOutsByAbsenWeb.rejected, (state, action) => {
             state.isLoading = false;

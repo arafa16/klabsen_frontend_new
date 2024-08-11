@@ -53,13 +53,31 @@ const initialState: SideMenuState = {
         },
         {
           icon: "Edit",
+          pathname: '/absen/perhitungan',
+          title: "Perhitungan Absen",
+          // code: 'perhitunganAbsen',
+        }, 
+        {
+          icon: "Edit",
           pathname: '/event',
           title: "Event",
           // code: 'adminEvent',
         },
-             
       ]
-    }
+    },
+    {
+      icon: "Users",
+      title: "Employees",
+      // code: 'employees',
+      subMenu: [
+        {
+          icon: "Users",
+          pathname: "/employee/data",
+          title: "Data Employe",
+          // code: 'dataEmployee',
+        },
+      ],
+    },
   ],
 };
 

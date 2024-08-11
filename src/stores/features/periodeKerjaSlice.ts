@@ -22,6 +22,7 @@ export const getPeriodeKerjas : any = createAsyncThunk("getPeriodeKerjas", async
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+        console.log(response.data, 'response')
         return response.data;
     } catch (error : any) {
         if(error.response){

@@ -46,9 +46,9 @@ function Main() {
   }, [sideMenuStore, location.pathname]);
 
   const [simpleMenu, setSimpleMenu] = useCallbackState({
-    active: false,
+    active: true,
     hover: false,
-    wrapper: false,
+    wrapper: true,
   });
   const [mobileMenu, setMobileMenu] = useState(false);
   const scrollableRef = createRef<HTMLDivElement>();

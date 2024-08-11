@@ -23,7 +23,7 @@ function Main(props: any) {
 
   const data: ChartData = useMemo(() => {
     const configData = {
-      labels: ["Pelanggaran ", "normal", "Belum Absen"],
+      labels: ["Pelanggaran (day)", "normal (day)", "Belum Absen (day)"],
       datasets: [
         {
           data: [dataPelanggaran, dataNormal, dataBelumAbsen],
