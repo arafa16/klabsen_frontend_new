@@ -33,7 +33,7 @@ function Main(props: {
       {/* BEGIN: Top Bar */}
       <div
         className={clsx([
-          "h-[63px] z-[51] sticky top-[10px] xl:mx-[10px] flex items-center justify-between px-5",
+          "h-[63px] z-[51] text-xs sticky top-[10px] xl:mx-[10px] flex items-center justify-between px-5",
           "before:content-[''] before:absolute before:h-3 before:top-0 before:inset-x-0 before:-mt-3 before:z-[-1] before:bg-gradient-to-b before:from-slate-100/50 before:to-slate-100/[0.93] before:dark:from-darkmode-700/50 before:dark:to-darkmode-700/[0.93]",
           "after:content-[''] after:shadow-[0_3px_15px_rgb(0_0_0_/_7%)] after:absolute after:inset-0 after:bg-white after:border after:border-slate-200 after:rounded-xl after:dark:bg-darkmode-600 after:dark:border-darkmode-500",
         ])}

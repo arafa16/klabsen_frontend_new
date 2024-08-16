@@ -16,8 +16,6 @@ export const reportAbsenMonth = () => {
       (state : any) => state.periodeKerja
     )
 
-    console.log(data, 'periode kerja');
-
     useEffect(()=>{
       dispatch(getPeriodeKerjasTableStatus({
           limit:limitProdeKerja, 

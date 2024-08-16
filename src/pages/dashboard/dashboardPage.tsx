@@ -17,7 +17,7 @@ const DasboardPage = () => {
   const {dataPeriodeKerjas, nextPagePeriodeKerja, prevPagePeriodeKerja, pagePeriodeKerja, allPagePeriodeKerja} = reportAbsenMonth();
 
   return (
-    <div className="grid grid-cols-12 gap-6 mb-10">
+    <div className="grid grid-cols-12 gap-6 mb-10 text-xs">
       <div className="col-span-12 2xl:col-span-9">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 mt-4 sm:col-span-6 lg:col-span-4 sm:row-start-4 md:row-start-3 lg:row-start-auto">

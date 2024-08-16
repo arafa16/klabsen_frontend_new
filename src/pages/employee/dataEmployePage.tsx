@@ -55,11 +55,6 @@ const dataEmployePage = () => {
       </div>
       <div className="col-span-12 xl:col-span-6">
         {formImportUser}
-        {/* <FormImportUser 
-          showForm={showFormImportUser}
-          setShowForm={setShowFormImportUser}
-          reloadData={reloadData}
-        /> */}
       </div>
       <div className="col-span-12 xl:col-span-6 content-end mt-4">
           <div className='flex justify-end'>
@@ -92,7 +87,7 @@ const dataEmployePage = () => {
           datas={datas}
           limit={limit}
           setLimit={setLimit}
-          linkCreate='/createEmploye'
+          linkCreate='/employee/create'
           linkView='/employee/data'
           page={page}
           allPage={allPage}

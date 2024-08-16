@@ -16,18 +16,21 @@ export const getMeAuth = () => {
     )
 
     useEffect(()=>{
-        if(dataMe && isSuccessMe && !isLoadingMe){
-        setLoading(false);
-        setData(dataMe)
+        if(dataMe && isSuccessMe){
+            if(!isLoadingMe){
+                
+                setLoading(false);
+                setData(dataMe)
+            }
         }
     },[dataMe, isSuccessMe, isLoadingMe])
 
     useEffect(()=>{
         if(isErrorMe && messageMe){
-        if(!isLoadingMe){
-            dispatch(resetMe());
-            navigate('/login')
-        }
+            if(!isLoadingMe){
+                dispatch(resetMe());
+                navigate('/login')
+            }
         }
     },[isErrorMe, messageMe, isLoadingMe])
 

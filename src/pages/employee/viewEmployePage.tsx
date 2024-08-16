@@ -105,7 +105,7 @@ const viewEmployePage = () => {
                     </Menu.Button>
                     <Menu.Items className="w-40">
                         <Menu.Item 
-                            onClick={()=>navigate(`/updateEmploye/${id}`)}
+                            onClick={()=>navigate(`/employee/update/${id}`)}
                             >
                             Update User
                         </Menu.Item>

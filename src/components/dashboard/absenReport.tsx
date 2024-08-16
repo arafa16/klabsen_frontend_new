@@ -171,7 +171,7 @@ const AbsenReport = (props:any) => {
                         </div>
                         <div className="flex items-center mt-4">
                             <div className="w-2 h-2 mr-3 border rounded-full bg-black/20 border-black/20"></div>
-                            <span className="truncate">Tidak Absen</span>
+                            <span className="truncate">Belum Absen</span>
                             <span className="ml-auto">{dataBelumAbsen * 2} kali</span>
                         </div>
                     </div>

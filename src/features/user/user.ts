@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersTable, deleteUser, resetUsers } from "../../stores/features/user2Slice";
-import { getUserById, getUsers } from "../../stores/features/userSlice";
+import { getUsersTable, deleteUser, resetUser2 } from "../../stores/features/user2Slice";
+import { getUserById, getUsers, UpdateUser, resetUsers, CreateUser } from "../../stores/features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export const getDataUserTable = () => {
@@ -23,7 +23,7 @@ export const getDataUserTable = () => {
             if(!isLoading){
                 setDatas(data);
                 countData(data.count);
-                dispatch(resetUsers());
+                dispatch(resetUser2());
             }
         }
     },[data, isSuccess, isLoading])
@@ -91,7 +91,7 @@ export const getDataUser = () => {
         if(isSuccess && data){
             if(!isLoading){
                 setDatas(data);
-                dispatch(resetUsers());
+                dispatch(resetUser2());
             }
         }
     },[data, isSuccess, isLoading])
@@ -119,7 +119,7 @@ export const getDataUserById = (datas:any) => {
         if(isSuccess && data){
             if(!isLoading){
                 setDataResult(data);
-                dispatch(resetUsers());
+                dispatch(resetUser2());
             }
         }
     },[data, isSuccess, isLoading])
@@ -131,8 +131,6 @@ export const getDataUserById = (datas:any) => {
     const reload = () => {
         dispatch(getUserById({id:datas.id}));
     }
-
-    // console.log(dataResult, 'data result');
 
     return {dataResult, reload}
 }
@@ -148,7 +146,7 @@ export const deleteDataById = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                dispatch(resetUsers());
+                dispatch(resetUser2());
                 navigate('/employee/data');
             }
         }
@@ -159,4 +157,54 @@ export const deleteDataById = (datas:any) => {
     }
 
     return {deleteData}
+}
+
+export const updateDataUserById = (datas:any) => {
+    const [message, setMessage] = useState<any>(null)
+    const dispatch = useDispatch();
+
+    const {message:messageUser, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user2
+    );
+    
+    useEffect(()=>{
+        if(isSuccess && messageUser){
+            if(!isLoading){
+                setMessage(messageUser);
+                dispatch(resetUsers());
+            }
+        }
+    },[messageUser, isSuccess, isLoading])
+
+    const submit = (e : any) => {
+        e.preventDefault();
+        dispatch(UpdateUser(datas));
+    }
+
+    return {submit, message}
+}
+
+export const createDataUser = (datas:any) => {
+    const [message, setMessage] = useState<any>(null)
+    const dispatch = useDispatch();
+
+    const {message:messageUser, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user
+    );
+    
+    useEffect(()=>{
+        if(isSuccess && messageUser){
+            if(!isLoading){
+                setMessage(messageUser);
+                dispatch(resetUsers());
+            }
+        }
+    },[messageUser, isSuccess, isLoading])
+
+    const submit = (e : any) => {
+        e.preventDefault();
+        dispatch(CreateUser(datas));
+    }
+
+    return {submit, message}
 }

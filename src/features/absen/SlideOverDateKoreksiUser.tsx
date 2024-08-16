@@ -17,7 +17,7 @@ import dayjs from "dayjs";
 
 import { getPelanggaran } from "../pelanggaran/pelanggaran";
 import { getTipeAbsen } from "../tipeAbsen/tipeAbsen";
-import { getJamOperasional } from "../jamOperasional/jamOperasional";
+import { getDataJamOperasional } from "../jamOperasional/jamOperasional";
 
 export const SlideOverDateKoreksiUser = () => {
 
@@ -36,7 +36,7 @@ export const SlideOverDateKoreksiUser = () => {
 
     const {dataResult: dataTipeAbsen} = getTipeAbsen();
 
-    const {dataResult: dataJamOperasional} = getJamOperasional();
+    const {dataResult: dataJamOperasional} = getDataJamOperasional();
 
     const {message: messageKoreksi, isSuccess} = useSelector(
         (state : any) => state.koreksi

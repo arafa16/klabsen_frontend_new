@@ -6,7 +6,7 @@ const eventPage = () => {
     const {dataResult, allPage, limit, setLimit, page, setPage} = eventTable();
 
     return (
-        <div>
+        <div className='text-xs'>
             <EventViewTable 
                 datas={dataResult}
                 linkView="/event/edit"

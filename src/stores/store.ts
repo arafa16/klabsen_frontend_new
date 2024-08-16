@@ -22,6 +22,17 @@ import PerhitunganReducer from "./features/perhitunganSlice";
 import GroupReducer from "./features/groupSlice";
 import StatusReducer from "./features/statusSlice";
 import PrivilegeReducer from "./features/privilegeSlice";
+import GanderReducer from "./features/ganderSlice";
+import StatusPerkawinanReducer from "./features/statusPerkawinanSlice";
+import PendidikanReducer from "./features/pendidikanSlice";
+import BankReducer from "./features/bankSlice";
+import ContactReducer from "./features/contactSlice";
+import GolonganDarahReducer from "./features/golonganDarahSlice";
+import PenempatanReducer from "./features/penempatanSlice";
+import JabatanReducer from "./features/jabatanSlice";
+import JamOperasionalGroupReducer from "./features/jamOperasionalGroupSlice";
+import AtasanReducer from "./features/atasanSlice";
+import PendapatanReducer from "./features/pendapatanSlice";
 
 export const store = configureStore({
   reducer: {
@@ -48,6 +59,17 @@ export const store = configureStore({
     group: GroupReducer,
     status: StatusReducer,
     privilege: PrivilegeReducer,
+    gander: GanderReducer,
+    statusPerkawinan: StatusPerkawinanReducer,
+    pendidikan:PendidikanReducer,
+    bank:BankReducer,
+    contact:ContactReducer,
+    golonganDarah:GolonganDarahReducer,
+    penempatan:PenempatanReducer,
+    jabatan:JabatanReducer,
+    jamOperasionalGroup:JamOperasionalGroupReducer,
+    atasan:AtasanReducer,
+    pendapatan:PendapatanReducer
   },
 });
 

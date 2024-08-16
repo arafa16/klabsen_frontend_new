@@ -26,7 +26,7 @@ const absenCheckByUser = () => {
   }
 
   return (
-    <div className="grid grid-cols-12 gap-5 mt-5">
+    <div className="grid grid-cols-12 gap-5 mt-5 text-xs">
       <div className="col-span-12 xl:col-span-12">
         <GeneralReportEmploye 
           datas={dataUsers}

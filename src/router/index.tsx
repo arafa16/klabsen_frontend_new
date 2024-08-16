@@ -15,6 +15,13 @@ import AbsenUserByIdPage from "../pages/absen/absenUserByIdPage";
 import PerhitunganAbsenPage from "../pages/absen/perhitunganAbsenPage";
 import DataEmployePage from "../pages/employee/dataEmployePage";
 import ViewEmployePage from "../pages/employee/viewEmployePage";
+import UpdateEmployePage from "../pages/employee/updateEmploye";
+import CreateEmployeePage from "../pages/employee/createEmploye";
+import PendapatanPage from "../pages/pendapatan/pendapatanPage";
+import PendapatanLainPage from "../pages/pendapatan/pendapatanLainPage";
+import AdminPendapatan from "../pages/pendapatan/adminPendapatan";
+import ViewSlipPage from "../pages/pendapatan/viewSlipPage";
+import ViewSlipBonusPage from "../pages/pendapatan/viewSlipBonusPage";
 
 function Router() {
 
@@ -85,8 +92,37 @@ function Router() {
           element: <DataEmployePage />
         },
         {
+          path: "/employee/create",
+          element: <CreateEmployeePage />
+        },
+        {
           path: "/employee/data/:id",
           element: <ViewEmployePage />
+        },
+        {
+          path: "/employee/update/:id",
+          element: <UpdateEmployePage />
+        },
+        //pendapatan
+        {
+          path: "/pendapatan/user",
+          element: <PendapatanPage />
+        },
+        {
+          path: "/pendapatan/lain",
+          element: <PendapatanLainPage />
+        },
+        {
+          path: "/pendapatan/admin",
+          element: <AdminPendapatan />
+        },
+        {
+          path: "/pendapatan/slip/:id",
+          element: <ViewSlipPage />
+        },
+        {
+          path: "/pendapatan/bonus/:id",
+          element: <ViewSlipBonusPage />
         },
       ],
     },

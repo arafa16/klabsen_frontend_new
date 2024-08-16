@@ -17,6 +17,7 @@ interface MainProps {
   value: string;
   onChange: (date: string) => void;
   getRef: (el: LitepickerElement) => void;
+  formInputSize?: any | undefined;
 }
 
 export type LitepickerProps = MainProps &

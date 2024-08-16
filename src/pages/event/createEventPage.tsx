@@ -15,7 +15,7 @@ const createEvent = () => {
     } = createDataEvent()
 
     return (
-        <div>
+        <div className='text-xs'>
             <FormCreateEvent
                 name={name}
                 setName={setName}

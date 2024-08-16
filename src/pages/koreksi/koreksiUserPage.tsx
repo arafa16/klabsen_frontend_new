@@ -29,7 +29,7 @@ const koreksiUserPage = () => {
   }
 
   return (
-    <div>
+    <div className='text-xs'>
         <div>
             <GeneralReportKoreksi 
                 datas={dataGeneral}

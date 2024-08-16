@@ -72,11 +72,11 @@ const perhitunganAbsenPage = () => {
     return (
         <div>
             {messageShow}
-            <div className='w-full grid grid-cols-1 md:grid-cols-2 mt-6 '>
+            <div className='w-full grid grid-cols-1 md:grid-cols-2 mt-6'>
                 <div className='flex justify-start'>
                     <div>
                         <FormSelect
-                            className="w-40 mt-3 md:ml-auto md:mt-0 dark:bg-darkmode-600 dark:border-darkmode-400"
+                            className="w-40 mt-3 md:ml-auto md:mt-0 dark:bg-darkmode-600 dark:border-darkmode-400 text-xs"
                             aria-label="General report filter"
                             value={selectForm}
                             onChange={(e:any)=>setSelectForm(e.target.value)}

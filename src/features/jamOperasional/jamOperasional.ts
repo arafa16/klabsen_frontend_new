@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getJamOperasionals, resetJamOperasionals } from '../../stores/features/jamOperasionalSlice';
 
-export const getJamOperasional = () => {
+export const getDataJamOperasional = () => {
     const [dataResult, setDataResult] = useState([]);
 
     const dispatch = useDispatch(); 

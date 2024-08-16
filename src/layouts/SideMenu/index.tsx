@@ -237,7 +237,7 @@ function Main() {
         <div
           ref={scrollableRef}
           className={clsx([
-            "relative z-10 -ml-5 pl-5 pt-5 pb-5 h-full overflow-y-auto [-webkit-mask-image:-webkit-linear-gradient(top,rgba(0,0,0,0),black_30px)] [&:-webkit-scrollbar]:w-0 [&:-webkit-scrollbar]:bg-transparent",
+            "relative text-xs z-10 -ml-5 pl-5 pt-5 pb-5 h-full overflow-y-auto [-webkit-mask-image:-webkit-linear-gradient(top,rgba(0,0,0,0),black_30px)] [&:-webkit-scrollbar]:w-0 [&:-webkit-scrollbar]:bg-transparent",
             "[&_.simplebar-content]:p-0 [&_.simplebar-track.simplebar-vertical]:w-[10px] [&_.simplebar-track.simplebar-vertical]:pt-[3.1rem] [&_.simplebar-track.simplebar-vertical]:mr-0.5 [&_.simplebar-track.simplebar-vertical_.simplebar-scrollbar]:before:bg-black/10 [&_.simplebar-track.simplebar-vertical_.simplebar-scrollbar]:before:dark:bg-white/[0.15]",
           ])}
         >
@@ -247,7 +247,7 @@ function Main() {
               typeof menu === "string" ? (
                 <li
                   className={clsx([
-                    "mb-4 w-full h-5 pl-5 text-xs relative [&:not(:first-child)]:mt-6",
+                    "mb-4 w-full h-5 pl-5  relative [&:not(:first-child)]:mt-6",
                     !simpleMenu.active && "text-slate-600 dark:text-slate-500",
                     simpleMenu.active &&
                       "text-slate-600 dark:text-slate-500 xl:text-transparent whitespace-nowrap",
@@ -459,7 +459,7 @@ function Menu(props: {
             props.menu.active && props.level == "first",
         })}
       >
-        <Lucide icon={props.menu.icon} className="w-5 h-5 -mt-0.5" />
+        <Lucide icon={props.menu.icon} className="w-4 h-4 -mt-0.5" />
       </div>
       <div
         className={clsx([
