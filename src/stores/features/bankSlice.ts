@@ -36,6 +36,7 @@ export const getBanksById : any = createAsyncThunk("getBanksById", async(datas :
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/banks/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+        
         return response.data;
     } catch (error : any) {
         if(error.response){

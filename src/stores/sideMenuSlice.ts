@@ -103,6 +103,79 @@ const initialState: SideMenuState = {
         }
       ],
     },
+    {
+      icon: "Layers",
+      title: "Attribute",
+      // code: 'attribute',
+      subMenu: [
+        {
+          icon: "DollarSign",
+          pathname: "/bank",
+          title: "Bank",
+          // code: 'attribute',
+        },
+        {
+          icon: "PhoneOutgoing",
+          pathname: "/contact",
+          title: "Contact Emergency",
+          // code: 'attribute',
+        },
+        {
+          icon: "User",
+          pathname: "/gander",
+          title: "Gander",
+          // code: 'attribute',
+        },
+        {
+          icon: "Droplet",
+          pathname: "/golonganDarah",
+          title: "Golongan Darah",
+          // code: 'attribute',
+        },
+        {
+          icon: "Users",
+          pathname: "/group",
+          title: "Group",
+          // code: 'attribute',
+        },
+        {
+          icon: "Award",
+          pathname: "/jabatan",
+          title: "Jabatan",
+          // code: 'attribute',
+        },
+        // {
+        //   icon: "Watch",
+        //   pathname: "/jamOperasional",
+        //   title: "Jam Operasional",
+        //   code: 'attribute',
+        // },
+        {
+          icon: "Bookmark",
+          pathname: "/pendidikan",
+          title: "Pendidikan",
+          // code: 'attribute',
+        },
+        {
+          icon: "MapPin",
+          pathname: "/penempatan",
+          title: "Penempatan",
+          // code: 'attribute',
+        },
+        // {
+        //   icon: "Watch",
+        //   pathname: "/periodeKerja",
+        //   title: "Periode Kerja",
+        //   code: 'attribute',
+        // },
+        {
+          icon: "Users",
+          pathname: "/statusPerkawinan",
+          title: "Status Perkawinan",
+          // code: 'attribute',
+        }
+      ],
+    },
   ],
 };
 

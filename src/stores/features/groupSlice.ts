@@ -113,7 +113,7 @@ export const groupsSlice = createSlice({
     name: "groups",
     initialState,
     reducers:{
-        resetGroups: (state) => initialState
+        resetGroup: (state) => initialState
     },
     extraReducers:(builder) => {
         // get groups
@@ -208,5 +208,5 @@ export const groupsSlice = createSlice({
     }
 })
 
-export const {resetGroups} = groupsSlice.actions;
+export const {resetGroup} = groupsSlice.actions;
 export default groupsSlice.reducer;

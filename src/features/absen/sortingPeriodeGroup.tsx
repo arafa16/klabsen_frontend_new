@@ -1,17 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import { FormLabel, FormInput, FormSelect } from '../../base-components/Form'
+import {useEffect, useState} from 'react'
+import { FormLabel, FormSelect } from '../../base-components/Form'
 import Button from '../../base-components/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPeriodeKerjas, resetPeriodeKerjas } from '../../stores/features/periodeKerjaSlice'
-import { getGroups, resetGroups } from '../../stores/features/groupSlice'
+import { getGroups, resetGroup } from '../../stores/features/groupSlice'
 import LoadingIcon from '../../base-components/LoadingIcon'
 import { getPerhitunganByGroupPeriode, downloadPerhitunganByGroupPeriode, resetPerhitungan } from '../../stores/features/perhitunganSlice';
 
 export const SortingPeriodeGroup = () => {
-    // const {
-    //     downloadFile,
-    //     clickClose
-    // } = props;
 
     const [isView, setIsView] = useState(true);
     const [idGroup, setIdGroup] = useState('');
@@ -55,7 +51,7 @@ export const SortingPeriodeGroup = () => {
         if(isGroupSuccess && group){
             if(!isGroupLoading){
                 setDataGroup(group);
-                dispatch(resetGroups());
+                dispatch(resetGroup());
             }
         }
     },[group, isGroupSuccess, isGroupLoading])
@@ -65,8 +61,6 @@ export const SortingPeriodeGroup = () => {
     const {data:dataPerhitungan, isSuccess:isPerhitunganSuccess, isError:isPerhitunganError, message:messagePerhitungan, isLoading1:isPerhitunganLoading, isLoading2:isExportLoading} = useSelector(
         (state : any) => state.perhitungan
     )
-
-    console.log(dataPerhitungan, 'data perhitungan');
 
     useEffect(()=>{
         if(dataPerhitungan && isPerhitunganSuccess){
