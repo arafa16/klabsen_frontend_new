@@ -79,8 +79,7 @@ export const getDataGroupTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataGroup = (datas:any) => {
-    const [uuid, setUuid] = useState(datas && datas.uuid);
+export const createDataGroup = () => {
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
     const [isActive, setIsActive] = useState('');
@@ -104,7 +103,7 @@ export const createDataGroup = (datas:any) => {
     const createDataSetting = (e : any) => {
         e.preventDefault();
         dispatch(createGroups({
-            uuid, name, code, isActive
+            name, code, isActive
         }));
     }
 

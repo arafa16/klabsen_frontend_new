@@ -17,9 +17,10 @@ const initialState : variabel = {
     message: '',
 }
 
-export const getPelanggarans : any = createAsyncThunk("getPelanggarans", async(_, thunkAPI) => {
+
+export const getStatusKoreksi : any = createAsyncThunk("getStatusKoreksi", async(_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/pelanggarans`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/statusKoreksi`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -31,9 +32,9 @@ export const getPelanggarans : any = createAsyncThunk("getPelanggarans", async(_
     }
 });
 
-export const getPelanggaransById : any = createAsyncThunk("getPelanggaransById", async(datas : any, thunkAPI) => {
+export const getStatusKoreksiById : any = createAsyncThunk("getStatusKoreksiById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/pelanggarans/`+datas.uuid,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/statusKoreksi/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -45,9 +46,9 @@ export const getPelanggaransById : any = createAsyncThunk("getPelanggaransById",
     }
 });
 
-export const getPelanggaransTable : any = createAsyncThunk("getPelanggaransTable", async(datas : any, thunkAPI) => {
+export const getStatusKoreksiTable : any = createAsyncThunk("getStatusKoreksiTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/pelanggarans/${datas.limit}&${datas.page}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/statusKoreksi/${datas.limit}&${datas.page}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -59,9 +60,9 @@ export const getPelanggaransTable : any = createAsyncThunk("getPelanggaransTable
     }
 });
 
-export const createPelanggarans : any = createAsyncThunk("createPelanggarans", async(datas : any, thunkAPI) => {
+export const createStatusKoreksi : any = createAsyncThunk("createStatusKoreksi", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/pelanggarans`,{
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/statusKoreksi`,{
             name: datas.name,
             code: datas.code,
             isActive: datas.isActive
@@ -77,9 +78,9 @@ export const createPelanggarans : any = createAsyncThunk("createPelanggarans", a
     }
 });
 
-export const updatePelanggarans : any = createAsyncThunk("updatePelanggarans", async(datas : any, thunkAPI) => {
+export const updateStatusKoreksi : any = createAsyncThunk("updateStatusKoreksi", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/pelanggarans/`+datas.uuid,{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/statusKoreksi/${datas.uuid}`,{
             name: datas.name,
             code: datas.code,
             isActive: datas.isActive
@@ -95,9 +96,9 @@ export const updatePelanggarans : any = createAsyncThunk("updatePelanggarans", a
     }
 });
 
-export const deletePelanggarans : any = createAsyncThunk("deletePelanggarans", async(datas : any, thunkAPI) => {
+export const deleteStatusKoreksi : any = createAsyncThunk("deleteStatusKoreksi", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/pelanggarans/`+datas.uuid,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/statusKoreksi/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -109,98 +110,99 @@ export const deletePelanggarans : any = createAsyncThunk("deletePelanggarans", a
     }
 });
 
-export const pelanggaransSlice = createSlice({
-    name: "Pelanggarans",
+export const statusKoreksiSlice = createSlice({
+    name: "StatusKoreksi",
     initialState,
     reducers:{
-        resetPelanggaran: (state) => initialState
+        resetStatusKoreksi: (state) => initialState
     },
     extraReducers:(builder) => {
-        // get pendidikan
-        builder.addCase(getPelanggarans.pending, (state) => {
+        // get StatusKoreksi
+        builder.addCase(getStatusKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getPelanggarans.fulfilled, (state, action) => {
+        builder.addCase(getStatusKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getPelanggarans.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        });
-
-        // get pendidikan by id
-        builder.addCase(getPelanggaransById.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getPelanggaransById.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.data = action.payload;
-        });
-        builder.addCase(getPelanggaransById.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        });
-
-        // get pendidikan table
-        builder.addCase(getPelanggaransTable.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getPelanggaransTable.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.data = action.payload;
-        });
-        builder.addCase(getPelanggaransTable.rejected, (state, action) => {
+        builder.addCase(getStatusKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // create pendidikan
-        builder.addCase(createPelanggarans.pending, (state) => {
+        // get StatusKoreksi by id
+        builder.addCase(getStatusKoreksiById.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(createPelanggarans.fulfilled, (state, action) => {
+        builder.addCase(getStatusKoreksiById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.message = action.payload;
+            state.data = action.payload;
         });
-        builder.addCase(createPelanggarans.rejected, (state, action) => {
+        builder.addCase(getStatusKoreksiById.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // delete pendidikan
-        builder.addCase(deletePelanggarans.pending, (state) => {
+
+        // get StatusKoreksi table
+        builder.addCase(getStatusKoreksiTable.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(deletePelanggarans.fulfilled, (state, action) => {
+        builder.addCase(getStatusKoreksiTable.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.message = action.payload;
+            state.data = action.payload;
         });
-        builder.addCase(deletePelanggarans.rejected, (state, action) => {
+        builder.addCase(getStatusKoreksiTable.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // update pendidikan
-        builder.addCase(updatePelanggarans.pending, (state) => {
+        // create StatusKoreksi 
+        builder.addCase(createStatusKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(updatePelanggarans.fulfilled, (state, action) => {
+        builder.addCase(createStatusKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(updatePelanggarans.rejected, (state, action) => {
+        builder.addCase(createStatusKoreksi.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
+
+        // create StatusKoreksi 
+        builder.addCase(updateStatusKoreksi.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(updateStatusKoreksi.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(updateStatusKoreksi.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
+
+        // create StatusKoreksi 
+        builder.addCase(deleteStatusKoreksi.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(deleteStatusKoreksi.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(deleteStatusKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
@@ -208,5 +210,5 @@ export const pelanggaransSlice = createSlice({
     }
 })
 
-export const {resetPelanggaran} = pelanggaransSlice.actions;
-export default pelanggaransSlice.reducer;
+export const {resetStatusKoreksi} = statusKoreksiSlice.actions;
+export default statusKoreksiSlice.reducer;

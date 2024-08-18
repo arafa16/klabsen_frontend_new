@@ -7,7 +7,7 @@ import {
 import Button from "../../base-components/Button";
 import Lucide from "../../base-components/Lucide";
 import { useEffect, useState } from "react";
-import { getPelanggarans, resetPelanggarans } from "../../stores/features/pelanggaranSlice";
+import { getPelanggarans, resetPelanggaran } from "../../stores/features/pelanggaranSlice";
 import { getTipeAbsens, resetTipeAbsens } from "../../stores/features/tipeAbsenSlice";
 import { getStatusInout, resetStatusInout } from "../../stores/features/statusInoutSlice";
 import { getJamOperasionals, resetJamOperasional } from '../../stores/features/jamOperasionalSlice';
@@ -64,7 +64,7 @@ export const SlideOverEditDate = (props : any) => {
         if(pelanggaran && isPelanggaranSuccess){
             if(!isPelanggaranLoading){
                 setDataPelanggaran(pelanggaran);
-                resetPelanggarans();
+                resetPelanggaran();
             }
         }
     },[pelanggaran, isPelanggaranSuccess, isPelanggaranLoading]);

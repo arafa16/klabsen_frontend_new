@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import FormTemplate1 from '../../components/formTemplate/formTemplate1';
-import { createDataGroup } from '../../features/group/group';
+import { createDataStatusKoreksi } from '../../features/statusKoreksi/statusKoreksi';
 
-const createGroupPage = () => {
+const createStatusKoreksiPage = () => {
 
-    const {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading} = createDataGroup()
+    const {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading} = createDataStatusKoreksi()
 
     return (
         <div>
@@ -23,4 +23,4 @@ const createGroupPage = () => {
     )
 }
 
-export default createGroupPage
+export default createStatusKoreksiPage

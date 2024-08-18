@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
 import FormTemplate1 from '../../components/formTemplate/formTemplate1';
 import { createDataGroup } from '../../features/group/group';
+import { createDataPelanggaran } from '../../features/pelanggaran/pelanggaran';
 
-const createGroupPage = () => {
+const createPelanggaranPage = () => {
 
-    const {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading} = createDataGroup()
+    const {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading} = createDataPelanggaran()
 
     return (
         <div>
@@ -15,7 +16,7 @@ const createGroupPage = () => {
                 setCode={setCode}
                 isActive={isActive}
                 setIsActive={setIsActive}
-                linkBack={'/group'}
+                linkBack={'/pelanggaran'}
                 submitAction={createDataSetting}
                 loading={isLoading}
             />
@@ -23,4 +24,4 @@ const createGroupPage = () => {
     )
 }
 
-export default createGroupPage
+export default createPelanggaranPage

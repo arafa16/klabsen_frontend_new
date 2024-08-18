@@ -1,34 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
+import { createTipePendapatans, deleteTipePendapatans, getTipePendapatans, getTipePendapatansById, getTipePendapatansTable, resetTipePendapatan, updateTipePendapatans } from "../../stores/features/tipePendapatanSlice";
 import { useEffect, useState } from "react";
-import { createPelanggarans, deletePelanggarans, getPelanggarans, getPelanggaransById, getPelanggaransTable, resetPelanggaran, updatePelanggarans } from "../../stores/features/pelanggaranSlice";
 import { useNavigate } from "react-router-dom";
 
-export const getPelanggaran = () => {
+export const getDataTipePendapatanSelect = () => {
     const [dataResult, setDataResult] = useState([]);
 
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.pelanggaran
+        (state : any) => state.tipePendapatan
     );
 
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
                 setDataResult(data);
-                resetPelanggaran();
+                dispatch(resetTipePendapatan());
             }
         }
-    },[data, isSuccess, isLoading]);
+    })
 
     useEffect(()=>{
-        dispatch(getPelanggarans());
+        dispatch(getTipePendapatans());
     },[])
 
     return {dataResult}
 }
 
-export const getDataPelanggaranTable = () => {
+export const getDataTipePendapatanTable = () => {
     const [dataResult, setDataResult] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -37,11 +37,11 @@ export const getDataPelanggaranTable = () => {
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.pelanggaran
+        (state : any) => state.tipePendapatan
     );
 
     useEffect(()=>{
-        dispatch(getPelanggaransTable({
+        dispatch(getTipePendapatansTable({
             limit, page
         }));
     },[limit, page]);
@@ -51,7 +51,7 @@ export const getDataPelanggaranTable = () => {
             if(!isLoading){
                 setDataResult(data);
                 countData(data.count);
-                dispatch(resetPelanggaran());
+                dispatch(resetTipePendapatan());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -79,7 +79,7 @@ export const getDataPelanggaranTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataPelanggaran = () => {
+export const createDataTipePendapatan = () => {
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
     const [isActive, setIsActive] = useState('');
@@ -88,21 +88,21 @@ export const createDataPelanggaran = () => {
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.pelanggaran
+        (state : any) => state.tipePendapatan
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/pelanggaran');
-                dispatch(resetPelanggaran());
+                navigate('/tipePendapatan');
+                dispatch(resetTipePendapatan());
             }
         }
     },[isSuccess, message, isLoading])
 
     const createDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(createPelanggarans({
+        dispatch(createTipePendapatans({
             name, code, isActive
         }));
     }
@@ -110,7 +110,7 @@ export const createDataPelanggaran = () => {
     return {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading}
 }
 
-export const updateDataPelanggaran = (datas:any) => {
+export const updateDataTipePendapatan = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
@@ -120,20 +120,20 @@ export const updateDataPelanggaran = (datas:any) => {
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.pelanggaran
+        (state : any) => state.tipePendapatan
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/pelanggaran');
-                dispatch(resetPelanggaran());
+                navigate('/tipePendapatan');
+                dispatch(resetTipePendapatan());
             }
         }
     },[isSuccess, message, isLoading])
 
     useEffect(()=>{
-        dispatch(getPelanggaransById({uuid}));
+        dispatch(getTipePendapatansById({uuid}));
     },[uuid]);
 
     useEffect(()=>{
@@ -142,7 +142,7 @@ export const updateDataPelanggaran = (datas:any) => {
                 setName(data && data.name);
                 setCode(data && data.code);
                 setIsActive(data && data.isActive ? '1' : '0');
-                dispatch(resetPelanggaran());
+                dispatch(resetTipePendapatan());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -150,15 +150,15 @@ export const updateDataPelanggaran = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/pelanggaran');
-                dispatch(resetPelanggaran());
+                navigate('/tipePendapatan');
+                dispatch(resetTipePendapatan());
             }
         }
     },[isSuccess, message])
 
     const changeDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(updatePelanggarans({
+        dispatch(updateTipePendapatans({
             uuid, name, code, isActive
         }));
     }
@@ -166,26 +166,26 @@ export const updateDataPelanggaran = (datas:any) => {
     return {changeDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading}
 }
 
-export const deleteDataPelanggaran = (datas:any) => {
+export const deleteDataTipePendapatan = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.pelanggaran
+        (state : any) => state.tipePendapatan
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/pelanggaran');
-                dispatch(resetPelanggaran());
+                navigate('/tipePendapatan');
+                dispatch(resetTipePendapatan());
             }
         }
     },[isSuccess, message, isLoading])
 
     const deleteData = () => {
-        dispatch(deletePelanggarans({uuid}));
+        dispatch(deleteTipePendapatans({uuid}));
     }
 
     return {deleteData, isLoading}
