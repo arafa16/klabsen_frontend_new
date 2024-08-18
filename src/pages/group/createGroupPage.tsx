@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import FormTemplate1 from '../../components/formTemplate/formTemplate1';
 import { createDataGroup } from '../../features/group/group';
 

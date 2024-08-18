@@ -187,18 +187,18 @@ const initialState: SideMenuState = {
           title: "Jam Operasional Group",
           // code: 'setting',
         },
-        // {
-        //   icon: "Watch",
-        //   pathname: "/mesinAbsen",
-        //   title: "Mesin Absen",
-        //   code: 'setting',
-        // },
-        // {
-        //   icon: "Award",
-        //   pathname: "/tipeAbsen",
-        //   title: "Tipe Absen",
-        //   code: 'setting',
-        // },
+        {
+          icon: "Watch",
+          pathname: "/mesinAbsen",
+          title: "Mesin Absen",
+          // code: 'setting',
+        },
+        {
+          icon: "Award",
+          pathname: "/tipeAbsen",
+          title: "Tipe Absen",
+          // code: 'setting',
+        },
         {
           icon: "Award",
           pathname: "/tipeEvent",

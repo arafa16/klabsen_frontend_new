@@ -79,6 +79,12 @@ import EditStatusInOutPage from "../pages/statusInOut/editStatusInOutPage";
 import StatusKoreksiPage from "../pages/statusKoreksi/statusKoreksiPage";
 import CreateStatusKoreksiPage from "../pages/statusKoreksi/createStatusKoreksiPage";
 import EditStatusKoreksiPage from "../pages/statusKoreksi/editStatusKoreksiPage";
+import MesinAbsenPage from "../pages/mesinAbsen/mesinAbsenPage";
+import CreateMesinAbsenPage from "../pages/mesinAbsen/createMesinAbsenPage";
+import EditMesinAbsenPage from "../pages/mesinAbsen/editMesinAbsenPage";
+import TipeAbsenPage from "../pages/tipeAbsen/tipeAbsenPage";
+import EditTipeAbsenPage from "../pages/tipeAbsen/editTipeAbsenPage";
+import CreateTipeAbsenPage from "../pages/tipeAbsen/createTipeAbsenPage";
 
 function Router() {
 
@@ -428,7 +434,32 @@ function Router() {
           path: "/statusKoreksi/edit/:uuid",
           element: <EditStatusKoreksiPage/>
         },
-
+        //mesin absen
+        {
+          path: "/mesinAbsen",
+          element: <MesinAbsenPage />
+        },
+        {
+          path: "/mesinAbsen/create",
+          element: <CreateMesinAbsenPage />
+        },
+        {
+          path: "/mesinAbsen/edit/:uuid",
+          element: <EditMesinAbsenPage />
+        },
+        //tipe absen
+        {
+          path: "/tipeAbsen",
+          element: <TipeAbsenPage />
+        },
+        {
+          path: "/tipeAbsen/create",
+          element: <CreateTipeAbsenPage />
+        },
+        {
+          path: "/tipeAbsen/edit/:uuid",
+          element: <EditTipeAbsenPage />
+        },
       ],
     },
     {

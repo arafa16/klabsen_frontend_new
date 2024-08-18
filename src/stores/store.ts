@@ -36,6 +36,7 @@ import PendapatanReducer from "./features/pendapatanSlice";
 import TipeNotificationReducer from "./features/tipeNotificationSlice";
 import TipePendapatanReducer from "./features/tipePendapatanSlice";
 import StatusKoreksiReducer from "./features/statusKoreksiSlice";
+import MesinAbsenReducer from "./features/mesinAbsenSlice";
 
 export const store = configureStore({
   reducer: {
@@ -75,7 +76,8 @@ export const store = configureStore({
     pendapatan:PendapatanReducer,
     tipeNotification:TipeNotificationReducer,
     tipePendapatan:TipePendapatanReducer,
-    statusKoreksi:StatusKoreksiReducer
+    statusKoreksi:StatusKoreksiReducer,
+    mesinAbsen:MesinAbsenReducer
   },
 });
 

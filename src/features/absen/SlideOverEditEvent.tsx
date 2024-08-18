@@ -8,7 +8,7 @@ import Button from "../../base-components/Button";
 import Lucide from "../../base-components/Lucide";
 import { useEffect, useState } from "react";
 import { getPelanggarans, resetPelanggaran } from "../../stores/features/pelanggaranSlice";
-import { getTipeAbsens, resetTipeAbsens } from "../../stores/features/tipeAbsenSlice";
+import { getTipeAbsens, resetTipeAbsen } from "../../stores/features/tipeAbsenSlice";
 import { getStatusInout, resetStatusInout } from "../../stores/features/statusInoutSlice";
 import { getJamOperasionals, resetJamOperasional } from '../../stores/features/jamOperasionalSlice';
 import { useDispatch, useSelector } from "react-redux";
@@ -90,7 +90,7 @@ export const SlideOverEditEvent = (props : any) => {
         if(tipeAbsen && isTipeAbsenSuccess){
             if(!isTipeAbsenLoading){
                 setDataTipeAbsen(tipeAbsen);
-                resetTipeAbsens();
+                resetTipeAbsen();
             }
         }
     },[tipeAbsen, isTipeAbsenSuccess, isTipeAbsenLoading])

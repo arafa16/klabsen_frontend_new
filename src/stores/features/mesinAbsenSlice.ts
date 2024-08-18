@@ -17,11 +17,14 @@ const initialState : variabel = {
     message: '',
 }
 
-export const getTipeAbsens : any = createAsyncThunk("getTipeAbsens", async(_, thunkAPI) => {
+export const getMesinAbsensTable: any = createAsyncThunk("getMesinAbsensTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeAbsens`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/mesinAbsens/table/${datas.limit}&${datas.page}&${datas.status}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
+        console.log(response.data, 'response');
+
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -31,11 +34,14 @@ export const getTipeAbsens : any = createAsyncThunk("getTipeAbsens", async(_, th
     }
 });
 
-export const getTipeAbsensById : any = createAsyncThunk("getTipeAbsensById", async(datas : any, thunkAPI) => {
+export const getMesinAbsensById: any = createAsyncThunk("getMesinAbsensById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeAbsens/${datas.uuid}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/mesinAbsens/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
+        console.log(response.data, 'response');
+
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -45,30 +51,17 @@ export const getTipeAbsensById : any = createAsyncThunk("getTipeAbsensById", asy
     }
 });
 
-export const getTipeAbsensTable : any = createAsyncThunk("getTipeAbsensTable", async(datas : any, thunkAPI) => {
+export const createMesinAbsens: any = createAsyncThunk("createMesinAbsens", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeAbsens/${datas.limit}&${datas.page}`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
-export const createTipeAbsens : any = createAsyncThunk("createTipeAbsens", async(datas : any, thunkAPI) => {
-    try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/tipeAbsens`,{
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/mesinAbsens`,{
             name: datas.name,
+            ipMesin: datas.ipMesin,
             code: datas.code,
-            isSelect : datas.isSelect,
             isActive: datas.isActive
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -78,16 +71,17 @@ export const createTipeAbsens : any = createAsyncThunk("createTipeAbsens", async
     }
 });
 
-export const updateTipeAbsens : any = createAsyncThunk("updateTipeAbsens", async(datas : any, thunkAPI) => {
+export const updateMesinAbsens: any = createAsyncThunk("updateMesinAbsens", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/tipeAbsens/${datas.uuid}`,{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/mesinAbsens/${datas.uuid}`,{
             name: datas.name,
+            ipMesin: datas.ipMesin,
             code: datas.code,
-            isSelect : datas.isSelect,
             isActive: datas.isActive
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -97,11 +91,12 @@ export const updateTipeAbsens : any = createAsyncThunk("updateTipeAbsens", async
     }
 });
 
-export const deleteTipeAbsens : any = createAsyncThunk("deleteTipeAbsens", async(datas : any, thunkAPI) => {
+export const deleteMesinAbsens: any = createAsyncThunk("deleteMesinAbsens", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/tipeAbsens/${datas.uuid}`,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/mesinAbsens/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -111,104 +106,92 @@ export const deleteTipeAbsens : any = createAsyncThunk("deleteTipeAbsens", async
     }
 });
 
-export const tipeAbsensSlice = createSlice({
-    name: "tipeAbsens",
+export const mesinAbsenSlice = createSlice({
+    name: "mesinAbsens",
     initialState,
     reducers:{
-        resetTipeAbsen: (state) => initialState
+        resetMesinAbsen: (state) => initialState
     },
     extraReducers:(builder) => {
-        // get tipeAbsens
-        builder.addCase(getTipeAbsens.pending, (state) => {
+
+
+        // get mesin by table
+        builder.addCase(getMesinAbsensTable.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(getMesinAbsensTable.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeAbsens.rejected, (state, action) => {
+        builder.addCase(getMesinAbsensTable.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get data by id
-        builder.addCase(getTipeAbsensById.pending, (state) => {
+        // get mesin by id
+        builder.addCase(getMesinAbsensById.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeAbsensById.fulfilled, (state, action) => {
+        builder.addCase(getMesinAbsensById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeAbsensById.rejected, (state, action) => {
+        builder.addCase(getMesinAbsensById.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get tipeAbsens table
-        builder.addCase(getTipeAbsensTable.pending, (state) => {
+        // create mesin
+        builder.addCase(createMesinAbsens.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeAbsensTable.fulfilled, (state, action) => {
+        builder.addCase(createMesinAbsens.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.data = action.payload;
+            state.message = action.payload;
         });
-        builder.addCase(getTipeAbsensTable.rejected, (state, action) => {
+        builder.addCase(createMesinAbsens.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // create tipeAbsens
-        builder.addCase(createTipeAbsens.pending, (state) => {
+        // update mesin
+        builder.addCase(updateMesinAbsens.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(createTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(updateMesinAbsens.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(createTipeAbsens.rejected, (state, action) => {
+        builder.addCase(updateMesinAbsens.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // update tipeAbsens 
-        builder.addCase(updateTipeAbsens.pending, (state) => {
+        // delete mesin
+        builder.addCase(deleteMesinAbsens.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(updateTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(deleteMesinAbsens.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(updateTipeAbsens.rejected, (state, action) => {
+        builder.addCase(deleteMesinAbsens.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
-        })
+        });
 
-        // delete tipeAbsens 
-        builder.addCase(deleteTipeAbsens.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(deleteTipeAbsens.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.message = action.payload;
-        });
-        builder.addCase(deleteTipeAbsens.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-        });
     }
-})
+});
 
-export const {resetTipeAbsen} = tipeAbsensSlice.actions;
-export default tipeAbsensSlice.reducer;
+export const {resetMesinAbsen} = mesinAbsenSlice.actions;
+export default mesinAbsenSlice.reducer;

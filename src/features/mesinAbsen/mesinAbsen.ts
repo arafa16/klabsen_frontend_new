@@ -1,32 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
+import { createMesinAbsens, deleteMesinAbsens, getMesinAbsensById, getMesinAbsensTable, resetMesinAbsen, updateMesinAbsens } from "../../stores/features/mesinAbsenSlice";
 import { useEffect, useState } from "react";
-import { createTipeAbsens, deleteTipeAbsens, getTipeAbsens, getTipeAbsensById, getTipeAbsensTable, resetTipeAbsen, updateTipeAbsens } from "../../stores/features/tipeAbsenSlice";
 import { useNavigate } from "react-router-dom";
 
-export const getTipeAbsen = () => {
-    const [dataResult, setDataResult] = useState([]);
-
-    const dispatch = useDispatch(); 
-
-    const {data, isSuccess} = useSelector(
-        (state : any) => state.tipeAbsen
-    );
-
-    useEffect(()=>{
-        if(data && isSuccess){
-            setDataResult(data);
-            resetTipeAbsen();
-        }
-    },[data, isSuccess])
-
-    useEffect(()=>{
-        dispatch(getTipeAbsens());
-    },[])
-
-    return {dataResult}
-}
-
-export const getDataTipeAbsenTable = () => {
+export const getDataMesinAbsenTable = () => {
     const [dataResult, setDataResult] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -35,11 +12,11 @@ export const getDataTipeAbsenTable = () => {
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.tipeAbsen
+        (state : any) => state.mesinAbsen
     );
 
     useEffect(()=>{
-        dispatch(getTipeAbsensTable({
+        dispatch(getMesinAbsensTable({
             limit, page
         }));
     },[limit, page]);
@@ -49,7 +26,7 @@ export const getDataTipeAbsenTable = () => {
             if(!isLoading){
                 setDataResult(data);
                 countData(data.count);
-                dispatch(resetTipeAbsen());
+                dispatch(resetMesinAbsen());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -77,73 +54,73 @@ export const getDataTipeAbsenTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataTipeAbsen = () => {
+export const createDataMesinAbsen = () => {
     const [name, setName] = useState('');
+    const [ipMesin, setIpMesin] = useState('');
     const [code, setCode] = useState('');
-    const [isSelect, setIsSelect] = useState('');
     const [isActive, setIsActive] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.tipeAbsen
+        (state : any) => state.mesinAbsen
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/tipeAbsen');
-                dispatch(resetTipeAbsen());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message, isLoading])
 
     const createDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(createTipeAbsens({
-            name, isSelect, code, isActive
+        dispatch(createMesinAbsens({
+            name, ipMesin, code, isActive
         }));
     }
 
-    return {createDataSetting, name, setName, isSelect, setIsSelect, code, setCode, isActive, setIsActive, isLoading}
+    return {createDataSetting, name, setName, ipMesin, setIpMesin, code, setCode, isActive, setIsActive, isLoading}
 }
 
-export const updateDataTipeAbsen = (datas:any) => {
+export const updateDataMesinAbsen = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
+    const [ipMesin, setIpMesin] = useState('');
     const [code, setCode] = useState('');
-    const [isSelect, setIsSelect] = useState('');
     const [isActive, setIsActive] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.tipeAbsen
+        (state : any) => state.mesinAbsen
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/tipeAbsen');
-                dispatch(resetTipeAbsen());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message, isLoading])
 
     useEffect(()=>{
-        dispatch(getTipeAbsensById({uuid}));
+        dispatch(getMesinAbsensById({uuid}));
     },[uuid]);
 
     useEffect(()=>{
         if(isSuccess && data){
             if(!isLoading){
                 setName(data && data.name);
+                setIpMesin(data && data.ipMesin);
                 setCode(data && data.code);
-                setIsSelect(data && data.isSelect ? '1' : '0');
                 setIsActive(data && data.isActive ? '1' : '0');
-                dispatch(resetTipeAbsen());
+                dispatch(resetMesinAbsen());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -151,42 +128,42 @@ export const updateDataTipeAbsen = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/tipeAbsen');
-                dispatch(resetTipeAbsen());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message])
 
     const changeDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(updateTipeAbsens({
-            uuid, isSelect, name, code, isActive
+        dispatch(updateMesinAbsens({
+            uuid, name, ipMesin, code, isActive
         }));
     }
 
-    return {changeDataSetting, name, setName, isSelect, setIsSelect, code, setCode, isActive, setIsActive, isLoading}
+    return {changeDataSetting, name, setName, ipMesin, setIpMesin, code, setCode, isActive, setIsActive, isLoading}
 }
 
-export const deleteDataTipeAbsen = (datas:any) => {
+export const deleteDataMesinAbsen = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.tipeAbsen
+        (state : any) => state.mesinAbsen
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/tipeAbsen');
-                dispatch(resetTipeAbsen());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message, isLoading])
 
     const deleteData = () => {
-        dispatch(deleteTipeAbsens({uuid}));
+        dispatch(deleteMesinAbsens({uuid}));
     }
 
     return {deleteData, isLoading}
