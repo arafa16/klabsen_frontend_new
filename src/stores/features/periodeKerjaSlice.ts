@@ -62,7 +62,7 @@ export const getPeriodeKerjasTableStatus : any = createAsyncThunk("getPeriodeKer
 
 export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.id}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         console.log(response, 'response');
@@ -101,7 +101,7 @@ export const createPeriodeKerjas : any = createAsyncThunk("createPeriodeKerjas",
 
 export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.id}`,{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.uuid}`,{
             name:datas.name,
             bulan:datas.bulan,
             tahun:datas.tahun,
@@ -125,7 +125,7 @@ export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas",
 
 export const deletePeriodeKerjas : any = createAsyncThunk("deletePeriodeKerjas", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.id}`,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
 
@@ -143,7 +143,7 @@ export const periodeKerjasSlice = createSlice({
     name: "periodeKerjas",
     initialState,
     reducers:{
-        resetPeriodeKerjas: (state) => initialState
+        resetPeriodeKerja: (state) => initialState
     },
     extraReducers:(builder) => {
 
@@ -254,5 +254,5 @@ export const periodeKerjasSlice = createSlice({
     }
 })
 
-export const {resetPeriodeKerjas} = periodeKerjasSlice.actions;
+export const {resetPeriodeKerja} = periodeKerjasSlice.actions;
 export default periodeKerjasSlice.reducer;

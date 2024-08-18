@@ -122,7 +122,7 @@ export const jamOperasionalsSlice = createSlice({
     name: "jamOperasionals",
     initialState,
     reducers:{
-        resetJamOperasionals: (state) => initialState
+        resetJamOperasional: (state) => initialState
     },
     extraReducers:(builder) => {
         // get jam operasional
@@ -217,5 +217,5 @@ export const jamOperasionalsSlice = createSlice({
     }
 })
 
-export const {resetJamOperasionals} = jamOperasionalsSlice.actions;
+export const {resetJamOperasional} = jamOperasionalsSlice.actions;
 export default jamOperasionalsSlice.reducer;

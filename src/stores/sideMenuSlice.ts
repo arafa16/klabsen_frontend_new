@@ -144,12 +144,12 @@ const initialState: SideMenuState = {
           title: "Jabatan",
           // code: 'attribute',
         },
-        // {
-        //   icon: "Watch",
-        //   pathname: "/jamOperasional",
-        //   title: "Jam Operasional",
-        //   code: 'attribute',
-        // },
+        {
+          icon: "Watch",
+          pathname: "/jamOperasional",
+          title: "Jam Operasional",
+          // code: 'attribute',
+        },
         {
           icon: "Bookmark",
           pathname: "/pendidikan",
@@ -162,12 +162,12 @@ const initialState: SideMenuState = {
           title: "Penempatan",
           // code: 'attribute',
         },
-        // {
-        //   icon: "Watch",
-        //   pathname: "/periodeKerja",
-        //   title: "Periode Kerja",
-        //   code: 'attribute',
-        // },
+        {
+          icon: "Watch",
+          pathname: "/periodeKerja",
+          title: "Periode Kerja",
+          // code: 'attribute',
+        },
         {
           icon: "Users",
           pathname: "/statusPerkawinan",

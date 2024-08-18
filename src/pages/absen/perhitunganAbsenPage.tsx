@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from 'react'
-// import FormSortingPeriodeGroup from '../../components/Form/PerhitunganAbsen/FormSortingPeriodeGroup'
+import { useEffect, useState } from 'react'
 import { FormSelect } from '../../base-components/Form'
-import { useDispatch, useSelector } from 'react-redux';
-// import PerhitunganAbsenTable from '../../components/Table/PerhitunganAbsen/PerhitunganAbsenTable';
-import axios from 'axios';
-import fileDownload from "js-file-download";
 import { SortingPeriodeGroup } from '../../features/absen/sortingPeriodeGroup';
 import { calculationAbsenTable } from '../../features/absen/calculationAbsenTable';
 import { getMessageShow } from "../../features/messageShow";
@@ -28,13 +23,9 @@ const perhitunganAbsenPage = () => {
         }
     },[messageSorting])
 
-    // const [dataHasil, setDataHasil] = useState([]);
     const [selectForm, setSelectForm] = useState('');
 
     const messageShow = getMessageShow(message);
-    
-
-    // const dispatch = useDispatch();
 
     const clickPeriodeGroup = () => {
         if(selectForm === 'periode&group'){
@@ -50,24 +41,6 @@ const perhitunganAbsenPage = () => {
     },[selectForm])
 
     const {table:tableCalculation} = calculationAbsenTable({datas:dataCalculation});
-
-    // const {data, isError, isSuccess, message} = useSelector(
-    //     (state : any) => state.perhitungan
-    // )
-
-    // useEffect(()=>{
-    //     if(data && isSuccess){
-    //         console.log(data);
-    //         setDataHasil(data);
-    //     }
-    // },[data, isSuccess])
-
-    // const submitGroupPeriode = (e:any)=>{
-    //     e.preventDefault();
-    //     dispatch(getPerhitunganByGroupPeriode({idGroup, idPeriode}))
-    // }
-
-    
 
     return (
         <div>

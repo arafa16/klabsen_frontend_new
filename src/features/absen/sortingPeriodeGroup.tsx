@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import { FormLabel, FormSelect } from '../../base-components/Form'
 import Button from '../../base-components/Button'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPeriodeKerjas, resetPeriodeKerjas } from '../../stores/features/periodeKerjaSlice'
+import { getPeriodeKerjas, resetPeriodeKerja } from '../../stores/features/periodeKerjaSlice'
 import { getGroups, resetGroup } from '../../stores/features/groupSlice'
 import LoadingIcon from '../../base-components/LoadingIcon'
 import { getPerhitunganByGroupPeriode, downloadPerhitunganByGroupPeriode, resetPerhitungan } from '../../stores/features/perhitunganSlice';
@@ -33,7 +33,7 @@ export const SortingPeriodeGroup = () => {
         if(periodeKerja && isPeriodeKerjaSuccess){
             if(!isPeriodeKerjaLoading){
                 setDataPeriode(periodeKerja);
-                dispatch(resetPeriodeKerjas());
+                dispatch(resetPeriodeKerja());
             }
         }
     },[periodeKerja, isPeriodeKerjaSuccess, isPeriodeKerjaLoading])

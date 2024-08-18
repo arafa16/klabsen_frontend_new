@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPeriodeKerjasTableStatus, resetPeriodeKerjas } from "../../stores/features/periodeKerjaSlice";
+import { getPeriodeKerjasTableStatus, resetPeriodeKerja } from "../../stores/features/periodeKerjaSlice";
 
 export const reportAbsenMonth = () => {
     const [dataPeriodeKerjas, setDataPeriodeKerjas] = useState<any>([]);
@@ -29,7 +29,7 @@ export const reportAbsenMonth = () => {
             setDataPeriodeKerjas(data);
             console.log()
             countDataPeriodeKerja(data.count)
-            dispatch(resetPeriodeKerjas());
+            dispatch(resetPeriodeKerja());
         }
     },[data, isSuccess])
 

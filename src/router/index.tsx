@@ -49,6 +49,13 @@ import EditPenempatanPage from "../pages/penempatan/editPenempatanPage";
 import StatusPerkawinanPage from "../pages/statusPerkawinan/statusPerkawinanPage";
 import CreateStatusPerkawinanPage from "../pages/statusPerkawinan/createStatusPerkawinanPage";
 import EditStatusPerkawinanPage from "../pages/statusPerkawinan/editStatusPerkawinanPage";
+import JamOperasionalPage from "../pages/jamOperasional/jamOperasionalPage";
+import CreateJamOperasionalPage from "../pages/jamOperasional/createJamOperasionalPage";
+import EditJamOperasionalPage from "../pages/jamOperasional/editJamOperasionalPage";
+import PeriodeKerjaPage from "../pages/periodeKerja/periodeKerjaPage";
+import EditPeriodeKerjaPage from "../pages/periodeKerja/editPeriodeKerjaPage";
+import CreatePeriodeKerjaPage from "../pages/periodeKerja/createPeriodeKerjaPage";
+
 
 function Router() {
 
@@ -267,6 +274,32 @@ function Router() {
         {
           path: "/statusPerkawinan/edit/:uuid",
           element: <EditStatusPerkawinanPage />
+        },
+        //jam operasional
+        {
+          path: "/jamOperasional",
+          element: <JamOperasionalPage />
+        },
+        {
+          path: "/jamOperasional/create",
+          element: <CreateJamOperasionalPage />
+        },
+        {
+          path: "/jamOperasional/edit/:uuid",
+          element: <EditJamOperasionalPage />
+        },
+         //periode kerja
+         {
+          path: "/periodeKerja",
+          element: <PeriodeKerjaPage />
+        },
+        {
+          path: "/periodeKerja/create",
+          element: <CreatePeriodeKerjaPage />
+        },
+        {
+          path: "/periodeKerja/edit/:uuid",
+          element: <EditPeriodeKerjaPage />
         },
       ],
     },

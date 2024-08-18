@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { getPelanggarans, resetPelanggarans } from "../../stores/features/pelanggaranSlice";
 import { getTipeAbsens, resetTipeAbsens } from "../../stores/features/tipeAbsenSlice";
 import { getStatusInout, resetStatusInout } from "../../stores/features/statusInoutSlice";
-import { getJamOperasionals, resetJamOperasionals } from '../../stores/features/jamOperasionalSlice';
+import { getJamOperasionals, resetJamOperasional } from '../../stores/features/jamOperasionalSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { getInOutsByUser, resetInOuts } from "../../stores/features/inOutSlice";
 import dayjs from "dayjs";
@@ -108,7 +108,7 @@ export const SlideOverEditEvent = (props : any) => {
         if(isJamOperasionalSuccess && jamOperasional){
             if(!isJamOperasionalLoading){
                 setDataJamOperasional(jamOperasional);
-                dispatch(resetJamOperasionals());
+                dispatch(resetJamOperasional());
             }
         }
     },[jamOperasional, isJamOperasionalSuccess, isJamOperasionalLoading]);
