@@ -176,6 +176,73 @@ const initialState: SideMenuState = {
         }
       ],
     },
+    {
+      icon: "Settings",
+      title: "Setting",
+      // code: 'setting',
+      subMenu: [
+        {
+          icon: "Watch",
+          pathname: "/jamOperasionalGroup",
+          title: "Jam Operasional Group",
+          // code: 'setting',
+        },
+        // {
+        //   icon: "Watch",
+        //   pathname: "/mesinAbsen",
+        //   title: "Mesin Absen",
+        //   code: 'setting',
+        // },
+        // {
+        //   icon: "Award",
+        //   pathname: "/tipeAbsen",
+        //   title: "Tipe Absen",
+        //   code: 'setting',
+        // },
+        {
+          icon: "Award",
+          pathname: "/tipeEvent",
+          title: "Tipe Event",
+          // code: 'setting',
+        },
+        {
+          icon: "MessageSquare",
+          pathname: "/tipeNotification",
+          title: "Tipe Notification",
+          // code: 'setting',
+        },
+        // {
+        //   icon: "DollarSign",
+        //   pathname: "/tipePendapatan",
+        //   title: "Tipe Pendapatan",
+        //   code: 'setting',
+        // },
+        // {
+        //   icon: "Award",
+        //   pathname: "/pelanggaran",
+        //   title: "Pelanggaran",
+        //   code: 'setting',
+        // },
+        // {
+        //   icon: "Award",
+        //   pathname: "/status",
+        //   title: "Status",
+        //   code: 'setting',
+        // },
+        // {
+        //   icon: "Shuffle",
+        //   pathname: "/statusInout",
+        //   title: "Status In Out",
+        //   code: 'setting',
+        // },
+        // {
+        //   icon: "Award",
+        //   pathname: "/statusKoreksi",
+        //   title: "Status Koreksi",
+        //   code: 'setting',
+        // },
+      ],
+    }
   ],
 };
 

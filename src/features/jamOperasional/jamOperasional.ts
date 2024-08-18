@@ -80,9 +80,7 @@ export const getDataJamOperasionalTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataJamOperasional = (datas:any) => {
-    const [uuid, setUuid] = useState(datas && datas.uuid);
-
+export const createDataJamOperasional = () => {
     const [name, setName] = useState('');
     const [jamMasuk, setJamMasuk] = useState('');
     const [jamPulang, setJamPulang] = useState('');
@@ -128,7 +126,7 @@ export const createDataJamOperasional = (datas:any) => {
     const createDataSetting = (e : any) => {
         e.preventDefault();
         dispatch(createJamOperasionals({
-            uuid, name, jamMasuk, jamPulang, keterangan, jamOperasionalGroupId, code, isActive
+            name, jamMasuk, jamPulang, keterangan, jamOperasionalGroupId, code, isActive
         }));
     }
 

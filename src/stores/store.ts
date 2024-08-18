@@ -33,6 +33,7 @@ import JabatanReducer from "./features/jabatanSlice";
 import JamOperasionalGroupReducer from "./features/jamOperasionalGroupSlice";
 import AtasanReducer from "./features/atasanSlice";
 import PendapatanReducer from "./features/pendapatanSlice";
+import TipeNotificationReducer from "./features/tipeNotificationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -69,7 +70,8 @@ export const store = configureStore({
     jabatan:JabatanReducer,
     jamOperasionalGroup:JamOperasionalGroupReducer,
     atasan:AtasanReducer,
-    pendapatan:PendapatanReducer
+    pendapatan:PendapatanReducer,
+    tipeNotification:TipeNotificationReducer
   },
 });
 

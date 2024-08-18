@@ -1,17 +1,17 @@
-import { useParams } from 'react-router-dom';
-import FormTemplate1 from '../../components/formTemplate/formTemplate1';
+import FormTemplate4 from '../../components/formTemplate/formTemplate4';
 import { createDataJamOperasionalGroup } from '../../features/jamOperasionalGroup/jamOperasionalGroup';
 
 const createJamOperasionalGroupPage = () => {
-    const {uuid} = useParams();
-
-    const {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading} = createDataJamOperasionalGroup({uuid})
+    
+    const {createDataSetting, name, setName, keterangan, setKeterangan, code, setCode, isActive, setIsActive, isLoading} = createDataJamOperasionalGroup()
 
     return (
         <div>
-            <FormTemplate1
+            <FormTemplate4
                 name={name}
                 setName={setName}
+                keterangan={keterangan}
+                setKeterangan={setKeterangan}
                 code={code}
                 setCode={setCode}
                 isActive={isActive}

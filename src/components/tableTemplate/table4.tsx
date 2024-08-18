@@ -1,13 +1,8 @@
-import React from 'react'
 import Lucide from '../../base-components/Lucide'
-import Button from '../../base-components/Button'
-import { Menu } from '../../base-components/Headless'
 import clsx from 'clsx'
-import { FormCheck, FormInput } from '../../base-components/Form'
 import { useNavigate } from 'react-router-dom'
 
-
-const Table1 = (props : any) => {
+const table4 = (props : any) => {
     const {datas, linkView, linkCreate, nextPage, prevPage, page, allPage} = props;
     const navigate = useNavigate();
 
@@ -18,7 +13,7 @@ const Table1 = (props : any) => {
             <div className="col-span-12 xl:col-span-12 2xl:col-span-12">
                 <div className="flex flex-col-reverse px-5 py-4 border-b sm:flex-row text-slate-500 border-slate-200/60">
                     <div className="flex items-center justify-end sm:ml-auto">
-                        <div className="text-xs">{page <= allPage ? page : allPage} of {allPage} page </div>
+                    <div className="text-xs">{page <= allPage ? page : allPage} of {allPage} page </div>
                         <div className="flex items-center justify-center w-5 h-5 ml-5" >
                             <Lucide 
                                 icon="ChevronLeft" 
@@ -56,32 +51,41 @@ const Table1 = (props : any) => {
                         >
                         <div className="flex px-5 py-3">
                             <div className="flex items-center flex-none mr-5 w-72">
-                            <div className='w-16'>
-                                {index+1}
+                                <div className='w-16'>
+                                    {index+1}
+                                </div>
+                                <div
+                                    className={clsx([
+                                    "mr-3 truncate flex justify-start w-96"
+                                    ])}
+                                    >
+                                    {data && data.name}
+                                </div>
+                            </div>
+                            <div className="w-24 truncate sm:w-48">
+                                <span
+                                    className={clsx([
+                                    "ml-3 truncate"
+                                    ])}
+                                    >
+                                    {data && data.keterangan}
+                                </span>
+                            </div>
+                            <div className="w-24 truncate sm:w-48">
+                                <span
+                                    className={clsx([
+                                    "ml-3 truncate"
+                                    ])}
+                                    >
+                                    {data && data.code}
+                                </span>
                             </div>
                             <div
                                 className={clsx([
-                                "ml-3 truncate"
-                                ])}
-                            >
-                                {data.name}
-                            </div>
-                            </div>
-                            <div className="w-64 truncate sm:w-auto">
-                            <span
-                                className={clsx([
-                                "ml-3 truncate"
-                                ])}
-                            >
-                                {data.code}
-                            </span>
-                            </div>
-                            <div
-                            className={clsx([
                                 "pl-10 ml-auto whitespace-nowrap"
-                            ])}
-                            >
-                            {data.isActive ? 'active' : 'non active'}
+                                ])}
+                                >
+                                {data.isActive ? 'active' : 'non active'}
                             </div>
                         </div>
                         </div>
@@ -95,4 +99,4 @@ const Table1 = (props : any) => {
     )
 }
 
-export default Table1
+export default table4

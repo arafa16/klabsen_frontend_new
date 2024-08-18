@@ -1,34 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { createGroups, deleteGroups, getGroups, getGroupsById, getGroupsTable, resetGroup, updateGroups } from "../../stores/features/groupSlice";
+import { createTipeNotifications, deleteTipeNotifications, getTipeNotifications, getTipeNotificationsById, getTipeNotificationsTable, resetTipeNotification, updateTipeNotifications } from "../../stores/features/tipeNotificationSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const getDataGroupSelect = () => {
+export const getDataTipeNotificationSelect = () => {
     const [dataResult, setDataResult] = useState([]);
 
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.group
+        (state : any) => state.tipeNotification
     );
 
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
                 setDataResult(data);
-                dispatch(resetGroup());
+                dispatch(resetTipeNotification());
             }
         }
     })
 
     useEffect(()=>{
-        dispatch(getGroups());
+        dispatch(getTipeNotifications());
     },[])
 
     return {dataResult}
 }
 
-export const getDataGroupTable = () => {
+export const getDataTipeNotificationTable = () => {
     const [dataResult, setDataResult] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -37,11 +37,11 @@ export const getDataGroupTable = () => {
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.group
+        (state : any) => state.tipeNotification
     );
 
     useEffect(()=>{
-        dispatch(getGroupsTable({
+        dispatch(getTipeNotificationsTable({
             limit, page
         }));
     },[limit, page]);
@@ -51,7 +51,7 @@ export const getDataGroupTable = () => {
             if(!isLoading){
                 setDataResult(data);
                 countData(data.count);
-                dispatch(resetGroup());
+                dispatch(resetTipeNotification());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -79,8 +79,7 @@ export const getDataGroupTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataGroup = (datas:any) => {
-    const [uuid, setUuid] = useState(datas && datas.uuid);
+export const createDataTipeNotification = () => {
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
     const [isActive, setIsActive] = useState('');
@@ -89,29 +88,29 @@ export const createDataGroup = (datas:any) => {
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.group
+        (state : any) => state.tipeNotification
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/group');
-                dispatch(resetGroup());
+                navigate('/tipeNotification');
+                dispatch(resetTipeNotification());
             }
         }
     },[isSuccess, message, isLoading])
 
     const createDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(createGroups({
-            uuid, name, code, isActive
+        dispatch(createTipeNotifications({
+            name, code, isActive
         }));
     }
 
     return {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading}
 }
 
-export const updateDataGroup = (datas:any) => {
+export const updateDataTipeNotification = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
@@ -121,20 +120,20 @@ export const updateDataGroup = (datas:any) => {
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.group
+        (state : any) => state.tipeNotification
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/group');
-                dispatch(resetGroup());
+                navigate('/tipeNotification');
+                dispatch(resetTipeNotification());
             }
         }
     },[isSuccess, message, isLoading])
 
     useEffect(()=>{
-        dispatch(getGroupsById({uuid}));
+        dispatch(getTipeNotificationsById({uuid}));
     },[uuid]);
 
     useEffect(()=>{
@@ -143,7 +142,7 @@ export const updateDataGroup = (datas:any) => {
                 setName(data && data.name);
                 setCode(data && data.code);
                 setIsActive(data && data.isActive ? '1' : '0');
-                dispatch(resetGroup());
+                dispatch(resetTipeNotification());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -151,15 +150,15 @@ export const updateDataGroup = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/group');
-                dispatch(resetGroup());
+                navigate('/tipeNotification');
+                dispatch(resetTipeNotification());
             }
         }
     },[isSuccess, message])
 
     const changeDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(updateGroups({
+        dispatch(updateTipeNotifications({
             uuid, name, code, isActive
         }));
     }
@@ -167,26 +166,26 @@ export const updateDataGroup = (datas:any) => {
     return {changeDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading}
 }
 
-export const deleteDataGroup = (datas:any) => {
+export const deleteDataTipeNotification = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.group
+        (state : any) => state.tipeNotification
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/group');
-                dispatch(resetGroup());
+                navigate('/tipeNotification');
+                dispatch(resetTipeNotification());
             }
         }
     },[isSuccess, message, isLoading])
 
     const deleteData = () => {
-        dispatch(deleteGroups({uuid}));
+        dispatch(deleteTipeNotifications({uuid}));
     }
 
     return {deleteData, isLoading}

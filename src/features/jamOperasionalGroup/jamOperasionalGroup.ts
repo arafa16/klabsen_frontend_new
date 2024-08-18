@@ -79,9 +79,9 @@ export const getDataJamOperasionalGroupTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataJamOperasionalGroup = (datas:any) => {
-    const [uuid, setUuid] = useState(datas && datas.uuid);
+export const createDataJamOperasionalGroup = () => {
     const [name, setName] = useState('');
+    const [keterangan, setKeterangan] = useState('');
     const [code, setCode] = useState('');
     const [isActive, setIsActive] = useState('');
 
@@ -104,16 +104,17 @@ export const createDataJamOperasionalGroup = (datas:any) => {
     const createDataSetting = (e : any) => {
         e.preventDefault();
         dispatch(createJamOperasionalGroups({
-            uuid, name, code, isActive
+            name, keterangan, code, isActive
         }));
     }
 
-    return {createDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading}
+    return {createDataSetting, name, setName, keterangan, setKeterangan, code, setCode, isActive, setIsActive, isLoading}
 }
 
 export const updateDataJamOperasionalGroup = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
+    const [keterangan, setKeterangan] = useState('');
     const [code, setCode] = useState('');
     const [isActive, setIsActive] = useState('');
 
@@ -142,6 +143,7 @@ export const updateDataJamOperasionalGroup = (datas:any) => {
             if(!isLoading){
                 setName(banks && banks.name);
                 setCode(banks && banks.code);
+                setKeterangan(banks && banks.keterangan);
                 setIsActive(banks && banks.isActive ? '1' : '0');
                 dispatch(resetJamOperasionalGroup());
             }
@@ -160,11 +162,11 @@ export const updateDataJamOperasionalGroup = (datas:any) => {
     const changeDataSetting = (e : any) => {
         e.preventDefault();
         dispatch(updateJamOperasionalGroups({
-            uuid, name, code, isActive
+            uuid, name, keterangan, code, isActive
         }));
     }
 
-    return {changeDataSetting, name, setName, code, setCode, isActive, setIsActive, isLoading}
+    return {changeDataSetting, name, setName, keterangan, setKeterangan, code, setCode, isActive, setIsActive, isLoading}
 }
 
 export const deleteDataJamOperasionalGroup = (datas:any) => {

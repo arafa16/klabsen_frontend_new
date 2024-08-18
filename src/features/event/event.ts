@@ -11,7 +11,7 @@ import {
   resetEvents } from "../../stores/features/eventSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
-import { getTipeEvents, resetTipeEvents } from '../../stores/features/tipeEventSlice';
+import { getTipeEvents, resetTipeEvent } from '../../stores/features/tipeEventSlice';
 
 export const eventDataDate = () => {
   const [datas, setDatas] = useState<any>([]);
@@ -172,7 +172,7 @@ export const createDataEvent = () => {
       if(data && isSuccess){
           if(!isLoading){
               setDataTipeEvents(data);
-              dispatch(resetTipeEvents());
+              dispatch(resetTipeEvent());
           }
       }
   },[data, isSuccess, isLoading])
@@ -260,7 +260,7 @@ export const updateDataEvent = (props:any) => {
       if(data && isSuccess){
           if(!isLoading){
               setDataTipeEvents(data);
-              dispatch(resetTipeEvents());
+              dispatch(resetTipeEvent());
           }
       }
     },[data, isSuccess, isLoading])

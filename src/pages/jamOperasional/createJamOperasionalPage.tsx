@@ -16,7 +16,7 @@ const createJamOperasionalPage = () => {
         code, setCode, 
         isActive, setIsActive, 
         isLoading
-    } = createDataJamOperasional({uuid})
+    } = createDataJamOperasional()
 
     return (
         <div>

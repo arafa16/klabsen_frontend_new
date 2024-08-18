@@ -1,4 +1,4 @@
-import Table1 from '../../components/tableTemplate/table1';
+import Table4 from '../../components/tableTemplate/table4';
 import { getDataJamOperasionalGroupTable } from '../../features/jamOperasionalGroup/jamOperasionalGroup';
 
 const jamOperasionalGroupPage = () => {
@@ -7,7 +7,7 @@ const jamOperasionalGroupPage = () => {
 
     return (
         <div className='w-full'>
-            <Table1
+            <Table4
                 datas={dataResult}
                 linkView="/jamOperasionalGroup/edit"
                 linkCreate="/jamOperasionalGroup/create"

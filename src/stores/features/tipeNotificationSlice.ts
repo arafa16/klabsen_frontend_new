@@ -17,9 +17,9 @@ const initialState : variabel = {
     message: '',
 }
 
-export const getTipeEvents : any = createAsyncThunk("getTipeEvents", async(_, thunkAPI) => {
+export const getTipeNotifications : any = createAsyncThunk("getTipeNotifications", async(_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeNotifications`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -31,24 +31,9 @@ export const getTipeEvents : any = createAsyncThunk("getTipeEvents", async(_, th
     }
 });
 
-export const getTipeEventsById : any = createAsyncThunk("getTipeEventsById", async(datas : any, thunkAPI) => {
+export const getTipeNotificationsById : any = createAsyncThunk("getTipeNotificationsById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/`+datas.uuid,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
-export const getTipeEventsTable : any = createAsyncThunk("getTipeEventsTable", async(datas : any, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/table/${datas.limit}&${datas.page}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeNotifications/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -60,9 +45,23 @@ export const getTipeEventsTable : any = createAsyncThunk("getTipeEventsTable", a
     }
 });
 
-export const createTipeEvents : any = createAsyncThunk("createTipeEvents", async(datas : any, thunkAPI) => {
+export const getTipeNotificationsTable : any = createAsyncThunk("getTipeNotificationsTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipeNotifications/${datas.limit}&${datas.page}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
+export const createTipeNotifications : any = createAsyncThunk("createTipeNotifications", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/tipeNotifications`,{
             name: datas.name,
             code: datas.code,
             isActive: datas.isActive
@@ -78,9 +77,9 @@ export const createTipeEvents : any = createAsyncThunk("createTipeEvents", async
     }
 });
 
-export const updateTipeEvents : any = createAsyncThunk("updateTipeEvents", async(datas : any, thunkAPI) => {
+export const updateTipeNotifications : any = createAsyncThunk("updateTipeNotifications", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/`+datas.uuid,{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/tipeNotifications/${datas.uuid}`,{
             name: datas.name,
             code: datas.code,
             isActive: datas.isActive
@@ -96,9 +95,9 @@ export const updateTipeEvents : any = createAsyncThunk("updateTipeEvents", async
     }
 });
 
-export const deleteTipeEvents : any = createAsyncThunk("deleteTipeEvents", async(datas : any, thunkAPI) => {
+export const deleteTipeNotifications : any = createAsyncThunk("deleteTipeNotifications", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/tipeEvents/`+datas.uuid,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/tipeNotifications/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
@@ -110,105 +109,104 @@ export const deleteTipeEvents : any = createAsyncThunk("deleteTipeEvents", async
     }
 });
 
-export const tipeEventsSlice = createSlice({
-    name: "tipeEvents",
+export const tipeNotificationsSlice = createSlice({
+    name: "tipeNotifications",
     initialState,
     reducers:{
-        resetTipeEvent: (state) => initialState
+        resetTipeNotification: (state) => initialState
     },
     extraReducers:(builder) => {
         // get tipeNotifications
-        builder.addCase(getTipeEvents.pending, (state) => {
+        builder.addCase(getTipeNotifications.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeEvents.fulfilled, (state, action) => {
+        builder.addCase(getTipeNotifications.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeEvents.rejected, (state, action) => {
+        builder.addCase(getTipeNotifications.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get tipeNotifications
-        builder.addCase(getTipeEventsById.pending, (state) => {
+        // get tipeNotifications by id
+        builder.addCase(getTipeNotificationsById.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeEventsById.fulfilled, (state, action) => {
+        builder.addCase(getTipeNotificationsById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeEventsById.rejected, (state, action) => {
+        builder.addCase(getTipeNotificationsById.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get tipeNotifications
-        builder.addCase(getTipeEventsTable.pending, (state) => {
+        // get tipeNotifications table
+        builder.addCase(getTipeNotificationsTable.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeEventsTable.fulfilled, (state, action) => {
+        builder.addCase(getTipeNotificationsTable.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeEventsTable.rejected, (state, action) => {
+        builder.addCase(getTipeNotificationsTable.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get tipeNotifications
-        builder.addCase(createTipeEvents.pending, (state) => {
+        // create tipeNotifications
+        builder.addCase(createTipeNotifications.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(createTipeEvents.fulfilled, (state, action) => {
+        builder.addCase(createTipeNotifications.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(createTipeEvents.rejected, (state, action) => {
+        builder.addCase(createTipeNotifications.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // update tipeNotifications
-        builder.addCase(updateTipeEvents.pending, (state) => {
+        // update tipeNotifications 
+        builder.addCase(updateTipeNotifications.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(updateTipeEvents.fulfilled, (state, action) => {
+        builder.addCase(updateTipeNotifications.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(updateTipeEvents.rejected, (state, action) => {
+        builder.addCase(updateTipeNotifications.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // update tipeNotifications
-        builder.addCase(deleteTipeEvents.pending, (state) => {
+        // delete tipeNotifications 
+        builder.addCase(deleteTipeNotifications.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(deleteTipeEvents.fulfilled, (state, action) => {
+        builder.addCase(deleteTipeNotifications.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(deleteTipeEvents.rejected, (state, action) => {
+        builder.addCase(deleteTipeNotifications.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
-        })
-
+        });
     }
 })
 
-export const {resetTipeEvent} = tipeEventsSlice.actions;
-export default tipeEventsSlice.reducer;
+export const {resetTipeNotification} = tipeNotificationsSlice.actions;
+export default tipeNotificationsSlice.reducer;

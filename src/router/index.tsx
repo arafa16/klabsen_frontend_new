@@ -55,7 +55,15 @@ import EditJamOperasionalPage from "../pages/jamOperasional/editJamOperasionalPa
 import PeriodeKerjaPage from "../pages/periodeKerja/periodeKerjaPage";
 import EditPeriodeKerjaPage from "../pages/periodeKerja/editPeriodeKerjaPage";
 import CreatePeriodeKerjaPage from "../pages/periodeKerja/createPeriodeKerjaPage";
-
+import JamOperasionalGroupPage from "../pages/jamOperasionalGroup/jamOperasionalGroupPage";
+import CreateJamOperasionalGroupPage from "../pages/jamOperasionalGroup/createJamOperasionalGroupPage";
+import EditJamOperasionalGroupPage from "../pages/jamOperasionalGroup/editJamOperasionalGroupPage";
+import TipeEventPage from "../pages/tipeEvent/tipeEventPage";
+import CreateTipeEventPage from "../pages/tipeEvent/createTipeEventPage";
+import EditTipeEventPage from "../pages/tipeEvent/editTipeEventPage";
+import TipeNotificationPage from "../pages/tipeNotification/tipeNotificationPage";
+import CreateTipeNotificationPage from "../pages/tipeNotification/createTipeEventPage";
+import EditTipeNotificationPage from "../pages/tipeNotification/editTipeEventPage";
 
 function Router() {
 
@@ -288,8 +296,8 @@ function Router() {
           path: "/jamOperasional/edit/:uuid",
           element: <EditJamOperasionalPage />
         },
-         //periode kerja
-         {
+        //periode kerja
+        {
           path: "/periodeKerja",
           element: <PeriodeKerjaPage />
         },
@@ -301,6 +309,46 @@ function Router() {
           path: "/periodeKerja/edit/:uuid",
           element: <EditPeriodeKerjaPage />
         },
+        //jam operasional group
+        {
+          path: "/jamOperasionalGroup",
+          element: <JamOperasionalGroupPage />
+        },
+        {
+          path: "/jamOperasionalGroup/create",
+          element: <CreateJamOperasionalGroupPage />
+        },
+        {
+          path: "/jamOperasionalGroup/edit/:uuid",
+          element: <EditJamOperasionalGroupPage />
+        },
+        //tipe event
+        {
+          path: "/tipeEvent",
+          element: <TipeEventPage />
+        },
+        {
+          path: "/tipeEvent/create",
+          element: <CreateTipeEventPage />
+        },
+        {
+          path: "/tipeEvent/edit/:uuid",
+          element: <EditTipeEventPage />
+        },
+        //tipe notification
+        {
+          path: "/tipeNotification",
+          element: <TipeNotificationPage />
+        },
+        {
+          path: "/tipeNotification/create",
+          element: <CreateTipeNotificationPage />
+        },
+        {
+          path: "/tipeNotification/edit/:uuid",
+          element: <EditTipeNotificationPage />
+        },
+
       ],
     },
     {
