@@ -41,11 +41,11 @@ function Tab({
               selected: selected,
             }}
           >
-            {typeof children === "function"
+            {/* {typeof children === "function"
               ? children({
                   selected: selected,
                 })
-              : children}
+              : children} */}
           </tabContext.Provider>
         </li>
       )}
