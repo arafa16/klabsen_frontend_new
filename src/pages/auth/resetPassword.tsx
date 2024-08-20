@@ -60,62 +60,59 @@ const ResetPassword = () => {
                   {error ? 
                     <div>
                       <Alert variant="danger" className="flex items-center mb-2">
-                          
                               <Lucide icon="AlertCircle" className="w-6 h-6 mr-2" />
-                              {messageVerify && "token expired, send email reset again"}
-                              
+                              {messageVerify && "token expired or something wrong, send email reset again."}
                       </Alert>
-                      
                     </div> 
                   : 
-                    <div>
-                      <FormInput
-                          type="email"
-                          className="block px-4 py-3"
-                          placeholder="Email"
-                          name='email'
-                          disabled
-                          value={dataResult !== null ? dataResult.email : ''}
-                      />
-                      <FormInput
-                          type="password"
-                          className={`${error ? 'block' : ' '} px-4 py-3 mt-4`}
-                          placeholder="Password"
-                          name='password'
-                          value={password}
-                          onChange={(e)=>setPassword(e.target.value)}
-                      />
-                      <FormInput
-                          type="password"
-                          className="block px-4 py-3 mt-4"
-                          placeholder="Confirmation Password"
-                          name='confPassword'
-                          value={confPassword}
-                          onChange={(e)=>setConfPassword(e.target.value)}
-                      />
-                    </div>
+                    <div></div>
                   }
-                  
+                  <FormInput
+                      type="email"
+                      className="block px-4 py-3"
+                      placeholder="Email"
+                      name='email'
+                      disabled
+                      value={dataResult !== null ? dataResult.email : ''}
+                  />
+                  <FormInput
+                      type="password"
+                      className={`${error ? 'block' : ' '} px-4 py-3 mt-4`}
+                      placeholder="Password"
+                      name='password'
+                      required
+                      value={password}
+                      onChange={(e)=>setPassword(e.target.value)}
+                  />
+                  <FormInput
+                      type="password"
+                      className="block px-4 py-3 mt-4"
+                      placeholder="Confirmation Password"
+                      name='confPassword'
+                      required
+                      value={confPassword}
+                      onChange={(e)=>setConfPassword(e.target.value)}
+                  />
                   <div className="flex justify-end mt-4 text-xs text-slate-500 sm:text-sm">
                   <p onClick={()=>navigate('/login')} className='cursor-pointer hover:text-blue-500'>Back to login ?</p>
                   </div>
                   <div className="mt-5 text-center xl:mt-8 xl:text-left">                    
-                          <Button 
-                              variant="primary" 
-                              className={`${error ? 'hidden' : ' '} w-full xl:mr-3`}
-                              type='submit'
-                              >
-                              {isLoadingReset 
-                              ? 
-                              <LoadingIcon icon="tail-spin" color='white' className="w-4 h-4" />
-                              :
-                              "Reset Password"
-                              }
-                          </Button>
+                      <Button 
+                          variant="primary" 
+                          className={`${error ? 'hidden' : ' '} w-full xl:mr-3`}
+                          type='submit'
+                          >
+                          {isLoadingReset 
+                          ? 
+                          <LoadingIcon icon="tail-spin" color='white' className="w-4 h-4" />
+                          :
+                          "Reset Password"
+                          }
+                      </Button>
                       <Button 
                           type='button'
                           variant="outline-secondary" 
-                          className="w-full mt-3"
+                          className={`${error ? 'hidden' : ' '} w-full xl:mr-3`}
                           onClick={()=>navigate('/register')}
                           >
                           Registration

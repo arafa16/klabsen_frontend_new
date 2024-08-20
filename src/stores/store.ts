@@ -3,6 +3,7 @@ import darkModeReducer from "./darkModeSlice";
 import colorSchemeReducer from "./colorSchemeSlice";
 import sideMenuReducer from "./sideMenuSlice";
 import authReducer from "./features/authSlice";
+import auth2Reducer from "./features/auth2Slice";
 import meReducer from "./features/meSlice";
 import photoReducer from "./features/photoSlice";
 import userReducer from "./features/userSlice";
@@ -44,6 +45,7 @@ export const store = configureStore({
     colorScheme: colorSchemeReducer,
     sideMenu: sideMenuReducer,
     auth: authReducer,
+    auth2: auth2Reducer,
     me: meReducer,
     photo: photoReducer,
     user: userReducer,

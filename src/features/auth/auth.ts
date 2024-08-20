@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoginUser, RegisterUser, resetAuth, ResetPasswordByToken, SendEmailForgot, VerifyToken} from "../../stores/features/authSlice";
+import { LoginUser, RegisterUser, resetAuth, SendEmailForgot, VerifyToken} from "../../stores/features/authSlice";
+import { ResetPasswordByToken, resetAuth2} from "../../stores/features/auth2Slice";
 
 export const getLoginAuth = () => {
     const [email, setEmail] = useState('');
@@ -164,7 +165,7 @@ export const getVerifyToken = (datas:any) => {
     useEffect(()=>{
         if(isError && messageVerify){
             if(!isLoading){
-                setMessage({msg:messageVerify.message});
+                setMessage({msg: 'token expired or somethin wrong, please send email reset again'});
                 setError(true);
                 resetAuth()
             }
@@ -187,10 +188,11 @@ export const getSubmitResetPassword = (datas:any) => {
     const [message, setMessage] = useState<any>(null)
     const [successReset, setSuccessReset] = useState(false);
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const {data, isError, isSuccess, isLoading, message:messageVerify} = useSelector(
-        (state : any) => state.auth
+        (state : any) => state.auth2
     )
 
     useEffect(()=>{
@@ -198,7 +200,8 @@ export const getSubmitResetPassword = (datas:any) => {
             if(!isLoading){
                 setMessage({msg:messageVerify});
                 setSuccessReset(true);
-                resetAuth()
+                dispatch(resetAuth2())
+                setInterval(() => navigate('/login'), 5000);
             }
         }
       },[isSuccess, messageVerify, isLoading]);
@@ -206,13 +209,11 @@ export const getSubmitResetPassword = (datas:any) => {
     useEffect(()=>{
         if(isError && messageVerify){
             if(!isLoading){
-                setMessage({msg:messageVerify.message});
-                resetAuth()
+                setMessage({msg:messageVerify});
+                dispatch(resetAuth2())
             }
         }
     },[isError, messageVerify, isLoading]);
-
-    console.log(messageVerify, 'verify')
 
     const submitResetPassword = (e : any) => {
         e.preventDefault();
