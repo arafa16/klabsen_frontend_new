@@ -157,7 +157,7 @@ export const getVerifyToken = (datas:any) => {
         if(isSuccess && data){
             if(!isLoading){
                 setDataResult(data);
-                resetAuth()
+                dispatch(resetAuth())
             }
         }
       },[isSuccess, data, isLoading]);
@@ -167,7 +167,7 @@ export const getVerifyToken = (datas:any) => {
             if(!isLoading){
                 setMessage({msg: 'token expired or somethin wrong, please send email reset again'});
                 setError(true);
-                resetAuth()
+                dispatch(resetAuth())
             }
         }
     },[isError, messageVerify, isLoading]);
