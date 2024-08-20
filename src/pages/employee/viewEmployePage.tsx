@@ -1,16 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-// import DataUser from '../../components/Profile/DataUser';
-import { AnyIfEmpty, useDispatch, useSelector} from 'react-redux';
-import { resetUsers, getUserById, deleteUser, UpdateStatusUser } from '../../stores/features/userSlice';
-// import { getStatus } from '../../stores/features/statusSlice';
-// import StatusUser from '../../components/Profile/StatusUser';
-// import ProfileCover from '../../components/Profile/ProfileCover';
 import Button from '../../base-components/Button';
 import { Menu } from '../../base-components/Headless';
-// import EditStatusUser from '../../components/Profile/EditStatusUser';
-// import UploadPhoto from '../../components/Modal/UploadPhoto';
-// import ViewPrivilege from '../../components/Profile/ViewPrivilege';
 import EditViewPrivilege from '../../features/employee/editViewPrivilege';
 import CreatePrivilege from '../../features/employee/createPrivilege';
 import { getDataUserById, deleteDataById } from '../../features/user/user';
