@@ -58,7 +58,7 @@ function Main(props: {
         {/* END: Mobile Menu */}
         {/* BEGIN: Notifications */}
         <div className="flex items-center">
-        <Popover className="mr-5 intro-x sm:mr-6">
+        {/* <Popover className="mr-5 intro-x sm:mr-6">
           <Popover.Button
             className={clsx([
               "relative outline-none block",
@@ -100,7 +100,7 @@ function Main(props: {
               </div>
             ))}
           </Popover.Panel>
-        </Popover>
+        </Popover> */}
         {/* END: Notifications */}
         {/* BEGIN: Account Menu */}
         <Menu className="h-10 intro-x">
