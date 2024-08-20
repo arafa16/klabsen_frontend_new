@@ -99,7 +99,7 @@ const ResetPassword = () => {
                   <div className="mt-5 text-center xl:mt-8 xl:text-left">                    
                       <Button 
                           variant="primary" 
-                          className={`${error ? 'hidden' : ' '} w-full xl:mr-3`}
+                          className={`${error ? 'hidden' : ' '} w-full xl:mr-3 mb-2`}
                           type='submit'
                           >
                           {isLoadingReset 
