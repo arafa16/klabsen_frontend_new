@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoginUser, RegisterUser, resetAuth} from "../../stores/features/authSlice";
+import { LoginUser, RegisterUser, resetAuth, ResetPasswordByToken, SendEmailForgot, VerifyToken} from "../../stores/features/authSlice";
 
 export const getLoginAuth = () => {
     const [email, setEmail] = useState('');
@@ -17,10 +17,10 @@ export const getLoginAuth = () => {
 
     useEffect(()=>{
         if(isSuccessLogin && dataLogin){
-        dispatch(resetAuth());
-        if(!isLoadingLogin){
-            navigate('/')
-        }
+            if(!isLoadingLogin){
+                dispatch(resetAuth());
+                navigate('/')
+            }
         }
     },[isSuccessLogin, dataLogin, isLoadingLogin])
 
@@ -32,9 +32,9 @@ export const getLoginAuth = () => {
     },[isErrorLogin, messageLogin, isLoadingLogin])
 
     const submitLogin = (e :any) => {
-        e.preventDefault();
-        dispatch(LoginUser({
-        email, password
+            e.preventDefault();
+            dispatch(LoginUser({
+            email, password
         }))
     }
 
@@ -101,4 +101,126 @@ export const getRegisterAuth = () => {
     }
 }
 
+export const getForgotPassword = () => {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState<any>(null);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {data:dataReset, isError:isErrorReset, isSuccess:isSuccessReset, isLoading:isLoadingReset, message:messageReset} = useSelector(
+        (state : any) => state.auth
+    )
+
+    useEffect(()=>{
+        if(isSuccessReset && messageReset){
+            if(!isLoadingReset){
+                setMessage(messageReset)
+                dispatch(resetAuth());
+            }
+        }
+    },[isSuccessReset, messageReset, isLoadingReset])
+
+    useEffect(()=>{
+        if(isErrorReset && messageReset){
+            if(!isLoadingReset){
+                setMessage(messageReset)
+                dispatch(resetAuth());
+            }
+        }
+    },[isErrorReset, messageReset, isLoadingReset])
+
+    const submitForgotPassword= (e : any) => {
+        e.preventDefault();
+        dispatch(SendEmailForgot({
+          email
+        }));
+    }
+
+    return {email, setEmail, isLoadingReset, message, submitForgotPassword}
+}
+
+export const getVerifyToken = (datas:any) => {
+    const [token, setToken] = useState<any>(datas && datas.token);
+    const [dataResult, setDataResult] = useState<any>(null);
+    const [message, setMessage] = useState<any>(null)
+    const [error, setError] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const {data, isError, isSuccess, isLoading, message:messageVerify} = useSelector(
+        (state : any) => state.auth
+    )
+
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                setDataResult(data);
+                resetAuth()
+            }
+        }
+      },[isSuccess, data, isLoading]);
+
+    useEffect(()=>{
+        if(isError && messageVerify){
+            if(!isLoading){
+                setMessage({msg:messageVerify.message});
+                setError(true);
+                resetAuth()
+            }
+        }
+    },[isError, messageVerify, isLoading]);
+
+    
+    useEffect(()=>{
+        dispatch(VerifyToken({token}));
+    },[token]);
+
+    return {dataResult, message, error, isLoading}
+
+}
+
+export const getSubmitResetPassword = (datas:any) => {
+    const [token, setToken] = useState(datas && datas.token);
+    const [password, setPassword] = useState('');
+    const [confPassword, setConfPassword] = useState('');
+    const [message, setMessage] = useState<any>(null)
+    const [successReset, setSuccessReset] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const {data, isError, isSuccess, isLoading, message:messageVerify} = useSelector(
+        (state : any) => state.auth
+    )
+
+    useEffect(()=>{
+        if(isSuccess && messageVerify){
+            if(!isLoading){
+                setMessage({msg:messageVerify});
+                setSuccessReset(true);
+                resetAuth()
+            }
+        }
+      },[isSuccess, messageVerify, isLoading]);
+
+    useEffect(()=>{
+        if(isError && messageVerify){
+            if(!isLoading){
+                setMessage({msg:messageVerify.message});
+                resetAuth()
+            }
+        }
+    },[isError, messageVerify, isLoading]);
+
+    console.log(messageVerify, 'verify')
+
+    const submitResetPassword = (e : any) => {
+        e.preventDefault();
+        dispatch(ResetPasswordByToken({
+            token, password, confPassword
+        }));
+    }
+
+    return {submitResetPassword, password, setPassword, confPassword, setConfPassword, message, successReset, isLoading}
+}
 

@@ -85,6 +85,8 @@ import EditMesinAbsenPage from "../pages/mesinAbsen/editMesinAbsenPage";
 import TipeAbsenPage from "../pages/tipeAbsen/tipeAbsenPage";
 import EditTipeAbsenPage from "../pages/tipeAbsen/editTipeAbsenPage";
 import CreateTipeAbsenPage from "../pages/tipeAbsen/createTipeAbsenPage";
+import ForgotPassword from "../pages/auth/forgotPassword";
+import ResetPassword from "../pages/auth/resetPassword";
 
 function Router() {
 
@@ -470,6 +472,14 @@ function Router() {
     //   path: "/register",
     //   element: <Register />,
     // },
+    {
+      path: "/forgotPassword",
+      element: <ForgotPassword />,
+    },
+    {
+      path: "/resetPassword/:token",
+      element: <ResetPassword />,
+    }
   ];
 
   return useRoutes(routes);
