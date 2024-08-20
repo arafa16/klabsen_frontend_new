@@ -8,6 +8,7 @@ export interface Menu {
   pathname?: string;
   subMenu?: Menu[];
   ignore?: boolean;
+  code?: string;
 }
 
 export interface SideMenuState {
@@ -20,226 +21,227 @@ const initialState: SideMenuState = {
     {
       icon: "Home",
       title: "Dashboard",
-      pathname: "/"
+      pathname: "/",
+      code: 'dashboard',
     },
     {
       icon: "Calendar",
       title: "Absen",
-      // code: 'absen',
+      code: 'absen',
       subMenu: [
         {
           icon: "Calendar",
           pathname: '/absen',
           title: "Absen",
-          // code: 'kalendarSub',
+          code: 'kalendarSub',
         },
         {
           icon: "Edit3",
           pathname: '/koreksi/user',
           title: "Data Koreksi",
-          // code: 'pengajuanKoreksiSub',
+          code: 'pengajuanKoreksiSub',
         },
         {
           icon: "Edit",
           pathname: '/koreksi/approver',
           title: "Approval Koreksi",
-          // code: 'approvalKoreksiSub',
+          code: 'approvalKoreksiSub',
         },
         {
           icon: "Edit",
           pathname: '/absen/user',
           title: "Absen Check",
-          // code: 'absenCheck',
+          code: 'absenCheck',
         },
         {
           icon: "Edit",
           pathname: '/absen/perhitungan',
           title: "Perhitungan Absen",
-          // code: 'perhitunganAbsen',
+          code: 'perhitunganAbsen',
         }, 
         {
           icon: "Edit",
           pathname: '/event',
           title: "Event",
-          // code: 'adminEvent',
+          code: 'adminEvent',
         },
       ]
     },
     {
       icon: "Users",
       title: "Employees",
-      // code: 'employees',
+      code: 'employees',
       subMenu: [
         {
           icon: "Users",
           pathname: "/employee/data",
           title: "Data Employe",
-          // code: 'dataEmployee',
+          code: 'dataEmployee',
         },
       ],
     },
     {
       icon: "DollarSign",
       title: "Slip Gaji",
-      // code: 'slipGaji',
+      code: 'slipGaji',
       subMenu: [
         {
           icon: "FileText",
           pathname: "/pendapatan/user",
           title: "Pendapatan",
-          // code: 'pendapatanSub',
+          code: 'pendapatanSub',
         },
         {
           icon: "FileText",
           pathname: "/pendapatan/lain",
           title: "Pendapatan Lain",
-          // code: 'pendapatanLainSub',
+          code: 'pendapatanLainSub',
         },
         {
           icon: "FileEdit",
           pathname: "/pendapatan/admin",
           title: "Admin Pendapatan",
-          // code: 'pendapatanAdminSub',
+          code: 'pendapatanAdminSub',
         }
       ],
     },
     {
       icon: "Layers",
       title: "Attribute",
-      // code: 'attribute',
+      code: 'attribute',
       subMenu: [
         {
           icon: "DollarSign",
           pathname: "/bank",
           title: "Bank",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "PhoneOutgoing",
           pathname: "/contact",
           title: "Contact Emergency",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "User",
           pathname: "/gander",
           title: "Gander",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Droplet",
           pathname: "/golonganDarah",
           title: "Golongan Darah",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Users",
           pathname: "/group",
           title: "Group",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Award",
           pathname: "/jabatan",
           title: "Jabatan",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Watch",
           pathname: "/jamOperasional",
           title: "Jam Operasional",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Bookmark",
           pathname: "/pendidikan",
           title: "Pendidikan",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "MapPin",
           pathname: "/penempatan",
           title: "Penempatan",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Watch",
           pathname: "/periodeKerja",
           title: "Periode Kerja",
-          // code: 'attribute',
+          code: 'attribute',
         },
         {
           icon: "Users",
           pathname: "/statusPerkawinan",
           title: "Status Perkawinan",
-          // code: 'attribute',
+          code: 'attribute',
         }
       ],
     },
     {
       icon: "Settings",
       title: "Setting",
-      // code: 'setting',
+      code: 'setting',
       subMenu: [
         {
           icon: "Watch",
           pathname: "/jamOperasionalGroup",
           title: "Jam Operasional Group",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Watch",
           pathname: "/mesinAbsen",
           title: "Mesin Absen",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Award",
           pathname: "/tipeAbsen",
           title: "Tipe Absen",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Award",
           pathname: "/tipeEvent",
           title: "Tipe Event",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "MessageSquare",
           pathname: "/tipeNotification",
           title: "Tipe Notification",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "DollarSign",
           pathname: "/tipePendapatan",
           title: "Tipe Pendapatan",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Award",
           pathname: "/pelanggaran",
           title: "Pelanggaran",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Award",
           pathname: "/status",
           title: "Status",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Shuffle",
           pathname: "/statusInOut",
           title: "Status In Out",
-          // code: 'setting',
+          code: 'setting',
         },
         {
           icon: "Award",
           pathname: "/statusKoreksi",
           title: "Status Koreksi",
-          // code: 'setting',
+          code: 'setting',
         },
       ],
     }

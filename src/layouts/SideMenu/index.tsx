@@ -34,9 +34,14 @@ function Main() {
   const sideMenuStore = useAppSelector(selectSideMenu);
   const sideMenu = () => nestedMenu(sideMenuStore, location);
   const darkMode = useAppSelector(selectDarkMode);
+  const [privilege, setPrivilege] = useState<any>([])
 
   //get data auth
   const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
+
+  useEffect(()=>{
+    setPrivilege(dataMe && dataMe.privilege);
+  },[dataMe])
 
   //logout
   const {data: dataLogout, loading:loadingLogout, message:messageLogout, handleLogout} = getLogoutAuth();
@@ -274,6 +279,7 @@ function Main() {
                       }`]: !menu.active,
                     })}
                     menu={menu}
+                    privilege={privilege}
                     simpleMenu={simpleMenu}
                     formattedMenuState={[formattedMenu, setFormattedMenu]}
                     level="first"
@@ -306,6 +312,7 @@ function Main() {
                                 }`]: !subMenu.active,
                               })}
                               menu={subMenu}
+                              privilege={privilege}
                               simpleMenu={simpleMenu}
                               formattedMenuState={[
                                 formattedMenu,
@@ -344,6 +351,7 @@ function Main() {
                                             }`]: !lastSubMenu.active,
                                           })}
                                           menu={lastSubMenu}
+                                          privilege={privilege}
                                           simpleMenu={simpleMenu}
                                           formattedMenuState={[
                                             formattedMenu,
@@ -416,6 +424,7 @@ function Menu(props: {
     wrapper: boolean;
   };
   menu: FormattedMenu;
+  privilege?:any;
   formattedMenuState: [
     (FormattedMenu | string)[],
     Dispatch<SetStateAction<(FormattedMenu | string)[]>>
@@ -425,10 +434,13 @@ function Menu(props: {
   const navigate = useNavigate();
   const [formattedMenu, setFormattedMenu] = props.formattedMenuState;
 
+  const nameColom : any = props.menu.code;
+
   return (
     <a
       href={props.menu.subMenu ? "#" : props.menu.pathname}
       className={clsx([
+        `${props.privilege && props.privilege[nameColom] ? '' : 'hidden'}`,
         "h-[50px] flex items-center pl-5 mb-1 relative dark:text-slate-300",
         {
           "bg-primary text-white rounded-xl dark:bg-transparent":
