@@ -137,7 +137,7 @@ export const SlideOverDateKoreksiUser = () => {
                             <option 
                                 key={key} 
                                 value={data.uuid}
-                                className={`${data.jamOperasionalGroupId === dataUser.jamOperasionalGroupId || data.isActive === '1' ? '' : 'hidden'}`}
+                                className={`${data.jamOperasionalGroupId === dataUser.jamOperasionalGroupId && data.isActive === true ? '' : 'hidden'}`}
                                 >{data.jamMasuk}-{data.jamPulang} {data.name}</option>
                         ))}
                         </FormSelect>
