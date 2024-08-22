@@ -68,6 +68,7 @@ function Main() {
                   <Button 
                     variant="outline-secondary" 
                     className="w-full mt-3"
+                    type="button"
                     onClick={()=>navigate('/register')}
                     >
                     Sign up

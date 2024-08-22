@@ -43,15 +43,16 @@ export const getLoginAuth = () => {
 }
 
 export const getRegisterAuth = () => {
+    const [absenId, setAbsenId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nomorHp, setNomorHp] = useState('');
+    const [ganderId, setGanderId] = useState('');
     const [devisiId, setDevisiId] = useState('');
     const [penempatanId, setPenempatanId] = useState('');
-    const [data, setData] = useState<any>(null);
+    const [message, setMessage] = useState<any>(null);
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const {data:dataRegister, isError:isErrorRegister, isSuccess:isSuccessRegister, isLoading:isLoadingRegister, message:messageRegister} = useSelector(
@@ -59,44 +60,56 @@ export const getRegisterAuth = () => {
     )
 
     useEffect(()=>{
-        if(isSuccessRegister && dataRegister && !isLoadingRegister){
-            setName('');
-            setEmail('');
-            setPassword('');
-            setNomorHp('');
-            setDevisiId('');
-            setPenempatanId('');
-            setData(dataRegister);
-            dispatch(resetAuth());
+        if(isSuccessRegister && messageRegister){
+            if(!isLoadingRegister){
+                console.log(messageRegister, 'message register');
+                setAbsenId('');
+                setName('');
+                setEmail('');
+                setPassword('');
+                setNomorHp('');
+                setDevisiId('');
+                setPenempatanId('');
+                setGanderId('')
+                setMessage(messageRegister);
+                dispatch(resetAuth());
+            }
         }
-    },[isSuccessRegister, dataRegister, isLoadingRegister])
+    },[isSuccessRegister, messageRegister, isLoadingRegister])
 
     useEffect(()=>{
-        if(isErrorRegister && messageRegister && !isLoadingRegister){
-            setData(messageRegister.data);
-            dispatch(resetAuth());
+        if(isErrorRegister && messageRegister ){
+            if(!isLoadingRegister){
+                console.log(messageRegister, 'message register');
+                setMessage(messageRegister);
+                dispatch(resetAuth());
+            }
         }
     },[isErrorRegister, messageRegister, isLoadingRegister])
 
     const submitRegister = (e :any) => {
         e.preventDefault();
         dispatch(RegisterUser({
+            absenId,
             name,
             email, 
             password,
             nomor_hp:nomorHp,
+            ganderId,
             devisi_id:devisiId,
             penempatan_id:penempatanId
         }))
     }
     return {
+        absenId, setAbsenId,
         name, setName,
         email, setEmail, 
         password, setPassword,
         nomorHp, setNomorHp, 
+        ganderId, setGanderId,
         devisiId, setDevisiId,
         penempatanId, setPenempatanId,
-        data,setData,
+        message,
         isLoadingRegister, 
         submitRegister
     }

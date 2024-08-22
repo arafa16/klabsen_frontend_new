@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import StatusIndicator from "../../components/indicator/statusIndicator";
@@ -27,6 +27,7 @@ import { getDataUserById } from "../../features/user/user";
 
 import { updateDataUserById } from "../../features/user/user";
 import { getMessageShow } from "../../features/messageShow";
+import LoadingIcon from "../../base-components/LoadingIcon";
 
 const UpdateEmploye = () => {
   const {id} = useParams();
@@ -90,7 +91,7 @@ const UpdateEmploye = () => {
   //data select gander
   const {dataResult:dataGander} = getDataGanderSelect();
 
-  //data select gander
+  //data select perkawinan
   const {dataResult:dataStatusPerkawinan} = getDataStatusPerkawinanSelect();
 
   //pendidikan
@@ -204,7 +205,7 @@ const UpdateEmploye = () => {
     setIsActive(data && data.isActive ? '1' : '0');
   }
 
-  const {submit:submitUpdate, message:messageUserUpdate} = updateDataUserById({
+  const {submit:submitUpdate, isLoading:isLoadingUserUpdate,  message:messageUserUpdate} = updateDataUserById({
     id:id,
     nik:nik,
     absenId:absenId,
@@ -278,46 +279,46 @@ const UpdateEmploye = () => {
                 >
                 Cancel
             </Button>
-            {/* {isLoading ?  */}
-                {/* <LoadingIcon icon="tail-spin" color='blue' className="w-4 h-4" /> 
-                :  */}
+            
                 <Button
                     variant="primary" 
                     className={`w-36 ml-2`}
                     size='sm'
                     type='submit'
                     >
-                    Save
+                    {isLoadingUserUpdate ? 
+                      <LoadingIcon icon="tail-spin" color='white' className="w-4 h-4" /> 
+                        :  
+                      "Save" }
                 </Button>
-            {/* } */}
         </div>
         </div>
         <div className="px-5 pt-10 mt-2 border-t sm:px-10 border-slate-200/60 dark:border-darkmode-400">
           <FormDataDiriUpdate 
-              statusNumber={statusNumber}
-              absenId={absenId}
-              setAbsenId={setAbsenId}
-              nik={nik}
-              setNik={setNik}
-              name={name}
-              setName={setName}
-              email={email}
-              setEmail={setEmail}
-              ganderId={ganderId}
-              setGanderId={setGanderId}
-              tempatLahir={tempatLahir}
-              setTempatLahir={setTempatLahir}
-              tanggalLahir={tanggalLahir}
-              setTanggalLahir={setTanggalLahir}
-              statusPerkawinanId={statusPerkawinanId}
-              setStatusPerkawinanId={setStatusPerkawinanId}
-              jumlahAnak={jumlahAnak}
-              setJumlahAnak={setJumlahAnak}
-              namaIbu={namaIbu}
-              setNamaIbu={setNamaIbu}
-              //data select
-              ganders={dataGander}
-              statusPerkawinans={dataStatusPerkawinan}
+            statusNumber={statusNumber}
+            absenId={absenId}
+            setAbsenId={setAbsenId}
+            nik={nik}
+            setNik={setNik}
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            ganderId={ganderId}
+            setGanderId={setGanderId}
+            tempatLahir={tempatLahir}
+            setTempatLahir={setTempatLahir}
+            tanggalLahir={tanggalLahir}
+            setTanggalLahir={setTanggalLahir}
+            statusPerkawinanId={statusPerkawinanId}
+            setStatusPerkawinanId={setStatusPerkawinanId}
+            jumlahAnak={jumlahAnak}
+            setJumlahAnak={setJumlahAnak}
+            namaIbu={namaIbu}
+            setNamaIbu={setNamaIbu}
+            //data select
+            ganders={dataGander}
+            statusPerkawinans={dataStatusPerkawinan}
           />
           <FormPendidikan 
             statusNumber={statusNumber}

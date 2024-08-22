@@ -87,6 +87,7 @@ import EditTipeAbsenPage from "../pages/tipeAbsen/editTipeAbsenPage";
 import CreateTipeAbsenPage from "../pages/tipeAbsen/createTipeAbsenPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
 import ResetPassword from "../pages/auth/resetPassword";
+import RegisterPage from "../pages/auth/registerPage";
 
 function Router() {
 
@@ -468,10 +469,10 @@ function Router() {
       path: "/login",
       element: <Login />,
     },
-    // {
-    //   path: "/register",
-    //   element: <Register />,
-    // },
+    {
+      path: "/register",
+      element: <RegisterPage />,
+    },
     {
       path: "/forgotPassword",
       element: <ForgotPassword />,

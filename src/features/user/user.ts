@@ -181,7 +181,7 @@ export const updateDataUserById = (datas:any) => {
         dispatch(UpdateUser(datas));
     }
 
-    return {submit, message}
+    return {submit, isLoading, message}
 }
 
 export const createDataUser = (datas:any) => {

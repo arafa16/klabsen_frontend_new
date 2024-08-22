@@ -15,7 +15,6 @@ export const getAbsenByUser = (datas:any) => {
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
-                console.log(data, 'data');
                 setDataResult(data);
                 dispatch(resetInOuts());
             }
