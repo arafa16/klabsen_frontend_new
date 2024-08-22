@@ -43,6 +43,7 @@ function Main() {
                   type="email"
                   className="block px-4 py-3"
                   placeholder="Email"
+                  required
                   value={email}
                   onChange={(e)=>setEmail(e.target.value)}
                 />
@@ -50,6 +51,7 @@ function Main() {
                   type="password"
                   className="block px-4 py-3 mt-4"
                   placeholder="Password"
+                  required
                   value={password}
                   onChange={(e)=>setPassword(e.target.value)}
                 />

@@ -78,6 +78,7 @@ const registerPage = () => {
                             type="text"
                             className="block px-4 py-3 mt-4"
                             placeholder="Nomor Telpon/Hp"
+                            required
                             value={nomorHp}
                             onChange={(e)=>setNomorHp(e.target.value)}
                         />
