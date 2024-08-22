@@ -74,6 +74,9 @@ function Main() {
                     Sign up
                   </Button>
                 </div>
+                <div className="mt-10 flex justify-center text-gray-400 text-xs">
+                  <p>Created by Ara Fa Adri</p>
+                </div>
               </div>
             </form>
           </div>

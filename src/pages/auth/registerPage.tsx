@@ -119,7 +119,7 @@ const registerPage = () => {
                                 >
                                 Sign in
                             </Button>
-                            </div>
+                        </div>
                     </div>
                 </form>
                 </div>
