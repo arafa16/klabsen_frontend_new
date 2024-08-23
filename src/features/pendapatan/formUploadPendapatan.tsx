@@ -3,6 +3,7 @@ import { FormInput} from '../../base-components/Form'
 import Button from '../../base-components/Button'
 import { importPendapatans } from '../../stores/features/pendapatanSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import LoadingIcon from '../../base-components/LoadingIcon';
 
 export const formUploadPendapatan = (props : any) => {
     const {reload} = props;
@@ -54,7 +55,8 @@ export const formUploadPendapatan = (props : any) => {
                             variant="primary" 
                             className="w-full"
                             >
-                            Upload
+                            {isLoading ? <LoadingIcon icon="circles" className="w-4 h4" color="white"  /> : 'Upload'}
+                            
                         </Button>
                     </div>
                 </div>

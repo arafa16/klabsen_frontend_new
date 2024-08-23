@@ -96,8 +96,8 @@ export const getRegisterAuth = () => {
             password,
             nomor_hp:nomorHp,
             ganderId,
-            devisi_id:devisiId,
-            penempatan_id:penempatanId
+            devisiId:devisiId,
+            penempatanId:penempatanId
         }))
     }
     return {

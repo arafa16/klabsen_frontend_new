@@ -16,7 +16,7 @@ export const viewKoreksiByDate = () => {
                     <div 
                         key={index} 
                         className="intro-y"
-                        onClick={()=>navigate(`/koreksi/data/${data.uuid}`)}
+                        onClick={()=>navigate(`/koreksi/user/${data.uuid}/0`)}
                         >
                         <div
                             className={clsx([

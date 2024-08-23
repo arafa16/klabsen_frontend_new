@@ -85,7 +85,7 @@ const employeTable = (props : any) => {
                               "ml-3 truncate"
                               ])}
                               >
-                              {data.name}
+                              {data && data.name}
                             </div>
                           </div>
                           <div className="w-64 truncate sm:w-72">
@@ -94,7 +94,7 @@ const employeTable = (props : any) => {
                               "ml-3 truncate"
                               ])}
                               >
-                              {data.email}
+                              {data && data.email}
                             </span>
                           </div>
                           <div className="w-64 truncate sm:w-72">
@@ -103,7 +103,7 @@ const employeTable = (props : any) => {
                               "ml-3 truncate"
                               ])}
                               >
-                              {data.group.name}
+                              {data && data.group && data.group.name}
                             </span>
                           </div>
                           <div

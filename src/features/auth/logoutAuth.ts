@@ -16,9 +16,12 @@ export const getLogoutAuth = () => {
       )
     
     useEffect(()=>{
-    if(messageLogin && isSuccessLogin && !isLoadingLogin){
-        setLoading(false);
-        navigate('/login')
+    if(messageLogin && isSuccessLogin){
+        if(!isLoadingLogin){
+            setLoading(false);
+            dispatch(resetAuth());
+            navigate('/login')
+        }
     }
     },[messageLogin, isSuccessLogin, isLoadingLogin])
 
