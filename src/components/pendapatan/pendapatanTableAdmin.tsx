@@ -85,7 +85,7 @@ const pendapatanTableAdmin = (props : any) => {
                                 {data.user && data.user.name}
                                 </span>
                             </div>
-                            <div className="w-64 truncate sm:w-1/6 text-right">
+                            {/* <div className="w-64 truncate sm:w-1/6 text-right">
                                 <span
                                 className={clsx([
                                 "ml-3 truncate"
@@ -93,7 +93,7 @@ const pendapatanTableAdmin = (props : any) => {
                                 >
                                 {rupiah(data.total)}
                                 </span>
-                            </div>
+                            </div> */}
                         </div>
                         </div>
                     </div>

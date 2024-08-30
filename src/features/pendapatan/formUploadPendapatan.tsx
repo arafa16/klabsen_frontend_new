@@ -56,7 +56,6 @@ export const formUploadPendapatan = (props : any) => {
                             className="w-full"
                             >
                             {isLoading ? <LoadingIcon icon="circles" className="w-4 h4" color="white"  /> : 'Upload'}
-                            
                         </Button>
                     </div>
                 </div>

@@ -43,17 +43,17 @@ export const calculationAbsenTable = (props : any) => {
           <div className="w-64 truncate sm:w-24 text-red-500">
             Pulang (P)
           </div>
-          <div className="w-64 truncate sm:w-24 text-red-500">
+          <div className="w-64 truncate sm:w-24 ">
             Cuti
           </div>
-          <div className="w-64 truncate sm:w-24 text-red-500">
+          <div className="w-64 truncate sm:w-24 ">
             Sakit
           </div>
           <div className="w-64 truncate sm:w-24 text-red-500">
             Tidak Absen
           </div>
           <div className="w-64 truncate sm:w-24 text-red-500">
-            Total (P)
+            Total (Point)
           </div>
           <div className="w-64 truncate sm:w-24 text-red-500">
             Point (P)
@@ -169,7 +169,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataTidakAbsen}
+                          {data && data.dataTidakAbsen * 2}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">

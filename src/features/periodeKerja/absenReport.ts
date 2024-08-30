@@ -4,7 +4,7 @@ import { getPeriodeKerjasTableStatus, resetPeriodeKerja } from "../../stores/fea
 
 export const reportAbsenMonth = () => {
     const [dataPeriodeKerjas, setDataPeriodeKerjas] = useState<any>([]);
-    const [limitProdeKerja, setLimitProdeKerja] = useState(4);
+    const [limitProdeKerja, setLimitProdeKerja] = useState(2);
     const [pagePeriodeKerja, setPagePeriodeKerja] = useState(1);
     const [allPagePeriodeKerja, setAllPagePeriodeKerja] = useState(0);
 

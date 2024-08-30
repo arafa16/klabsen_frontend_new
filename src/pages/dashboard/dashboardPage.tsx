@@ -25,20 +25,12 @@ const DasboardPage = () => {
               dataUser={dataMe}
             />
           </div>
-          <div className="col-span-12 mt-4 sm:col-span-6 lg:col-span-8 sm:row-start-4 md:row-start-3 lg:row-start-auto">
-            <EventData 
-              dataEvents={dataEvents}
-              page={page}
-              limit={limit}
-              nextPage={nextPage}
-              prevPage={prevPage}
-              allPage={allPage}
-            />
-          </div>
         </div>
-        <div className="grid grid-cols-12 gap-6 mb-10">
+      </div>
+      <div className="col-span-6 2xl:col-span-12">
+        <div className="grid grid-cols-12 gap-y-6 mb-10">
           {dataPeriodeKerjas.rows && dataPeriodeKerjas.rows.map((dataPeriodeKerja:any, index:any)=>(
-            <div key={index} className="col-span-12 mt-4 sm:col-span-6 lg:col-span-3 lg:row-start-auto">
+            <div key={index} className="col-span-12 mt-4 sm:col-span-6 lg:col-span-6 lg:row-start-auto">
               <AbsenReport
                 dataPeriodeKerja={dataPeriodeKerja}
                 dataUser={dataMe}
@@ -67,6 +59,20 @@ const DasboardPage = () => {
                       />
               </div>
               </div>
+          </div>
+        </div>
+      </div>
+      <div className="col-span-6 2xl:col-span-12">
+        <div className="grid grid-cols-12">
+          <div className="col-span-12 mt-4 sm:col-span-6 lg:col-span-12 sm:row-start-4 md:row-start-3 lg:row-start-auto">
+            <EventData 
+              dataEvents={dataEvents}
+              page={page}
+              limit={limit}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              allPage={allPage}
+            />
           </div>
         </div>
       </div>
