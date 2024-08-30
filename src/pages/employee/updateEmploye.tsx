@@ -205,7 +205,7 @@ const UpdateEmploye = () => {
     setIsActive(data && data.isActive ? '1' : '0');
   }
 
-  const {submit:submitUpdate, isLoading:isLoadingUserUpdate,  message:messageUserUpdate} = updateDataUserById({
+  const {submit:submitUpdate, isLoading:isLoadingUserUpdate,  message:messageUserUpdate, isSuccess:isSuccessUserUpdate} = updateDataUserById({
     id:id,
     nik:nik,
     absenId:absenId,

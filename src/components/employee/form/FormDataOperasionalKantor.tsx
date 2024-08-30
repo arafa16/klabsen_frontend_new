@@ -56,6 +56,7 @@ const FormDataOperasionalKantor = (props : any) => {
                     formSelectSize="sm"
                     aria-label=".form-select-sm example"
                     name='atasanId'
+                    required
                     value={atasanId}
                     onChange={(e)=>setAtasanId(e.target.value)}
                     >

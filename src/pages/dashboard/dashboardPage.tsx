@@ -27,8 +27,8 @@ const DasboardPage = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-6 2xl:col-span-12">
-        <div className="grid grid-cols-12 gap-y-6 mb-10">
+      <div className="col-span-6 2xl:col-span-6">
+        <div className="grid grid-cols-12 gap-y-6 gap-x-4 mb-10">
           {dataPeriodeKerjas.rows && dataPeriodeKerjas.rows.map((dataPeriodeKerja:any, index:any)=>(
             <div key={index} className="col-span-12 mt-4 sm:col-span-6 lg:col-span-6 lg:row-start-auto">
               <AbsenReport
@@ -62,7 +62,7 @@ const DasboardPage = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-6 2xl:col-span-12">
+      <div className="col-span-6 2xl:col-span-6">
         <div className="grid grid-cols-12">
           <div className="col-span-12 mt-4 sm:col-span-6 lg:col-span-12 sm:row-start-4 md:row-start-3 lg:row-start-auto">
             <EventData 

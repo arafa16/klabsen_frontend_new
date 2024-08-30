@@ -162,9 +162,10 @@ export const deleteDataById = (datas:any) => {
 export const updateDataUserById = (datas:any) => {
     const [message, setMessage] = useState<any>(null)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const {message:messageUser, isLoading, isSuccess} = useSelector(
-        (state : any) => state.user2
+        (state : any) => state.user
     );
     
     useEffect(()=>{
@@ -172,6 +173,7 @@ export const updateDataUserById = (datas:any) => {
             if(!isLoading){
                 setMessage(messageUser);
                 dispatch(resetUsers());
+                navigate(-1)
             }
         }
     },[messageUser, isSuccess, isLoading])
@@ -181,7 +183,7 @@ export const updateDataUserById = (datas:any) => {
         dispatch(UpdateUser(datas));
     }
 
-    return {submit, isLoading, message}
+    return {submit, isLoading, message, isSuccess}
 }
 
 export const createDataUser = (datas:any) => {

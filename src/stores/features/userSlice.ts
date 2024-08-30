@@ -324,6 +324,21 @@ export const usersSlice = createSlice({
         });
 
         //Update Status User
+        builder.addCase(UpdateUser.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(UpdateUser.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(UpdateUser.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
+
+        //Update Status User
         builder.addCase(CreateUser.pending, (state) => {
             state.isLoading = true;
         });
