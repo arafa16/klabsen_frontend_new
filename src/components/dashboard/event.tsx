@@ -27,7 +27,7 @@ const EventShow = (props:any) => {
                         </div>
                     </div>
                     <div
-                        className={`${data.tipe_event.code === '1' ? 'text-danger' : 'text-success'}`}
+                        className={`${data.tipe_event.code === '1' || data.tipe_event.code === '2' || data.tipe_event.code === '3' ? 'text-danger' : 'text-success'}`}
                         >
                         {data.tipe_event.name}
                     </div>

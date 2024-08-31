@@ -18,7 +18,6 @@ export const getMeAuth = () => {
     useEffect(()=>{
         if(dataMe && isSuccessMe){
             if(!isLoadingMe){
-                
                 setLoading(false);
                 setData(dataMe)
             }
@@ -38,5 +37,10 @@ export const getMeAuth = () => {
         dispatch(getMe());
     },[])
 
-    return {data, loading, message}
+    const reload = () => {
+        dispatch(resetMe());
+        dispatch(getMe());
+    }
+
+    return {data, loading, message, reload}
 }

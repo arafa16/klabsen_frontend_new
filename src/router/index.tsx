@@ -88,6 +88,8 @@ import CreateTipeAbsenPage from "../pages/tipeAbsen/createTipeAbsenPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
 import ResetPassword from "../pages/auth/resetPassword";
 import RegisterPage from "../pages/auth/registerPage";
+import ViewProfilePage from "../pages/profile/viewProfilePage";
+import EditProfilePage from "../pages/profile/editProfilePage";
 
 function Router() {
 
@@ -168,6 +170,15 @@ function Router() {
         {
           path: "/employee/update/:id",
           element: <UpdateEmployePage />
+        },
+        //profile
+        {
+          path: "/profile/data/:id",
+          element: <ViewProfilePage />
+        },
+        {
+          path: "/profile/edit/:id",
+          element: <EditProfilePage />
         },
         //pendapatan
         {

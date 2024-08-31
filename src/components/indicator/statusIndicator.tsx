@@ -2,7 +2,7 @@ import React from 'react'
 import Button from "../../base-components/Button";
 
 const statusIndicator = (props : any) => {
-    const {statusNumber, stepOf6, stepOf7} = props;
+    const {statusNumber, stepOf5, stepOf6, stepOf7} = props;
     
   return (
     <div className="relative before:hidden before:lg:block before:absolute before:w-[69%] before:h-[3px] before:top-0 before:bottom-0 before:mt-4 before:bg-slate-100 before:dark:bg-darkmode-400 flex flex-col lg:flex-row justify-center px-5 sm:px-20 text-xs">
@@ -54,7 +54,7 @@ const statusIndicator = (props : any) => {
             Data Kesehatan
             </div>
         </div>
-        <div className="z-10 flex items-center flex-1 mt-5 intro-x lg:text-center lg:mt-0 lg:block">
+        <div className={`${stepOf5 !== true ? 'hidden' : 'z-10 flex items-center flex-1 mt-5 intro-x lg:text-center lg:mt-0 lg:block'} `}>
             <Button 
                 variant={`${statusNumber === 5 ? 'primary' : 'secondary'}`} 
                 className={`w-8 h-8 rounded-full

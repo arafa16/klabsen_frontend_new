@@ -1,19 +1,17 @@
 import Lucide from "../../base-components/Lucide";
 import Breadcrumb from "../../base-components/Breadcrumb";
 import { Menu, Popover} from "../../base-components/Headless";
-import fakerData from "../../utils/faker";
 import _ from "lodash";
 import clsx from "clsx";
 import {resetPassword} from '../../features/user/resetPassword';
 import { getMessageShow } from "../../features/messageShow";
 import { changePhotoProfile } from "../../features/user/setPhotoProfile";
 import userNotFound from "../../assets/images/user/userNotFound.jpg";
+import { useNavigate } from "react-router-dom";
 
-function Main(props: { 
-    toggleMobileMenu: (event: React.MouseEvent) => void; 
-    data:any;
-    logout:any;
-  }) {
+function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void; data:any; logout:any;}) {
+
+  const navigate = useNavigate();
 
   const {modalResetPassword, message, showModal, setShowModal} = resetPassword({uuid:props.data.uuid});
 
@@ -122,6 +120,11 @@ function Main(props: {
             </div>
           </Menu.Button>
           <Menu.Items className="w-56 mt-px">
+            <Menu.Item
+              onClick={()=>navigate(`/profile/data/${props.data.uuid}`)}
+            >
+              <Lucide icon="User" className="w-4 h-4 mr-2" />Profile
+            </Menu.Item>
             <Menu.Item
               onClick={()=>setShowModalPhoto(true)}
             >
