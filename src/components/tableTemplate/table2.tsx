@@ -50,19 +50,19 @@ const table2 = (props : any) => {
                             ])}
                         >
                         <div className="flex px-5 py-3">
-                            <div className="flex items-center flex-none mr-5 w-72">
-                                <div className='w-16'>
+                            <div className="flex items-center flex-none mr-5 w-4/12">
+                                <div className='w-1/6'>
                                     {index+1}
                                 </div>
                                 <div
                                     className={clsx([
-                                    "mr-3 truncate flex justify-start w-96"
+                                    "mr-3 truncate flex justify-start w-5/6"
                                     ])}
                                     >
                                     {data && data.name}
                                 </div>
                             </div>
-                            <div className="w-24 truncate sm:w-48">
+                            <div className="truncate w-1/12">
                                 <span
                                     className={clsx([
                                     "ml-3 truncate"
@@ -71,7 +71,7 @@ const table2 = (props : any) => {
                                     {data && data.jamMasuk}
                                 </span>
                             </div>
-                            <div className="w-24 truncate sm:w-48">
+                            <div className="truncate w-1/12">
                                 <span
                                     className={clsx([
                                     "ml-3 truncate"
@@ -80,7 +80,7 @@ const table2 = (props : any) => {
                                     {data && data.jamPulang}
                                 </span>
                             </div>
-                            <div className="w-24 truncate sm:w-48">
+                            <div className="truncate w-3/12">
                                 <span
                                     className={clsx([
                                     "ml-3 truncate"
@@ -89,7 +89,7 @@ const table2 = (props : any) => {
                                     {data && data.keterangan}
                                 </span>
                             </div>
-                            <div className="w-24 truncate sm:w-48">
+                            <div className="truncate w-1/12">
                                 <span
                                     className={clsx([
                                     "ml-3 truncate"
@@ -98,7 +98,7 @@ const table2 = (props : any) => {
                                     {data.jam_operasional_group && data.jam_operasional_group.name}
                                 </span>
                             </div>
-                            <div className="w-24 truncate sm:w-48">
+                            <div className="truncate w-1/12">
                                 <span
                                     className={clsx([
                                     "ml-3 truncate"
@@ -109,7 +109,7 @@ const table2 = (props : any) => {
                             </div>
                             <div
                                 className={clsx([
-                                "pl-10 ml-auto whitespace-nowrap"
+                                "pl-10 ml-auto whitespace-nowrap w-1/12"
                                 ])}
                                 >
                                 {data.isActive ? 'active' : 'non active'}
