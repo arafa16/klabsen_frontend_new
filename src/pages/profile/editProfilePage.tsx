@@ -249,6 +249,7 @@ const editProfilePage = () => {
 
     //message
     const messageShow = getMessageShow(message);
+    
 
     return (
         <div className="w-full mt-5 box py-5">

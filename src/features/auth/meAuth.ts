@@ -37,10 +37,5 @@ export const getMeAuth = () => {
         dispatch(getMe());
     },[])
 
-    const reload = () => {
-        dispatch(resetMe());
-        dispatch(getMe());
-    }
-
-    return {data, loading, message, reload}
+    return {data, loading, message}
 }

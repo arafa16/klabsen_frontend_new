@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsersTable, deleteUser, resetUser2 } from "../../stores/features/user2Slice";
 import { getUserById, getUsers, UpdateUser, resetUsers, CreateUser } from "../../stores/features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { getMe } from "../../stores/features/meSlice";
 
 export const getDataUserTable = () => {
     const [datas, setDatas] = useState([]);
@@ -173,6 +174,7 @@ export const updateDataUserById = (datas:any) => {
             if(!isLoading){
                 setMessage(messageUser);
                 dispatch(resetUsers());
+                dispatch(getMe());
                 navigate(-1)
             }
         }

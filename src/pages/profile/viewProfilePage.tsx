@@ -12,13 +12,12 @@ import { getMeAuth } from '../../features/auth/meAuth';
 const viewProfilePage = () => {
     //get uuid
     const {id} = useParams();
-    const [privilege, setPrivilege] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
 
     //get data auth
-    const {data: dataMe, loading:loadingMe, message:messageMe, reload:reloadMe} = getMeAuth();
+    const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
     //get data user
     const {dataResult: dataUser, reload} = getDataUserById({id});
@@ -43,10 +42,6 @@ const viewProfilePage = () => {
             }
         }
     },[isSuccess, isLoading, messagePhotoCheck])
-
-    useEffect(()=>{
-        reload();
-    },[]);
     
   return (
     <div className="grid grid-cols-12 gap-4 mt-5 text-xs">
