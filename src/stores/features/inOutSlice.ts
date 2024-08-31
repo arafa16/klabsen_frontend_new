@@ -73,8 +73,6 @@ export const getInOutsTable : any = createAsyncThunk("getInOutsTable", async(dat
     }
 });
 
-
-
 export const createInOutsByAbsenWeb : any = createAsyncThunk("createInOutsByAbsenWeb", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/InOutsByAbsenWeb`,{

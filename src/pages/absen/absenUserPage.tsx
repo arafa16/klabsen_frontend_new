@@ -19,7 +19,7 @@ const AbsenUserPage = () => {
     //get data auth
     const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
-    const {dataResult:dataAbsen, clickAbsen, message:messageAbsen} = getAbsenByUser(dataMe);
+    const {dataResult:dataAbsen, clickAbsen, message:messageAbsen } = getAbsenByUser(dataMe);
 
     useEffect(()=>{
         setMessage(messageAbsen);
