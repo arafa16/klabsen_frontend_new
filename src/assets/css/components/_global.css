@@ -9,7 +9,7 @@ html {
     right: 0;
     z-index: -2;
     background-size: cover;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     background-repeat: no-repeat;
     @media screen(xl) {
       background-image: url("../../images/backgrounds/bg-main.jpg");
