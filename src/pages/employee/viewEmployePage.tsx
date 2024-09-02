@@ -11,6 +11,7 @@ import { changePhotoProfile } from "../../features/user/setPhotoProfile";
 import { statusUser } from '../../features/employee/statusUser';
 import { viewPrivilege } from '../../features/employee/viewPrivilege';
 import { editStatusUser } from '../../features/employee/editStatusUser';
+import { resetPassword } from '../../features/user/resetPassword';
 
 const viewEmployePage = () => {
     //get uuid
@@ -84,9 +85,12 @@ const viewEmployePage = () => {
 
     const {deleteData} = deleteDataById({id});
 
+    const {modalResetPassword, message, showModal, setShowModal} = resetPassword({uuid:id});
+
     return (
         <div className="grid grid-cols-12 gap-4 mt-5 text-xs">
             {modalChangePhoto}
+            {modalResetPassword}
             <div className="col-span-12 xl:col-span-12 flex w-full justify-end gap-4 z-50">
                 <Menu>
                     <Menu.Button>
@@ -99,6 +103,11 @@ const viewEmployePage = () => {
                             onClick={()=>navigate(`/employee/update/${id}`)}
                             >
                             Update User
+                        </Menu.Item>
+                        <Menu.Item 
+                            onClick={()=>setShowModal(!showModal)}
+                            >
+                            Change Password
                         </Menu.Item>
                         <Menu.Item 
                             className={`hover:bg-red-500 hover:text-white`}
