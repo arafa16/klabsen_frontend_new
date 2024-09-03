@@ -80,9 +80,9 @@ const statusIndicator = (props : any) => {
         </div>
         <div className={`${stepOf7 !== true ? 'hidden' : 'z-10 flex items-center flex-1 mt-5 intro-x lg:text-center lg:mt-0 lg:block'} `}>
             <Button 
-                variant={`${statusNumber === 6 ? 'primary' : 'secondary'}`} 
+                variant={`${statusNumber === 7 ? 'primary' : 'secondary'}`} 
                 className={`w-8 h-8 rounded-full
-                ${statusNumber === 6 ? '' : 'text-slate-500 bg-slate-100 dark:bg-darkmode-400 dark:border-darkmode-400'}
+                ${statusNumber === 7 ? '' : 'text-slate-500 bg-slate-100 dark:bg-darkmode-400 dark:border-darkmode-400'}
                 `}>
             7 
             </Button>

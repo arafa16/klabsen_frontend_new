@@ -28,6 +28,7 @@ import { getDataUserById } from "../../features/user/user";
 import { updateDataUserById } from "../../features/user/user";
 import { getMessageShow } from "../../features/messageShow";
 import LoadingIcon from "../../base-components/LoadingIcon";
+import FormPassword from "../../components/employee/form/FormPassword";
 
 const UpdateEmploye = () => {
   const {id} = useParams();
@@ -263,6 +264,7 @@ const UpdateEmploye = () => {
       <div className='my-10'>
         <StatusIndicator 
           statusNumber={statusNumber}
+          stepOf5={true}
           stepOf6={true}
           stepOf7={false}
         />

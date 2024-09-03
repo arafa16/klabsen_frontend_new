@@ -200,8 +200,9 @@ const createEmployee = () => {
       <div className='my-10'>
         <StatusIndicator 
           statusNumber={statusNumber}
+          stepOf5={true}
           stepOf6={true}
-          stepOf7={true}
+          stepOf7={false}
         />
       </div>
       <form onSubmit={submitCreate}>
