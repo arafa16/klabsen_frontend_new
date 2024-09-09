@@ -15,6 +15,8 @@ const forgotPassword = () => {
 
   const {email, setEmail, message, isLoadingReset, submitForgotPassword} = getForgotPassword();
 
+  console.log(message, 'message page')
+
   //message
   const messageShow = getMessageShow(message);
 

@@ -109,8 +109,7 @@ export const SendEmailForgot : any = createAsyncThunk("auth/SendEmailForgot", as
         return response.data;
     } catch (error: any) {
         if(error.response){
-            console.log(error.response, 'error response');
-            const message = `${error.response.statusText}`;
+            const message = error.response.data;
             return thunkAPI.rejectWithValue(message);
         }
     }
