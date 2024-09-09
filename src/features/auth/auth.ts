@@ -138,7 +138,6 @@ export const getForgotPassword = () => {
     useEffect(()=>{
         if(isErrorReset && messageReset){
             if(!isLoadingReset){
-                console.log(messageReset, 'messageReset');
                 setMessage(messageReset)
                 dispatch(resetAuth());
             }
