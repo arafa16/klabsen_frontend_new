@@ -51,8 +51,10 @@ const AbsenUserByIdPage = () => {
     const messageShow = getMessageShow(message);
 
     const clickEvent = async(info : any) => {
-        getDataEvent(info.publicId);
-        setOpenUpdate(true)
+        if(info.groupId !== 'event'){
+            getDataEvent(info.publicId);
+            setOpenUpdate(true)
+        }
     }
 
     //click date

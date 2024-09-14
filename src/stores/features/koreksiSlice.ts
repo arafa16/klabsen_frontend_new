@@ -40,8 +40,6 @@ export const createKoreksi: any = createAsyncThunk("createKoreksi", async(datas 
 });
 
 export const createKoreksisByDate: any = createAsyncThunk("createKoreksisByDate", async(datas : any, thunkAPI) => {
-
-    // userId, tanggalMulai, codeTipeAbsen, codePelanggaran, keterangan, codeStatusKoreksi, isActive, codeStatusInout
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/byDate`,{
             userId:datas.userId,

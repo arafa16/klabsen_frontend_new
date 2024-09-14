@@ -18,6 +18,7 @@ import dayjs from "dayjs";
 import { getPelanggaran } from "../pelanggaran/pelanggaran";
 import { getTipeAbsen } from "../tipeAbsen/tipeAbsen";
 import { getDataJamOperasional } from "../jamOperasional/jamOperasional";
+import LoadingIcon from "../../base-components/LoadingIcon";
 
 export const SlideOverDateKoreksiUser = () => {
 
@@ -38,19 +39,22 @@ export const SlideOverDateKoreksiUser = () => {
 
     const {dataResult: dataJamOperasional} = getDataJamOperasional();
 
-    const {message: messageKoreksi, isSuccess} = useSelector(
+    const {message:messageKoreksi, isSuccess, isLoading} = useSelector(
         (state : any) => state.koreksi
     );
 
     useEffect(()=>{
         const uuid = dataUser.uuid;
         if(messageKoreksi && isSuccess){
-            setMessage(messageKoreksi);
-            dispatch(resetKoreksis());
-            dispatch(getInOutsByUser({uuid}));
-            setOpen(false);
+            if(!isLoading){
+                setMessage(messageKoreksi);
+                dispatch(resetKoreksis());
+                dispatch(getInOutsByUser({uuid}));
+                resetValue();
+                setOpen(false);
+            }
         }
-    },[messageKoreksi, isSuccess, dataUser])
+    },[messageKoreksi, isSuccess, isLoading])
 
     const submitForm = (e : any) => {
         e.preventDefault();
@@ -69,7 +73,13 @@ export const SlideOverDateKoreksiUser = () => {
             jamOperasionalId:jamOperasionalId,
             isAbsenWeb:1,
         }));
+    }
 
+    const resetValue = () => {
+        setTime('');
+        setKeterangan('');
+        setTipeAbsenId('');
+        setJamOperasionalId('');
     }
 
     const form = (
@@ -169,7 +179,7 @@ export const SlideOverDateKoreksiUser = () => {
                         type="submit"
                         className="w-20"
                     >
-                        Submit
+                        {isLoading ? <LoadingIcon icon="tail-spin" className="w-4 h4" color="white"  /> : 'Submit'}
                     </Button>
                     </Slideover.Footer>
                 </form>
