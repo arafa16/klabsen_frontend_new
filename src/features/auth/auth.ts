@@ -173,7 +173,7 @@ export const getVerifyToken = (datas:any) => {
                 dispatch(resetAuth())
             }
         }
-      },[isSuccess, data, isLoading]);
+    },[isSuccess, data, isLoading]);
 
     useEffect(()=>{
         if(isError && messageVerify){

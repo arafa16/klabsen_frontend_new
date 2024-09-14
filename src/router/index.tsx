@@ -16,7 +16,7 @@ import PerhitunganAbsenPage from "../pages/absen/perhitunganAbsenPage";
 import DataEmployePage from "../pages/employee/dataEmployePage";
 import ViewEmployePage from "../pages/employee/viewEmployePage";
 import UpdateEmployePage from "../pages/employee/updateEmploye";
-import CreateEmployeePage from "../pages/employee/createEmploye";
+import CreateEmployeePage from "../pages/employee/createEmployeePage";
 import PendapatanPage from "../pages/pendapatan/pendapatanPage";
 import PendapatanLainPage from "../pages/pendapatan/pendapatanLainPage";
 import AdminPendapatan from "../pages/pendapatan/adminPendapatan";

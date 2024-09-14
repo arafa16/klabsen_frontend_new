@@ -191,8 +191,9 @@ export const updateDataUserById = (datas:any) => {
 export const createDataUser = (datas:any) => {
     const [message, setMessage] = useState<any>(null)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const {message:messageUser, isLoading, isSuccess} = useSelector(
+    const {message:messageUser, isLoading, isSuccess, isError} = useSelector(
         (state : any) => state.user
     );
     
@@ -201,9 +202,19 @@ export const createDataUser = (datas:any) => {
             if(!isLoading){
                 setMessage(messageUser);
                 dispatch(resetUsers());
+                navigate(-1);
             }
         }
     },[messageUser, isSuccess, isLoading])
+
+    useEffect(()=>{
+        if(isError && messageUser){
+            if(!isLoading){
+                setMessage(messageUser);
+                dispatch(resetUsers());
+            }
+        }
+    },[messageUser, isError, isLoading])
 
     const submit = (e : any) => {
         e.preventDefault();
