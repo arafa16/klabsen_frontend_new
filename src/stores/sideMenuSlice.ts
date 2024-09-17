@@ -165,6 +165,12 @@ const initialState: SideMenuState = {
           code: 'attribute',
         },
         {
+          icon: "MapPin",
+          pathname: "/slider",
+          title: "SLider",
+          code: 'attribute',
+        },
+        {
           icon: "Watch",
           pathname: "/periodeKerja",
           title: "Periode Kerja",

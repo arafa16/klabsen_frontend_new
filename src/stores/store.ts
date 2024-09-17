@@ -38,6 +38,7 @@ import TipeNotificationReducer from "./features/tipeNotificationSlice";
 import TipePendapatanReducer from "./features/tipePendapatanSlice";
 import StatusKoreksiReducer from "./features/statusKoreksiSlice";
 import MesinAbsenReducer from "./features/mesinAbsenSlice";
+import SliderReducer from "./features/sliderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -79,7 +80,8 @@ export const store = configureStore({
     tipeNotification:TipeNotificationReducer,
     tipePendapatan:TipePendapatanReducer,
     statusKoreksi:StatusKoreksiReducer,
-    mesinAbsen:MesinAbsenReducer
+    mesinAbsen:MesinAbsenReducer,
+    slider:SliderReducer
   },
 });
 

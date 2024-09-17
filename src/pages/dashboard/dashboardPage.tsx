@@ -6,6 +6,7 @@ import { getMeAuth } from "../../features/auth/meAuth";
 import { eventData } from "../../features/event/event";
 import { reportAbsenMonth } from "../../features/periodeKerja/absenReport";
 import AbsenReport from "../../components/dashboard/absenReport";
+import { SlideShow } from "../../features/slider/slideShow";
 
 const DasboardPage = () => {
 
@@ -16,14 +17,19 @@ const DasboardPage = () => {
 
   const {dataPeriodeKerjas, nextPagePeriodeKerja, prevPagePeriodeKerja, pagePeriodeKerja, allPagePeriodeKerja} = reportAbsenMonth();
 
+  const {slide} = SlideShow();
+
   return (
     <div className="grid grid-cols-12 gap-6 mb-10 text-xs">
       <div className="col-span-12 2xl:col-span-12">
         <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 mt-4 sm:col-span-6 lg:col-span-4 sm:row-start-4 md:row-start-3 lg:row-start-auto">
+          <div className="col-span-12 sm:col-span-4 lg:col-span-4 sm:row-start-4 md:row-start-3 lg:row-start-auto">
             <UserProfile
               dataUser={dataMe}
             />
+          </div>
+          <div className="col-span-12 mt-4 sm:col-span-8 lg:col-span-8 sm:row-start-4 md:row-start-3 lg:row-start-auto">
+            {slide}
           </div>
         </div>
       </div>

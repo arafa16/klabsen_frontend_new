@@ -31,7 +31,7 @@ export const changePhotoProfile = (datas:any) => {
             if(!isLoading){
                 setPhoto('');
                 setUrlPhoto('');
-                setMessage(messagePhoto)
+                setMessage(messagePhoto);
                 setShowModal(false);
                 dispatch(resetPhoto());
                 dispatch(getMe());

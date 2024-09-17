@@ -90,6 +90,9 @@ import ResetPassword from "../pages/auth/resetPassword";
 import RegisterPage from "../pages/auth/registerPage";
 import ViewProfilePage from "../pages/profile/viewProfilePage";
 import EditProfilePage from "../pages/profile/editProfilePage";
+import SliderPage from "../pages/slider/sliderPage";
+import CreateSliderPage from "../pages/slider/createSliderPage";
+import ViewSliderPage from "../pages/slider/viewSliderPage";
 
 function Router() {
 
@@ -473,6 +476,18 @@ function Router() {
         {
           path: "/tipeAbsen/edit/:uuid",
           element: <EditTipeAbsenPage />
+        },
+        {
+          path: "/slider",
+          element: <SliderPage />
+        },
+        {
+          path: "/slider/create",
+          element: <CreateSliderPage />
+        },
+        {
+          path: "/slider/view/:uuid",
+          element: <ViewSliderPage />
         },
       ],
     },
