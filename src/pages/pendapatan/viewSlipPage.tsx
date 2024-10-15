@@ -337,7 +337,7 @@ const viewSlipPage = () => {
                         <Table.Td className="text-right border-b dark:border-darkmode-400 w-1/6">
                             <div className='flex justify-between'>
                                 <div>Rp.</div>
-                                <div>{rupiah(data && data.pph21)}</div>
+                                <div>{rupiah(data && data.tax)}</div>
                             </div>
                         </Table.Td>
                         <Table.Td className=" border-b dark:border-darkmode-400 w-1/6">
@@ -363,7 +363,7 @@ const viewSlipPage = () => {
                         <Table.Td className="text-right border-b-2 dark:border-darkmode-400 w-1/6">
                             <div className='flex justify-between'>
                                 <div>Rp.</div>
-                                <div>{rupiah(data && data.pph21)}</div>
+                                <div>{rupiah(data && data.tax)}</div>
                             </div>
                         </Table.Td>
                         </Table.Tr>
